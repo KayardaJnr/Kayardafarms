@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayarda Integrated Farms | Top Quality Animal Feeds</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    },
+                    fontSize: {
+                        'xs': '0.8125rem',
+                        'sm': '0.9rem',
+                        'base': '1.01rem',
+                        'lg': '1.125rem',
+                        'xl': '1.25rem',
+                        '2xl': '1.5rem',
+                        '3xl': '1.875rem',
+                        '4xl': '2.25rem',
+                    },
+                    colors: {
+                        brand: {
+                            green: '#0e7a3d', /* Hybrid-style deep agro green */
+                            dark: '#0a5c2d',
+                            light: '#13a352',
+                            orange: '#f05a28', /* Industrial orange */
+                            orangeHover: '#d94b1f',
+                            gray: '#f5f5f5',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* Hero Background Video */
+        .hero-slider {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-slider::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+            z-index: 1;
+        }
+
+        .hero-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .hero-video-bg.loaded {
+            opacity: 1;
+        }
+
+        .hero-fallback-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .cta-banner {
+            background-image: linear-gradient(rgba(10, 92, 45, 0.9), rgba(10, 92, 45, 0.9)), url('https://images.unsplash.com/photo-1586771107445-d3ca888129ff?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        /* Sharp corporate buttons */
+        .btn-theme {
+            border-radius: 8px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #f05a28;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .product-card:hover .product-img {
+            transform: scale(1.08);
+        }
+        /* Overlapping cards */
+        .overlap-cards {
+            margin-top: -80px;
+            position: relative;
+            z-index: 20;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 font-sans flex flex-col min-h-screen">
+
+    <!-- Top Bar (Email, Phone, Socials) -->
+    <div class="bg-brand-green text-white text-xs py-3.5 hidden md:block border-b border-brand-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <div class="flex space-x-6 font-medium">
+                <span class="flex items-center">
+                    <i data-lucide="map-pin" class="h-3.5 w-3.5 mr-2"></i>                                     Zaria To Jos Road, Opp. Jumaat Mosque, Kayarda Tasha, Kaduna State
+                </span>
+                <a href="mailto:info@kayardafarms.com" class="flex items-center hover:text-brand-orange transition-colors">
+                    <i data-lucide="mail" class="h-3.5 w-3.5 mr-2"></i> info@kayardafarms.com
+                </a>
+                <a href="tel:+2348128087579" class="flex items-center hover:text-brand-orange transition-colors">
+                    <i data-lucide="phone" class="h-3.5 w-3.5 mr-2"></i> +234 81 280 87579
+                </a>
+                <span class="flex items-center">
+                    <i data-lucide="clock" class="h-3.5 w-3.5 mr-2"></i> Mon - Sat: 8:00 AM - 6:00 PM
+                </span>
+            </div>
+            <div class="flex items-center space-x-3">
+                <!-- <span class="text-white uppercase text-[10px] tracking-[0.24em] font-semibold">Follow us</span> -->
+                <a href="#" class="text-white bg-white/20 p-2 rounded-full hover:bg-white/30 transition-colors" aria-label="Facebook"><i data-lucide="facebook" class="h-4 w-4 text-white"></i></a>
+                <a href="#" class="text-white bg-white/20 p-2 rounded-full hover:bg-white/30 transition-colors" aria-label="Twitter"><i data-lucide="twitter" class="h-4 w-4 text-white"></i></a>
+                <a href="#" class="text-white bg-white/20 p-2 rounded-full hover:bg-white/30 transition-colors" aria-label="Instagram"><i data-lucide="instagram" class="h-4 w-4 text-white"></i></a>
+                <a href="#" class="text-white bg-white/20 p-2 rounded-full hover:bg-white/30 transition-colors" aria-label="LinkedIn"><i data-lucide="linkedin" class="h-4 w-4 text-white"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav id="navbar" class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-[85px]">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer">
+                    <div class="flex flex-col border-l-4 border-brand-orange pl-3">
+                        <span class="font-heading font-extrabold text-3xl tracking-tighter text-brand-green leading-none">
+                            KAYARDA
+                        </span>
+                        <span class="text-[11px] uppercase font-bold text-gray-600 tracking-[0.2em] mt-1">Integrated Farms</span>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">Home</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">About Us</a>
+                    <a href="#products" class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide flex items-center">
+                        Our Products <i data-lucide="chevron-down" class="ml-1 h-3 w-3"></i>
+                    </a>
+                    <a href="#media" class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">Media</a>
+                    <a href="#career" class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">Career</a>
+                    <a href="#contact" class="px-6 py-3 bg-brand-orange hover:bg-brand-orangeHover text-white btn-theme inline-flex items-center">
+                        Contact Us <i data-lucide="arrow-right-circle" class="ml-2 h-4 w-4"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-brand-green focus:outline-none p-2 rounded-lg">
+                        <i data-lucide="menu" class="h-8 w-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full left-0 top-full shadow-xl">
+            <div class="px-4 py-4 space-y-2">
+                <a href="#home" class="block px-3 py-3 text-sm font-heading font-bold text-brand-green uppercase border-b border-gray-100">Home</a>
+                <a href="#about" class="block px-3 py-3 text-sm font-heading font-bold text-gray-700 uppercase border-b border-gray-100">About Us</a>
+                <a href="#products" class="block px-3 py-3 text-sm font-heading font-bold text-gray-700 uppercase border-b border-gray-100">Our Products</a>
+                <a href="#media" class="block px-3 py-3 text-sm font-heading font-bold text-gray-700 uppercase border-b border-gray-100">Media</a>
+                <a href="#contact" class="block px-3 py-3 text-sm font-heading font-bold text-gray-700 uppercase">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Slider Section -->
+    <header id="home" class="hero-slider h-[550px] md:h-[650px] flex items-center relative group">
+        <!-- Background Video - Replace with actual chicken laying eggs video -->
+        <video
+            class="hero-video-bg"
+            autoplay
+            muted
+            loop
+            playsinline
+            poster="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?q=80&w=2000&auto=format&fit=crop"
+            onloadstart="this.classList.add('loaded')"
+        >
+            <!-- Replace these sources with your actual chicken laying eggs video -->
+            <!-- Example: <source src="your-chicken-video.mp4" type="video/mp4"> -->
+            <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+        </video>
+
+        <!-- Fallback background image if video fails to load -->
+        <div class="hero-fallback-bg absolute inset-0 bg-cover bg-center z-0" style="background-image: url('https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?q=80&w=2000&auto=format&fit=crop');"></div>
+
+        <!-- Slider Arrows -->
+        <button class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-brand-orange text-white p-3 rounded opacity-0 group-hover:opacity-100 transition-all duration-300 z-20">
+            <i data-lucide="chevron-left" class="h-8 w-8"></i>
+        </button>
+        <button class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-brand-orange text-white p-3 rounded opacity-0 group-hover:opacity-100 transition-all duration-300 z-20">
+            <i data-lucide="chevron-right" class="h-8 w-8"></i>
+        </button>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center md:text-left">
+            <div class="md:w-2/3">
+                <div class="inline-block px-4 py-1.5 bg-brand-orange text-white font-heading font-bold text-xs tracking-widest uppercase mb-4 animate-fade-in-up">
+                    Growing Food. Empowering Communities. Delivering Quality.
+                </div>
+                <h1 class="text-4xl md:text-6xl font-heading font-extrabold text-white leading-tight mb-6 uppercase tracking-tight shadow-sm">
+                    Premium Quality <br><span class="text-brand-orange">Animal Nutrition</span>
+                </h1>
+                <p class="text-base md:text-xl text-gray-100 mb-10 font-medium max-w-xl hidden md:block">
+                    We combine modern agricultural practices with reliable distribution systems to provide high-quality poultry, feed, egg, fish, maize, and agricultural inputs. From farm to market, we are committed to sustainability, efficiency, and excellence.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#products" class="px-8 py-4 bg-brand-green hover:bg-brand-dark text-white btn-theme inline-flex items-center justify-center border border-brand-green">
+                        View Products <i data-lucide="arrow-right-circle" class="ml-2 h-4 w-4"></i>
+                    </a>
+                    <a href="#about" class="px-8 py-4 bg-transparent hover:bg-white hover:text-brand-green text-white btn-theme inline-flex items-center justify-center border-2 border-white">
+                        Discover More <i data-lucide="arrow-right-circle" class="ml-2 h-4 w-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slider Dots -->
+        <div class="absolute bottom-10 left-0 w-full flex justify-center space-x-2 z-20">
+            <div class="w-8 h-1.5 bg-brand-orange cursor-pointer"></div>
+            <div class="w-8 h-1.5 bg-white/50 cursor-pointer hover:bg-white transition-colors"></div>
+            <div class="w-8 h-1.5 bg-white/50 cursor-pointer hover:bg-white transition-colors"></div>
+        </div>
+    </header>
+
+    <!-- Overlapping Mission/Vision Cards -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overlap-cards hidden md:block">
+        <div class="grid grid-cols-3 gap-6">
+            <!-- Mission Card -->
+            <div class="bg-gradient-to-br from-brand-green to-brand-dark p-8 text-white rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-brand-orange">
+                <div class="flex items-center mb-4">
+                    <div class="bg-white bg-opacity-20 p-3 rounded-full mr-4">
+                        <i data-lucide="target" class="h-8 w-8"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl uppercase tracking-wide">Our Mission</h3>
+                </div>
+                <p class="text-sm leading-relaxed opacity-90">To power the future of agriculture by producing quality food, supporting farmers, and moving products efficiently—using smart, modern solutions to feed communities and drive growth.</p>
+            </div>
+
+            <!-- Vision Card -->
+            <div class="bg-white p-8 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-brand-green">
+                <div class="flex items-center mb-4">
+                    <div class="bg-brand-green bg-opacity-10 p-3 rounded-full mr-4">
+                        <i data-lucide="eye" class="h-8 w-8 text-brand-green"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl uppercase tracking-wide text-brand-green">Our Vision</h3>
+                </div>
+                <p class="text-sm text-gray-600 leading-relaxed">To become a leading integrated agricultural enterprise recognized for delivering high-quality farm products, driving innovation in agriculture, and contributing to food security and economic growth across the region.</p>
+            </div>
+
+            <!-- Core Values Card -->
+            <div class="bg-gradient-to-br from-brand-orange to-red-600 p-8 text-white rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-white">
+                <div class="flex items-center mb-4">
+                    <div class="bg-white bg-opacity-20 p-3 rounded-full mr-4">
+                        <i data-lucide="award" class="h-8 w-8"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl uppercase tracking-wide">Core Values</h3>
+                </div>
+                <ul class="space-y-2">
+                    <li class="flex items-center text-sm">
+                        <i data-lucide="check-circle" class="h-4 w-4 mr-2 opacity-80"></i>
+                        Uncompromising Quality
+                    </li>
+                    <li class="flex items-center text-sm">
+                        <i data-lucide="check-circle" class="h-4 w-4 mr-2 opacity-80"></i>
+                        Customer Centricity
+                    </li>
+                    <li class="flex items-center text-sm">
+                        <i data-lucide="check-circle" class="h-4 w-4 mr-2 opacity-80"></i>
+                        Integrity & Trust
+                    </li>
+                    <li class="flex items-center text-sm">
+                        <i data-lucide="check-circle" class="h-4 w-4 mr-2 opacity-80"></i>
+                        Innovation & Sustainability
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who We Are Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <div class="flex items-center mb-2">
+                        <div class="w-10 h-0.5 bg-brand-orange mr-3"></div>
+                        <h4 class="text-brand-green font-heading font-bold uppercase text-sm tracking-widest">Who We Are</h4>
+                    </div>
+                    <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-gray-900 mb-6 uppercase tracking-tight">Welcome to <span class="text-brand-orange">Kayarda Farms</span></h2>
+                    
+                    <p class="text-gray-600 mb-5 leading-relaxed font-medium">
+                        Kayarda Integrated Farms is a diversified agricultural enterprise committed to excellence in food production and supply. We operate across poultry farming, aquaculture, crop supply, fertilizer distribution, and logistics services—delivering quality products and reliable solutions to meet the growing demands of the agricultural sector.
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed text-sm">
+                        Through continuous growth, innovation, and strategic expansion into poultry, aquaculture, crop supply, and logistics, we have built a brand that reflects precision, consistency, and trust. Our journey is guided by a commitment to delivering superior products while contributing meaningfully to agricultural advancement.
+                    </p>
+                    
+                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                        <li class="flex items-center text-sm font-bold text-gray-700">
+                            <i data-lucide="check" class="h-5 w-5 text-brand-orange mr-2"></i> Standard Formulation
+                        </li>
+                        <li class="flex items-center text-sm font-bold text-gray-700">
+                            <i data-lucide="check" class="h-5 w-5 text-brand-orange mr-2"></i> Nationwide Logistics
+                        </li>
+                        <li class="flex items-center text-sm font-bold text-gray-700">
+                            <i data-lucide="check" class="h-5 w-5 text-brand-orange mr-2"></i> Vet & Tech Support
+                        </li>
+                        <li class="flex items-center text-sm font-bold text-gray-700">
+                            <i data-lucide="check" class="h-5 w-5 text-brand-orange mr-2"></i> Affordable Pricing
+                        </li>
+                    </ul>
+                    
+                    <a href="#contact" class="px-8 py-3.5 bg-brand-green hover:bg-brand-dark text-white btn-theme inline-block">
+                        Read Full History
+                    </a>
+                </div>
+                
+                <div class="lg:w-1/2 relative">
+                    <img src="https://images.unsplash.com/photo-1598448834473-bdfc08f44cfb?q=80&w=1200&auto=format&fit=crop" 
+                         alt="Factory Production" 
+                         class="w-full h-[450px] object-cover rounded shadow-lg z-10 relative border-b-4 border-brand-orange">
+                    <!-- Play button overlay -->
+                    <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+                        <div class="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center shadow-xl animate-pulse">
+                            <i data-lucide="play" class="h-8 w-8 text-brand-orange ml-1"></i>
+                        </div>
+                    </div>
+                    <!-- Decorative block -->
+                    <div class="absolute -bottom-6 -left-6 w-48 h-48 bg-brand-gray -z-10 hidden md:block border border-gray-200"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us / CTA Banner -->
+    <section class="cta-banner py-20 border-t-4 border-brand-orange">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-white mb-12 uppercase tracking-wide">Why Farmers Trust <span class="text-brand-orange">Kayarda Feeds</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="text-center p-6 border border-white/20 hover:bg-white/10 transition-colors backdrop-blur-sm">
+                    <div class="w-16 h-16 bg-brand-orange mx-auto flex items-center justify-center rounded-full mb-4">
+                        <i data-lucide="shield-check" class="h-8 w-8 text-white"></i>
+                    </div>
+                    <h3 class="text-white font-heading font-bold text-lg mb-2 uppercase">100% Quality</h3>
+                    <p class="text-gray-300 text-sm">We deliver farm products and inputs that meet high standards, ensuring farmers get reliable results every time—whether it’s maize supply, fertilizers, or livestock products.</p>
+                </div>
+                
+                <div class="text-center p-6 border border-white/20 hover:bg-white/10 transition-colors backdrop-blur-sm">
+                    <div class="w-16 h-16 bg-brand-orange mx-auto flex items-center justify-center rounded-full mb-4">
+                        <i data-lucide="trending-up" class="h-8 w-8 text-white"></i>
+                    </div>
+                    <h3 class="text-white font-heading font-bold text-lg mb-2 uppercase">Growing with Purpose</h3>
+                    <p class="text-gray-300 text-sm">We are not just suppliers—we are partners in progress, helping farmers increase productivity and contribute to food security.</p>
+                </div>
+                
+                <div class="text-center p-6 border border-white/20 hover:bg-white/10 transition-colors backdrop-blur-sm">
+                    <div class="w-16 h-16 bg-brand-orange mx-auto flex items-center justify-center rounded-full mb-4">
+                        <i data-lucide="truck" class="h-8 w-8 text-white"></i>
+                    </div>
+                    <h3 class="text-white font-heading font-bold text-lg mb-2 uppercase">Fast Delivery</h3>
+                    <p class="text-gray-300 text-sm">Robust logistics network across 36 states of the federation.</p>
+                </div>
+                
+                <div class="text-center p-6 border border-white/20 hover:bg-white/10 transition-colors backdrop-blur-sm">
+                    <div class="w-16 h-16 bg-brand-orange mx-auto flex items-center justify-center rounded-full mb-4">
+                        <i data-lucide="users" class="h-8 w-8 text-white"></i>
+                    </div>
+                    <h3 class="text-white font-heading font-bold text-lg mb-2 uppercase">Expert Support</h3>
+                    <p class="text-gray-300 text-sm">Free veterinary consultation and farm management advice.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Products Grid -->
+    <section id="products" class="py-24 bg-brand-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="flex items-center justify-center mb-2">
+                    <div class="w-10 h-0.5 bg-brand-orange mr-3"></div>
+                    <h4 class="text-brand-green font-heading font-bold uppercase text-sm tracking-widest">Our Feed Brands</h4>
+                    <div class="w-10 h-0.5 bg-brand-orange ml-3"></div>
+                </div>
+                <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-gray-900 mb-4 uppercase">Featured Products</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="bg-white group product-card border border-gray-200 shadow-sm hover:shadow-xl transition-all">
+                    <div class="h-64 overflow-hidden bg-gray-100 flex items-center justify-center p-6 relative">
+                        <!-- Simulated Bag Image using a generic placeholder styled to look like a product shot -->
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=400&auto=format&fit=crop" alt="Poultry Feed" class="product-img w-full h-full object-cover border-4 border-white shadow-md">
+                        <div class="absolute top-4 right-4 bg-brand-orange text-white text-xs font-bold px-2 py-1 uppercase">Best Seller</div>
+                    </div>
+                    <div class="p-6 border-t-2 border-brand-green text-center">
+                        <h3 class="font-heading font-bold text-xl text-gray-900 mb-2 uppercase">Broiler Super Starter</h3>
+                        <p class="text-gray-500 text-sm mb-4">Crumble format, 21% Crude Protein. For Day Old to 4 weeks.</p>
+                        <a href="#contact" class="text-brand-green font-bold text-sm uppercase hover:text-brand-orange flex items-center justify-center">
+                            Request Quote <i data-lucide="chevron-right" class="h-4 w-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="bg-white group product-card border border-gray-200 shadow-sm hover:shadow-xl transition-all">
+                    <div class="h-64 overflow-hidden bg-gray-100 flex items-center justify-center p-6 relative">
+                        <img src="https://images.unsplash.com/photo-1516467508483-a7212febe31a?q=80&w=400&auto=format&fit=crop" alt="Layer Feed" class="product-img w-full h-full object-cover border-4 border-white shadow-md">
+                    </div>
+                    <div class="p-6 border-t-2 border-brand-green text-center">
+                        <h3 class="font-heading font-bold text-xl text-gray-900 mb-2 uppercase">Layer Mash Phase 1</h3>
+                        <p class="text-gray-500 text-sm mb-4">Highly fortified for maximum, sustained egg production.</p>
+                        <a href="#contact" class="text-brand-green font-bold text-sm uppercase hover:text-brand-orange flex items-center justify-center">
+                            Request Quote <i data-lucide="chevron-right" class="h-4 w-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="bg-white group product-card border border-gray-200 shadow-sm hover:shadow-xl transition-all">
+                    <div class="h-64 overflow-hidden bg-gray-100 flex items-center justify-center p-6 relative">
+                        <img src="https://images.unsplash.com/photo-1524313264666-880054238541?q=80&w=400&auto=format&fit=crop" alt="Fish Feed" class="product-img w-full h-full object-cover border-4 border-white shadow-md">
+                    </div>
+                    <div class="p-6 border-t-2 border-brand-green text-center">
+                        <h3 class="font-heading font-bold text-xl text-gray-900 mb-2 uppercase">Aqua Floating Pellets</h3>
+                        <p class="text-gray-500 text-sm mb-4">High protein sinkable & floating pellets for Catfish/Tilapia.</p>
+                        <a href="#contact" class="text-brand-green font-bold text-sm uppercase hover:text-brand-orange flex items-center justify-center">
+                            Request Quote <i data-lucide="chevron-right" class="h-4 w-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#products" class="px-8 py-3.5 bg-transparent border-2 border-brand-green text-brand-green hover:bg-brand-green hover:text-white btn-theme inline-block">
+                    View All Categories
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest News / Media Section -->
+    <section id="media" class="py-20 bg-white border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <div class="flex items-center mb-2">
+                        <div class="w-10 h-0.5 bg-brand-orange mr-3"></div>
+                        <h4 class="text-brand-green font-heading font-bold uppercase text-sm tracking-widest">Media Center</h4>
+                    </div>
+                    <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-gray-900 uppercase">Latest News</h2>
+                </div>
+                <a href="#" class="hidden md:inline-flex text-brand-orange font-bold text-sm uppercase hover:text-brand-green items-center">
+                    Read All News <i data-lucide="arrow-right" class="h-4 w-4 ml-1"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- News Item 1 -->
+                <div class="group cursor-pointer">
+                    <div class="overflow-hidden mb-4 relative">
+                        <div class="absolute top-4 left-4 bg-brand-green text-white px-3 py-2 text-center z-10 flex flex-col leading-none">
+                            <span class="font-bold text-xl">15</span>
+                            <span class="text-xs uppercase">Mar</span>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1590005354167-6da97ce231ce?q=80&w=600&auto=format&fit=crop" alt="News" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="flex items-center text-xs text-gray-500 font-bold uppercase mb-2 space-x-4">
+                        <span class="flex items-center"><i data-lucide="user" class="h-3 w-3 mr-1"></i> Admin</span>
+                        <span class="flex items-center"><i data-lucide="tag" class="h-3 w-3 mr-1"></i> Expansion</span>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-gray-900 mb-3 group-hover:text-brand-orange transition-colors">Kayarda Commisions New Ultra-Modern Feed Mill in Kano</h3>
+                    <p class="text-gray-600 text-sm line-clamp-2">As part of our strategic expansion plan to serve the Northern region better, we have officially opened...</p>
+                </div>
+
+                <!-- News Item 2 -->
+                <div class="group cursor-pointer">
+                    <div class="overflow-hidden mb-4 relative">
+                        <div class="absolute top-4 left-4 bg-brand-green text-white px-3 py-2 text-center z-10 flex flex-col leading-none">
+                            <span class="font-bold text-xl">02</span>
+                            <span class="text-xs uppercase">Feb</span>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1589923188900-85dae523342b?q=80&w=600&auto=format&fit=crop" alt="News" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="flex items-center text-xs text-gray-500 font-bold uppercase mb-2 space-x-4">
+                        <span class="flex items-center"><i data-lucide="user" class="h-3 w-3 mr-1"></i> Admin</span>
+                        <span class="flex items-center"><i data-lucide="tag" class="h-3 w-3 mr-1"></i> Seminar</span>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-gray-900 mb-3 group-hover:text-brand-orange transition-colors">Annual Farmers Forum & Biosecurity Training Held in Lagos</h3>
+                    <p class="text-gray-600 text-sm line-clamp-2">Over 500 poultry farmers attended our free quarterly seminar focusing on disease prevention and yield optimization...</p>
+                </div>
+
+                <!-- News Item 3 -->
+                <div class="group cursor-pointer">
+                    <div class="overflow-hidden mb-4 relative">
+                        <div class="absolute top-4 left-4 bg-brand-green text-white px-3 py-2 text-center z-10 flex flex-col leading-none">
+                            <span class="font-bold text-xl">28</span>
+                            <span class="text-xs uppercase">Jan</span>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1627907228175-2bf846fbccbf?q=80&w=600&auto=format&fit=crop" alt="News" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="flex items-center text-xs text-gray-500 font-bold uppercase mb-2 space-x-4">
+                        <span class="flex items-center"><i data-lucide="user" class="h-3 w-3 mr-1"></i> Admin</span>
+                        <span class="flex items-center"><i data-lucide="tag" class="h-3 w-3 mr-1"></i> Products</span>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-gray-900 mb-3 group-hover:text-brand-orange transition-colors">Introducing the Reformulated Aqua Starter Series</h3>
+                    <p class="text-gray-600 text-sm line-clamp-2">Our R&D team has successfully launched an improved version of our fish feed starter pack, guaranteeing 15% faster growth...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Offices -->
+    <section id="contact" class="py-20 bg-brand-gray border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <!-- Address Block -->
+                <div class="lg:col-span-1">
+                    <h2 class="font-heading font-extrabold text-2xl text-gray-900 mb-6 uppercase">Contact Details</h2>
+                    <div class="w-12 h-1 bg-brand-orange mb-8"></div>
+                    
+                    <div class="space-y-8">
+                        <div class="flex">
+                            <i data-lucide="map-pin" class="h-6 w-6 text-brand-green mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-heading font-bold text-gray-900 uppercase text-sm mb-1">Corporate Head Office</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">
+                                    Zaria To Jos Road, Opp. Jumaat Mosque,<br> Kayarda Tasha, Kaduna State, Nigeria.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex">
+                            <i data-lucide="phone" class="h-6 w-6 text-brand-green mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-heading font-bold text-gray-900 uppercase text-sm mb-1">Call Us</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">
+                                    Customer Care: +234 812 808 7579<br>
+                                    Sales: +234 802 150 7747
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex">
+                            <i data-lucide="mail" class="h-6 w-6 text-brand-green mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-heading font-bold text-gray-900 uppercase text-sm mb-1">Email Address</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">
+                                    info@kayardafarms.com<br>
+                                    sales@kayardafarms.com
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-2 bg-white p-8 md:p-10 shadow-sm border border-gray-200">
+                    <h3 class="font-heading font-extrabold text-2xl text-gray-900 mb-6 uppercase">Send a Message</h3>
+                    <form id="contactForm" onsubmit="event.preventDefault(); showSuccessMessage();">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <input type="text" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:border-brand-green focus:bg-white outline-none transition-colors text-sm rounded-lg" placeholder="Your Name *">
+                            </div>
+                            <div>
+                                <input type="email" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:border-brand-green focus:bg-white outline-none transition-colors text-sm rounded-lg" placeholder="Your Email *">
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <input type="tel" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:border-brand-green focus:bg-white outline-none transition-colors text-sm rounded-lg" placeholder="Phone Number *">
+                            </div>
+                            <div>
+                                <select class="w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:border-brand-green focus:bg-white outline-none transition-colors text-sm text-gray-600 rounded-lg">
+                                    <option>Subject / Purpose of Inquiry</option>
+                                    <option>Distributorship Registration</option>
+                                    <option>Bulk Product Order</option>
+                                    <option>Veterinary Support</option>
+                                    <option>General Information</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <textarea rows="5" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:border-brand-green focus:bg-white outline-none transition-colors resize-none text-sm rounded-lg" placeholder="Write your message here..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="px-10 py-4 bg-brand-orange hover:bg-brand-orangeHover text-white btn-theme w-full md:w-auto">
+                            Submit Message
+                        </button>
+
+                        <div id="successMessage" class="hidden mt-6 p-4 bg-green-50 text-brand-green border border-brand-green text-sm font-bold rounded-lg">
+                            Thank you! Your message has been sent successfully.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#1a1a1a] text-gray-400 py-16 border-t-4 border-brand-green mt-auto font-sans">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                
+                <!-- About Widget -->
+                <div class="col-span-1">
+                    <div class="flex flex-col border-l-4 border-brand-orange pl-3 mb-6">
+                        <span class="font-heading font-extrabold text-2xl tracking-tighter text-white leading-none">
+                            KAYARDA
+                        </span>
+                        <span class="text-[10px] uppercase font-bold text-gray-400 tracking-widest mt-1">Integrated Farms</span>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-6 font-medium">Nigeria's premier manufacturer of high-quality animal feeds. We blend innovation, quality, and technical expertise to serve the agricultural sector.</p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-8 h-8 rounded bg-[#2a2a2a] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i data-lucide="facebook" class="h-4 w-4"></i></a>
+                        <a href="#" class="w-8 h-8 rounded bg-[#2a2a2a] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i data-lucide="twitter" class="h-4 w-4"></i></a>
+                        <a href="#" class="w-8 h-8 rounded bg-[#2a2a2a] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i data-lucide="instagram" class="h-4 w-4"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Links Widget -->
+                <div>
+                    <h4 class="text-white font-heading font-bold text-lg mb-6 uppercase border-b border-[#333] pb-2 inline-block">Company</h4>
+                    <ul class="space-y-3 text-sm font-semibold">
+                        <li><a href="#about" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> About Us</a></li>
+                        <li><a href="#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Our Products</a></li>
+                        <li><a href="#media" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Media Center</a></li>
+                        <li><a href="#career" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Careers</a></li>
+                        <li><a href="#contact" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Products Widget -->
+                <div>
+                    <h4 class="text-white font-heading font-bold text-lg mb-6 uppercase border-b border-[#333] pb-2 inline-block">Our Products</h4>
+                    <ul class="space-y-3 text-sm font-semibold">
+                        <li><a href="#" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Poultry Feeds</a></li>
+                        <li><a href="#" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Aqua Feeds (Fish)</a></li>
+                        <li><a href="#" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Ruminant Feeds</a></li>
+                        <li><a href="#" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Swine Feeds</a></li>
+                        <li><a href="#" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Concentrates</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Newsletter Widget -->
+                <div>
+                    <h4 class="text-white font-heading font-bold text-lg mb-6 uppercase border-b border-[#333] pb-2 inline-block">Newsletter</h4>
+                    <p class="text-sm mb-4 font-medium">Subscribe to our newsletter to receive the latest updates and farming tips.</p>
+                    <form onsubmit="event.preventDefault();" class="flex flex-col space-y-2">
+                        <input type="email" placeholder="Email Address" required class="w-full px-4 py-2 bg-[#2a2a2a] border border-[#333] text-white focus:outline-none focus:border-brand-green text-sm rounded-lg">
+                        <button type="submit" class="bg-brand-green hover:bg-brand-dark px-4 py-2 text-white transition-colors text-sm font-bold uppercase">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Copyright Base -->
+            <div class="pt-8 border-t border-[#333] text-xs font-bold flex flex-col md:flex-row justify-between items-center text-gray-500 uppercase tracking-wider">
+                <p>&copy; 2026 Kayarda Integrated Farms Ltd. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-brand-orange transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-brand-orange transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Navbar Sticky Shadow
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-lg');
+                navbar.classList.remove('shadow-md');
+            } else {
+                navbar.classList.remove('shadow-lg');
+                navbar.classList.add('shadow-md');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Mock Form Submission
+        function showSuccessMessage() {
+            const form = document.getElementById('contactForm');
+            const btn = form.querySelector('button[type="submit"]');
+            const successMsg = document.getElementById('successMessage');
+            
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = 'SENDING...';
+            btn.classList.add('opacity-75', 'cursor-not-allowed');
+
+            setTimeout(() => {
+                form.reset();
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+                btn.classList.remove('opacity-75', 'cursor-not-allowed');
+                successMsg.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    successMsg.classList.add('hidden');
+                }, 5000);
+            }, 1000);
+        }
+
+        // Hero Video Loading Handler
+        const heroVideo = document.querySelector('.hero-video-bg');
+        const fallbackBg = document.querySelector('.hero-fallback-bg');
+
+        if (heroVideo) {
+            heroVideo.addEventListener('loadeddata', () => {
+                heroVideo.classList.add('loaded');
+                if (fallbackBg) {
+                    fallbackBg.style.display = 'none';
+                }
+            });
+
+            heroVideo.addEventListener('error', () => {
+                console.log('Video failed to load, showing fallback background');
+                if (fallbackBg) {
+                    fallbackBg.style.display = 'block';
+                }
+            });
+
+            // Force video to load
+            heroVideo.load();
+        }
+    </script>
+</body>
+</html>
