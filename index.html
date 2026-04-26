@@ -30,10 +30,10 @@
                     },
                     colors: {
                         brand: {
-                            green: '#0e7a3d', /* Hybrid-style deep agro green */
+                            green: '#0e7a3d',
                             dark: '#0a5c2d',
                             light: '#13a352',
-                            orange: '#f05a28', /* Industrial orange */
+                            orange: '#f05a28',
                             orangeHover: '#d94b1f',
                             gray: '#f5f5f5',
                         }
@@ -125,16 +125,99 @@
             position: relative;
             z-index: 20;
         }
+
+        /* ── NEW: Scroll progress bar ── */
+        #scrollProgress {
+            position: fixed; top: 0; left: 0; height: 3px;
+            background: #f05a28; z-index: 9999; width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* ── NEW: Back to top ── */
+        #backToTop {
+            position: fixed; bottom: 28px; right: 28px; z-index: 999;
+            width: 44px; height: 44px; border-radius: 8px;
+            background: #0e7a3d; color: #fff; border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.3s ease, background 0.2s ease;
+            box-shadow: 0 4px 12px rgba(14,122,61,0.3);
+        }
+        #backToTop.visible { opacity: 1; pointer-events: auto; }
+        #backToTop:hover { background: #f05a28; }
+
+        /* ── NEW: Ticker ── */
+        .ticker-wrap { overflow: hidden; background: #0e7a3d; }
+        .ticker-track {
+            display: flex; white-space: nowrap;
+            animation: ticker 30s linear infinite;
+        }
+        .ticker-track:hover { animation-play-state: paused; }
+        @keyframes ticker {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+
+        /* ── NEW: Stats counter ── */
+        .stat-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(14,122,61,0.2);
+        }
+
+        /* ── NEW: Gallery ── */
+        .gallery-img { overflow: hidden; position: relative; cursor: pointer; }
+        .gallery-img img { transition: transform 0.5s ease; display: block; width: 100%; height: 100%; object-fit: cover; }
+        .gallery-img:hover img { transform: scale(1.08); }
+        .gallery-overlay {
+            position: absolute; inset: 0;
+            background: rgba(14,122,61,0); transition: background 0.3s ease;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .gallery-img:hover .gallery-overlay { background: rgba(14,122,61,0.55); }
+        .gallery-overlay-icon { opacity: 0; transition: opacity 0.3s ease; color: #fff; }
+        .gallery-img:hover .gallery-overlay-icon { opacity: 1; }
+
+        /* ── NEW: Team card ── */
+        .team-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .team-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .team-social { opacity: 0; transition: opacity 0.3s ease; }
+        .team-card:hover .team-social { opacity: 1; }
+
+        /* ── NEW: Testimonial slider ── */
+        .testimonial-slider { overflow: hidden; }
+        .testimonial-track { display: flex; transition: transform 0.5s ease; }
+        .testimonial-slide { min-width: 100%; }
+
+        /* ── NEW: FAQ accordion ── */
+        .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+        .faq-content.open { max-height: 300px; }
+        .faq-icon { transition: transform 0.3s ease; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+        /* ── NEW: Job card ── */
+        .job-card { transition: box-shadow 0.3s ease, border-color 0.3s ease; }
+        .job-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-color: #0e7a3d; }
+
+        /* ── NEW: Map wrapper ── */
+        .map-wrapper { position: relative; padding-bottom: 40%; overflow: hidden; }
+        .map-wrapper iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
     </style>
 </head>
 <body class="bg-white text-gray-800 font-sans flex flex-col min-h-screen">
+
+    <!-- Scroll Progress -->
+    <div id="scrollProgress"></div>
 
     <!-- Top Bar (Email, Phone, Socials) -->
     <div class="bg-brand-green text-white text-xs py-3.5 hidden md:block border-b border-brand-light">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <div class="flex space-x-6 font-medium">
                 <span class="flex items-center">
-                    <i data-lucide="map-pin" class="h-3.5 w-3.5 mr-2"></i>                                     Zaria To Jos Road, Opp. Jumaat Mosque, Kayarda Tasha, Kaduna State
+                    <i data-lucide="map-pin" class="h-3.5 w-3.5 mr-2"></i>
+                    Zaria To Jos Road, Opp. Jumaat Mosque, Kayarda Tasha, Kaduna State
                 </span>
                 <a href="mailto:info@kayardafarms.com" class="flex items-center hover:text-brand-orange transition-colors">
                     <i data-lucide="mail" class="h-3.5 w-3.5 mr-2"></i> info@kayardafarms.com
@@ -147,7 +230,6 @@
                 </span>
             </div>
             <div class="flex items-center space-x-3">
-                <!-- <span class="text-white uppercase text-[10px] tracking-[0.24em] font-semibold">Follow us</span> -->
                 <a href="#" class="text-white bg-white/20 p-2 rounded-full hover:bg-white/30 transition-colors" aria-label="Facebook"><i data-lucide="facebook" class="h-4 w-4 text-white"></i></a>
                 <a href="#" class="text-white bg-white/20 p-2 rounded-full hover:bg-white/30 transition-colors" aria-label="Twitter"><i data-lucide="twitter" class="h-4 w-4 text-white"></i></a>
                 <a href="#" class="text-white bg-white/20 p-2 rounded-full hover:bg-white/30 transition-colors" aria-label="Instagram"><i data-lucide="instagram" class="h-4 w-4 text-white"></i></a>
@@ -172,14 +254,16 @@
                 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="nav-link text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">Home</a>
-                    <a href="#about" class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">About Us</a>
+                    <a href="#home"     class="nav-link text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">Home</a>
+                    <a href="#about"    class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">About Us</a>
                     <a href="#products" class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide flex items-center">
                         Our Products <i data-lucide="chevron-down" class="ml-1 h-3 w-3"></i>
                     </a>
-                    <a href="#media" class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">Media</a>
-                    <a href="#career" class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">Career</a>
-                    <a href="#contact" class="px-6 py-3 bg-brand-orange hover:bg-brand-orangeHover text-white btn-theme inline-flex items-center">
+                    <a href="#gallery"  class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">Gallery</a>
+                    <a href="#media"    class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">Media</a>
+                    <a href="#career"   class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">Career</a>
+                    <a href="#faq"      class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">FAQ</a>
+                    <a href="#contact"  class="px-6 py-3 bg-brand-orange hover:bg-brand-orangeHover text-white btn-theme inline-flex items-center">
                         Contact Us <i data-lucide="arrow-right-circle" class="ml-2 h-4 w-4"></i>
                     </a>
                 </div>
@@ -196,37 +280,31 @@
         <!-- Mobile Menu Panel -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full left-0 top-full shadow-xl">
             <div class="px-4 py-4 space-y-2">
-                <a href="#home" class="block px-3 py-3 text-sm font-heading font-bold text-brand-green uppercase border-b border-gray-100">Home</a>
-                <a href="#about" class="block px-3 py-3 text-sm font-heading font-bold text-gray-700 uppercase border-b border-gray-100">About Us</a>
+                <a href="#home"     class="block px-3 py-3 text-sm font-heading font-bold text-brand-green uppercase border-b border-gray-100">Home</a>
+                <a href="#about"    class="block px-3 py-3 text-sm font-heading font-bold text-gray-700 uppercase border-b border-gray-100">About Us</a>
                 <a href="#products" class="block px-3 py-3 text-sm font-heading font-bold text-gray-700 uppercase border-b border-gray-100">Our Products</a>
-                <a href="#media" class="block px-3 py-3 text-sm font-heading font-bold text-gray-700 uppercase border-b border-gray-100">Media</a>
-                <a href="#contact" class="block px-3 py-3 text-sm font-heading font-bold text-gray-700 uppercase">Contact Us</a>
+                <a href="#gallery"  class="block px-3 py-3 text-sm font-heading font-bold text-gray-700 uppercase border-b border-gray-100">Gallery</a>
+                <a href="#media"    class="block px-3 py-3 text-sm font-heading font-bold text-gray-700 uppercase border-b border-gray-100">Media</a>
+                <a href="#career"   class="block px-3 py-3 text-sm font-heading font-bold text-gray-700 uppercase border-b border-gray-100">Career</a>
+                <a href="#faq"      class="block px-3 py-3 text-sm font-heading font-bold text-gray-700 uppercase border-b border-gray-100">FAQ</a>
+                <a href="#contact"  class="block px-3 py-3 text-sm font-heading font-bold text-gray-700 uppercase">Contact Us</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Slider Section -->
     <header id="home" class="hero-slider h-[550px] md:h-[650px] flex items-center relative group">
-        <!-- Background Video - Replace with actual chicken laying eggs video -->
         <video
             class="hero-video-bg"
-            autoplay
-            muted
-            loop
-            playsinline
+            autoplay muted loop playsinline
             poster="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?q=80&w=2000&auto=format&fit=crop"
             onloadstart="this.classList.add('loaded')"
         >
-            <!-- Replace these sources with your actual chicken laying eggs video -->
-            <!-- Example: <source src="your-chicken-video.mp4" type="video/mp4"> -->
             <source src="Images/slider3.mp4">
             <source src="Images/slider2.mp4">
         </video>
-
-        <!-- Fallback background image if video fails to load -->
         <div class="hero-fallback-bg absolute inset-0 bg-cover bg-center z-0" style="background-image: url('https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?q=80&w=2000&auto=format&fit=crop');"></div>
 
-        <!-- Slider Arrows -->
         <button class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-brand-orange text-white p-3 rounded opacity-0 group-hover:opacity-100 transition-all duration-300 z-20">
             <i data-lucide="chevron-left" class="h-8 w-8"></i>
         </button>
@@ -256,7 +334,6 @@
             </div>
         </div>
 
-        <!-- Slider Dots -->
         <div class="absolute bottom-10 left-0 w-full flex justify-center space-x-2 z-20 ">
             <div class="w-8 h-1.5 bg-brand-orange cursor-pointer"></div>
             <div class="w-8 h-1.5 bg-white/50 cursor-pointer hover:bg-white transition-colors"></div>
@@ -267,7 +344,6 @@
     <!-- Overlapping Mission/Vision Cards -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overlap-cards hidden md:block">
         <div class="grid grid-cols-3 gap-6">
-            <!-- Mission Card -->
             <div class="bg-gradient-to-br from-brand-green to-brand-dark p-8 text-white rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-brand-orange">
                 <div class="flex items-center mb-4">
                     <div class="bg-white bg-opacity-20 p-3 rounded-full mr-4">
@@ -277,8 +353,6 @@
                 </div>
                 <p class="text-sm leading-relaxed opacity-90">To power the future of agriculture by producing quality food, supporting farmers, and moving products efficiently—using smart, modern solutions to feed communities and drive growth.</p>
             </div>
-
-            <!-- Vision Card -->
             <div class="bg-white p-8 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-brand-green">
                 <div class="flex items-center mb-4">
                     <div class="bg-brand-green bg-opacity-10 p-3 rounded-full mr-4">
@@ -288,8 +362,6 @@
                 </div>
                 <p class="text-sm text-gray-600 leading-relaxed">To become a leading integrated agricultural enterprise recognized for delivering high-quality farm products, driving innovation in agriculture, and contributing to food security and economic growth across the region.</p>
             </div>
-
-            <!-- Core Values Card -->
             <div class="bg-gradient-to-br from-brand-orange to-red-600 p-8 text-white rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-white">
                 <div class="flex items-center mb-4">
                     <div class="bg-white bg-opacity-20 p-3 rounded-full mr-4">
@@ -298,22 +370,10 @@
                     <h3 class="font-heading font-bold text-xl uppercase tracking-wide">Core Values</h3>
                 </div>
                 <ul class="space-y-2">
-                    <li class="flex items-center text-sm">
-                        <i data-lucide="check-circle" class="h-4 w-4 mr-2 opacity-80"></i>
-                        Uncompromising Quality
-                    </li>
-                    <li class="flex items-center text-sm">
-                        <i data-lucide="check-circle" class="h-4 w-4 mr-2 opacity-80"></i>
-                        Customer Centricity
-                    </li>
-                    <li class="flex items-center text-sm">
-                        <i data-lucide="check-circle" class="h-4 w-4 mr-2 opacity-80"></i>
-                        Integrity & Trust
-                    </li>
-                    <li class="flex items-center text-sm">
-                        <i data-lucide="check-circle" class="h-4 w-4 mr-2 opacity-80"></i>
-                        Innovation & Sustainability
-                    </li>
+                    <li class="flex items-center text-sm"><i data-lucide="check-circle" class="h-4 w-4 mr-2 opacity-80"></i>Uncompromising Quality</li>
+                    <li class="flex items-center text-sm"><i data-lucide="check-circle" class="h-4 w-4 mr-2 opacity-80"></i>Customer Centricity</li>
+                    <li class="flex items-center text-sm"><i data-lucide="check-circle" class="h-4 w-4 mr-2 opacity-80"></i>Integrity & Trust</li>
+                    <li class="flex items-center text-sm"><i data-lucide="check-circle" class="h-4 w-4 mr-2 opacity-80"></i>Innovation & Sustainability</li>
                 </ul>
             </div>
         </div>
@@ -358,17 +418,34 @@
                 </div>
                 
                 <div class="lg:w-1/2 relative">
-                    <img src="images/ceo.png" 
+                    <img src="images/ceo.jpg" 
                          alt="Factory Production" 
                          class="w-full h-[450px] object-cover rounded shadow-lg z-10 relative border-b-4 border-brand-orange">
-                    <!-- Play button overlay -->
-                    <!-- <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
-                        <div class="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center shadow-xl animate-pulse">
-                            <i data-lucide="play" class="h-8 w-8 text-brand-orange ml-1"></i>
-                        </div>
-                    </div> -->
-                    <!-- Decorative block -->
                     <div class="absolute -bottom-6 -left-6 w-48 h-48 bg-brand-gray -z-10 hidden md:block border border-gray-200"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── NEW: Stats Counter Section ── -->
+    <section class="py-16 bg-brand-green">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-white text-center">
+                <div class="stat-card p-6 rounded-lg border border-white/20">
+                    <div class="font-heading font-extrabold text-4xl md:text-5xl text-brand-orange mb-2" data-count="10000">0</div>
+                    <div class="font-heading font-bold text-sm uppercase tracking-widest opacity-90">Farmers Served</div>
+                </div>
+                <div class="stat-card p-6 rounded-lg border border-white/20">
+                    <div class="font-heading font-extrabold text-4xl md:text-5xl text-brand-orange mb-2" data-count="5" data-suffix="M+">0</div>
+                    <div class="font-heading font-bold text-sm uppercase tracking-widest opacity-90">Eggs / Month</div>
+                </div>
+                <div class="stat-card p-6 rounded-lg border border-white/20">
+                    <div class="font-heading font-extrabold text-4xl md:text-5xl text-brand-orange mb-2" data-count="36">0</div>
+                    <div class="font-heading font-bold text-sm uppercase tracking-widest opacity-90">States Covered</div>
+                </div>
+                <div class="stat-card p-6 rounded-lg border border-white/20">
+                    <div class="font-heading font-extrabold text-4xl md:text-5xl text-brand-orange mb-2" data-count="12">0</div>
+                    <div class="font-heading font-bold text-sm uppercase tracking-widest opacity-90">Years of Excellence</div>
                 </div>
             </div>
         </div>
@@ -385,9 +462,8 @@
                         <i data-lucide="shield-check" class="h-8 w-8 text-white"></i>
                     </div>
                     <h3 class="text-white font-heading font-bold text-lg mb-2 uppercase">100% Quality</h3>
-                    <p class="text-gray-300 text-sm">We deliver farm products and inputs that meet high standards, ensuring farmers get reliable results every time—whether it’s maize supply, fertilizers, or livestock products.</p>
+                    <p class="text-gray-300 text-sm">We deliver farm products and inputs that meet high standards, ensuring farmers get reliable results every time—whether it's maize supply, fertilizers, or livestock products.</p>
                 </div>
-                
                 <div class="text-center p-6 border border-white/20 hover:bg-white/10 transition-colors backdrop-blur-sm">
                     <div class="w-16 h-16 bg-brand-orange mx-auto flex items-center justify-center rounded-full mb-4">
                         <i data-lucide="trending-up" class="h-8 w-8 text-white"></i>
@@ -395,7 +471,6 @@
                     <h3 class="text-white font-heading font-bold text-lg mb-2 uppercase">Growing with Purpose</h3>
                     <p class="text-gray-300 text-sm">We are not just suppliers—we are partners in progress, helping farmers increase productivity and contribute to food security.</p>
                 </div>
-                
                 <div class="text-center p-6 border border-white/20 hover:bg-white/10 transition-colors backdrop-blur-sm">
                     <div class="w-16 h-16 bg-brand-orange mx-auto flex items-center justify-center rounded-full mb-4">
                         <i data-lucide="truck" class="h-8 w-8 text-white"></i>
@@ -403,7 +478,6 @@
                     <h3 class="text-white font-heading font-bold text-lg mb-2 uppercase">Fast Delivery</h3>
                     <p class="text-gray-300 text-sm">Robust logistics network across 36 states of the federation.</p>
                 </div>
-                
                 <div class="text-center p-6 border border-white/20 hover:bg-white/10 transition-colors backdrop-blur-sm">
                     <div class="w-16 h-16 bg-brand-orange mx-auto flex items-center justify-center rounded-full mb-4">
                         <i data-lucide="users" class="h-8 w-8 text-white"></i>
@@ -427,16 +501,24 @@
                 <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-gray-900 mb-4 uppercase">Featured Products</h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- ── NEW: Product filter tabs ── -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10" id="productTabs">
+                <button data-tab="all"     class="tab-btn px-6 py-2.5 bg-brand-green text-white btn-theme text-[12px]">All Products</button>
+                <button data-tab="poultry" class="tab-btn px-6 py-2.5 border-2 border-brand-green text-brand-green hover:bg-brand-green hover:text-white btn-theme text-[12px]">Poultry</button>
+                <button data-tab="aqua"    class="tab-btn px-6 py-2.5 border-2 border-brand-green text-brand-green hover:bg-brand-green hover:text-white btn-theme text-[12px]">Aquaculture</button>
+                <button data-tab="agri"    class="tab-btn px-6 py-2.5 border-2 border-brand-green text-brand-green hover:bg-brand-green hover:text-white btn-theme text-[12px]">Agri Inputs</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="productsGrid">
                 <!-- Product 1 -->
-                <div class="bg-white group product-card border border-gray-200 shadow-sm hover:shadow-xl transition-all">
+                <div class="bg-white group product-card border border-gray-200 shadow-sm hover:shadow-xl transition-all" data-cat="poultry">
                     <div class="h-64 overflow-hidden bg-gray-100 flex items-center justify-center p-6 relative">
-                        <!-- Simulated Bag Image using a generic placeholder styled to look like a product shot -->
-                        <img src="Images/layer mash.png" alt="Poultry Feed" class="product-img w-full h-full object-cover border-4 border-white shadow-md">
+                        <img src="Images/layer mash.png" alt="Poultry Feed" class="product-img w-full h-full object-cover border-4 border-white shadow-md transition-transform duration-500">
                         <div class="absolute top-4 right-4 bg-brand-orange text-white text-xs font-bold px-2 py-1 uppercase">Best Seller</div>
                     </div>
                     <div class="p-6 border-t-2 border-brand-green text-center">
-                        <h3 class="font-heading font-bold text-xl text-gray-900 mb-2 uppercase">Broiler Super Starter</h3>
+                        <span class="text-[10px] text-brand-orange font-bold uppercase tracking-widest">Poultry Feed</span>
+                        <h3 class="font-heading font-bold text-xl text-gray-900 mb-2 uppercase mt-1">Broiler Super Starter</h3>
                         <p class="text-gray-500 text-sm mb-4">Crumble format, 21% Crude Protein. For Day Old to 4 weeks.</p>
                         <a href="#contact" class="text-brand-green font-bold text-sm uppercase hover:text-brand-orange flex items-center justify-center">
                             Request Quote <i data-lucide="chevron-right" class="h-4 w-4 ml-1"></i>
@@ -445,12 +527,13 @@
                 </div>
 
                 <!-- Product 2 -->
-                <div class="bg-white group product-card border border-gray-200 shadow-sm hover:shadow-xl transition-all">
+                <div class="bg-white group product-card border border-gray-200 shadow-sm hover:shadow-xl transition-all" data-cat="poultry">
                     <div class="h-64 overflow-hidden bg-gray-100 flex items-center justify-center p-6 relative">
-                        <img src="Images/layer mash.png" alt="Layer Feed" class="product-img w-full h-full object-cover border-4 border-white shadow-md">
+                        <img src="Images/layer mash.png" alt="Layer Feed" class="product-img w-full h-full object-cover border-4 border-white shadow-md transition-transform duration-500">
                     </div>
                     <div class="p-6 border-t-2 border-brand-green text-center">
-                        <h3 class="font-heading font-bold text-xl text-gray-900 mb-2 uppercase">Layer Mash</h3>
+                        <span class="text-[10px] text-brand-orange font-bold uppercase tracking-widest">Poultry Feed</span>
+                        <h3 class="font-heading font-bold text-xl text-gray-900 mb-2 uppercase mt-1">Layer Mash</h3>
                         <p class="text-gray-500 text-sm mb-4">Highly fortified for maximum, sustained egg production.</p>
                         <a href="#contact" class="text-brand-green font-bold text-sm uppercase hover:text-brand-orange flex items-center justify-center">
                             Request Quote <i data-lucide="chevron-right" class="h-4 w-4 ml-1"></i>
@@ -459,13 +542,60 @@
                 </div>
 
                 <!-- Product 3 -->
-                <div class="bg-white group product-card border border-gray-200 shadow-sm hover:shadow-xl transition-all">
+                <div class="bg-white group product-card border border-gray-200 shadow-sm hover:shadow-xl transition-all" data-cat="aqua">
                     <div class="h-64 overflow-hidden bg-gray-100 flex items-center justify-center p-6 relative">
-                        <img src="Images/layer mash.png" alt="Fish Feed" class="product-img w-full h-full object-cover border-4 border-white shadow-md">
+                        <img src="Images/layer mash.png" alt="Fish Feed" class="product-img w-full h-full object-cover border-4 border-white shadow-md transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-brand-green text-white text-xs font-bold px-2 py-1 uppercase">New</div>
                     </div>
                     <div class="p-6 border-t-2 border-brand-green text-center">
-                        <h3 class="font-heading font-bold text-xl text-gray-900 mb-2 uppercase">Aqua Floating Pellets</h3>
+                        <span class="text-[10px] text-brand-orange font-bold uppercase tracking-widest">Aquaculture</span>
+                        <h3 class="font-heading font-bold text-xl text-gray-900 mb-2 uppercase mt-1">Aqua Floating Pellets</h3>
                         <p class="text-gray-500 text-sm mb-4">High protein sinkable & floating pellets for Catfish/Tilapia.</p>
+                        <a href="#contact" class="text-brand-green font-bold text-sm uppercase hover:text-brand-orange flex items-center justify-center">
+                            Request Quote <i data-lucide="chevron-right" class="h-4 w-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ── NEW Product 4 ── -->
+                <div class="bg-white group product-card border border-gray-200 shadow-sm hover:shadow-xl transition-all" data-cat="poultry">
+                    <div class="h-64 overflow-hidden bg-gray-100 flex items-center justify-center p-6 relative">
+                        <img src="Images/layer mash.png" alt="Broiler Finisher" class="product-img w-full h-full object-cover border-4 border-white shadow-md transition-transform duration-500">
+                    </div>
+                    <div class="p-6 border-t-2 border-brand-green text-center">
+                        <span class="text-[10px] text-brand-orange font-bold uppercase tracking-widest">Poultry Feed</span>
+                        <h3 class="font-heading font-bold text-xl text-gray-900 mb-2 uppercase mt-1">Broiler Finisher</h3>
+                        <p class="text-gray-500 text-sm mb-4">Pellet format, 18% CP. For week 4 to market weight.</p>
+                        <a href="#contact" class="text-brand-green font-bold text-sm uppercase hover:text-brand-orange flex items-center justify-center">
+                            Request Quote <i data-lucide="chevron-right" class="h-4 w-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ── NEW Product 5 ── -->
+                <div class="bg-white group product-card border border-gray-200 shadow-sm hover:shadow-xl transition-all" data-cat="agri">
+                    <div class="h-64 overflow-hidden bg-gray-100 flex items-center justify-center p-6 relative">
+                        <img src="Images/layer mash.png" alt="Fertilizer" class="product-img w-full h-full object-cover border-4 border-white shadow-md transition-transform duration-500">
+                    </div>
+                    <div class="p-6 border-t-2 border-brand-green text-center">
+                        <span class="text-[10px] text-brand-orange font-bold uppercase tracking-widest">Agri Inputs</span>
+                        <h3 class="font-heading font-bold text-xl text-gray-900 mb-2 uppercase mt-1">Fertilizers</h3>
+                        <p class="text-gray-500 text-sm mb-4">NPK, Urea, and organic blends supplied in bulk at competitive prices.</p>
+                        <a href="#contact" class="text-brand-green font-bold text-sm uppercase hover:text-brand-orange flex items-center justify-center">
+                            Request Quote <i data-lucide="chevron-right" class="h-4 w-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ── NEW Product 6 ── -->
+                <div class="bg-white group product-card border border-gray-200 shadow-sm hover:shadow-xl transition-all" data-cat="agri">
+                    <div class="h-64 overflow-hidden bg-gray-100 flex items-center justify-center p-6 relative">
+                        <img src="Images/layer mash.png" alt="Maize" class="product-img w-full h-full object-cover border-4 border-white shadow-md transition-transform duration-500">
+                    </div>
+                    <div class="p-6 border-t-2 border-brand-green text-center">
+                        <span class="text-[10px] text-brand-orange font-bold uppercase tracking-widest">Agri Inputs</span>
+                        <h3 class="font-heading font-bold text-xl text-gray-900 mb-2 uppercase mt-1">Wheat Offals & Maize</h3>
+                        <p class="text-gray-500 text-sm mb-4">Clean, dried, well-stored grain for feed mills and direct farm use.</p>
                         <a href="#contact" class="text-brand-green font-bold text-sm uppercase hover:text-brand-orange flex items-center justify-center">
                             Request Quote <i data-lucide="chevron-right" class="h-4 w-4 ml-1"></i>
                         </a>
@@ -474,9 +604,208 @@
             </div>
             
             <div class="text-center mt-12">
-                <a href="#products" class="px-8 py-3.5 bg-transparent border-2 border-brand-green text-brand-green hover:bg-brand-green hover:text-white btn-theme inline-block">
-                    View All Categories
+                <a href="#contact" class="px-8 py-3.5 bg-transparent border-2 border-brand-green text-brand-green hover:bg-brand-green hover:text-white btn-theme inline-block">
+                    Request Full Catalogue
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── NEW: Gallery Section ── -->
+    <section id="gallery" class="py-20 bg-white border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <div class="flex items-center justify-center mb-2">
+                    <div class="w-10 h-0.5 bg-brand-orange mr-3"></div>
+                    <h4 class="text-brand-green font-heading font-bold uppercase text-sm tracking-widest">Photo Gallery</h4>
+                    <div class="w-10 h-0.5 bg-brand-orange ml-3"></div>
+                </div>
+                <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-gray-900 uppercase">Farm in Action</h2>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div class="gallery-img col-span-2 row-span-2 rounded-lg" style="min-height: 300px;">
+                    <img src="Images/news1.jpg" alt="Farm operations" style="min-height:300px;">
+                    <div class="gallery-overlay">
+                        <i data-lucide="zoom-in" class="gallery-overlay-icon h-10 w-10"></i>
+                    </div>
+                </div>
+                <div class="gallery-img rounded-lg" style="height:180px;">
+                    <img src="Images/news2.jpg" alt="Poultry" style="height:180px;">
+                    <div class="gallery-overlay">
+                        <i data-lucide="zoom-in" class="gallery-overlay-icon h-8 w-8"></i>
+                    </div>
+                </div>
+                <div class="gallery-img rounded-lg" style="height:180px;">
+                    <img src="Images/layer2.jpg" alt="Layers" style="height:180px;">
+                    <div class="gallery-overlay">
+                        <i data-lucide="zoom-in" class="gallery-overlay-icon h-8 w-8"></i>
+                    </div>
+                </div>
+                <div class="gallery-img rounded-lg" style="height:180px;">
+                    <img src="Images/layer mash.png" alt="Feed" style="height:180px;">
+                    <div class="gallery-overlay">
+                        <i data-lucide="zoom-in" class="gallery-overlay-icon h-8 w-8"></i>
+                    </div>
+                </div>
+                <div class="gallery-img rounded-lg" style="height:180px;">
+                    <img src="Images/news1.jpg" alt="Farm" style="height:180px;">
+                    <div class="gallery-overlay">
+                        <i data-lucide="zoom-in" class="gallery-overlay-icon h-8 w-8"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── NEW: Team Section ── -->
+    <section id="team" class="py-20 bg-brand-gray border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <div class="flex items-center justify-center mb-2">
+                    <div class="w-10 h-0.5 bg-brand-orange mr-3"></div>
+                    <h4 class="text-brand-green font-heading font-bold uppercase text-sm tracking-widest">Leadership</h4>
+                    <div class="w-10 h-0.5 bg-brand-orange ml-3"></div>
+                </div>
+                <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-gray-900 uppercase">Meet Our Team</h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <div class="team-card bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 text-center">
+                    <div class="h-60 overflow-hidden">
+                        <img src="images/ceo.png" alt="CEO" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6 relative">
+                        <div class="absolute -top-0 left-1/2 -translate-x-1/2 w-12 h-1 bg-brand-orange"></div>
+                        <h3 class="font-heading font-bold text-gray-900 text-base uppercase mb-1 mt-2">Alhaji Musa Umar</h3>
+                        <p class="text-brand-green text-xs font-bold uppercase tracking-wider mb-3">Chief Executive Officer</p>
+                        <p class="text-gray-500 text-xs leading-relaxed mb-4">20+ years in integrated agribusiness, driving Kayarda's strategic vision and operational excellence.</p>
+                        <div class="team-social flex justify-center space-x-2">
+                            <a href="#" class="p-2 rounded-full bg-brand-gray hover:bg-brand-green hover:text-white text-gray-500 transition-colors"><i data-lucide="linkedin" class="h-4 w-4"></i></a>
+                            <a href="#" class="p-2 rounded-full bg-brand-gray hover:bg-brand-green hover:text-white text-gray-500 transition-colors"><i data-lucide="twitter"  class="h-4 w-4"></i></a>
+                            <a href="#" class="p-2 rounded-full bg-brand-gray hover:bg-brand-green hover:text-white text-gray-500 transition-colors"><i data-lucide="mail"     class="h-4 w-4"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-card bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 text-center">
+                    <div class="h-60 bg-gray-200 flex items-center justify-center">
+                        <i data-lucide="user" class="h-24 w-24 text-gray-400"></i>
+                    </div>
+                    <div class="p-6 relative">
+                        <div class="absolute -top-0 left-1/2 -translate-x-1/2 w-12 h-1 bg-brand-orange"></div>
+                        <h3 class="font-heading font-bold text-gray-900 text-base uppercase mb-1 mt-2">Mrs. Fatima Bello</h3>
+                        <p class="text-brand-green text-xs font-bold uppercase tracking-wider mb-3">Director of Operations</p>
+                        <p class="text-gray-500 text-xs leading-relaxed mb-4">Oversees all farm operations, supply chain logistics, and quality assurance across all facilities.</p>
+                        <div class="team-social flex justify-center space-x-2">
+                            <a href="#" class="p-2 rounded-full bg-brand-gray hover:bg-brand-green hover:text-white text-gray-500 transition-colors"><i data-lucide="linkedin" class="h-4 w-4"></i></a>
+                            <a href="#" class="p-2 rounded-full bg-brand-gray hover:bg-brand-green hover:text-white text-gray-500 transition-colors"><i data-lucide="twitter"  class="h-4 w-4"></i></a>
+                            <a href="#" class="p-2 rounded-full bg-brand-gray hover:bg-brand-green hover:text-white text-gray-500 transition-colors"><i data-lucide="mail"     class="h-4 w-4"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-card bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 text-center">
+                    <div class="h-60 bg-gray-200 flex items-center justify-center">
+                        <i data-lucide="user" class="h-24 w-24 text-gray-400"></i>
+                    </div>
+                    <div class="p-6 relative">
+                        <div class="absolute -top-0 left-1/2 -translate-x-1/2 w-12 h-1 bg-brand-orange"></div>
+                        <h3 class="font-heading font-bold text-gray-900 text-base uppercase mb-1 mt-2">Dr. Chukwuemeka Eze</h3>
+                        <p class="text-brand-green text-xs font-bold uppercase tracking-wider mb-3">Chief Veterinary Officer</p>
+                        <p class="text-gray-500 text-xs leading-relaxed mb-4">DVM, specialisation in poultry and aquaculture health, biosecurity, and R&D feed formulation.</p>
+                        <div class="team-social flex justify-center space-x-2">
+                            <a href="#" class="p-2 rounded-full bg-brand-gray hover:bg-brand-green hover:text-white text-gray-500 transition-colors"><i data-lucide="linkedin" class="h-4 w-4"></i></a>
+                            <a href="#" class="p-2 rounded-full bg-brand-gray hover:bg-brand-green hover:text-white text-gray-500 transition-colors"><i data-lucide="twitter"  class="h-4 w-4"></i></a>
+                            <a href="#" class="p-2 rounded-full bg-brand-gray hover:bg-brand-green hover:text-white text-gray-500 transition-colors"><i data-lucide="mail"     class="h-4 w-4"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── NEW: Testimonials ── -->
+    <section class="py-20 bg-white border-t border-gray-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <div class="flex items-center justify-center mb-2">
+                    <div class="w-10 h-0.5 bg-brand-orange mr-3"></div>
+                    <h4 class="text-brand-green font-heading font-bold uppercase text-sm tracking-widest">Testimonials</h4>
+                    <div class="w-10 h-0.5 bg-brand-orange ml-3"></div>
+                </div>
+                <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-gray-900 uppercase">What Farmers Say</h2>
+            </div>
+            <div class="testimonial-slider relative">
+                <div class="testimonial-track" id="testimonialTrack">
+                    <div class="testimonial-slide px-2">
+                        <div class="bg-brand-gray p-8 md:p-10 text-center">
+                            <i data-lucide="quote" class="h-12 w-12 text-brand-orange opacity-30 mx-auto mb-4"></i>
+                            <p class="text-gray-600 text-base md:text-lg leading-relaxed mb-6 italic">
+                                "Kayarda's Layer Mash transformed my flock's productivity. My egg collection jumped by 22% within three weeks of switching. The quality is consistently excellent."
+                            </p>
+                            <div class="flex items-center justify-center space-x-3">
+                                <div class="w-12 h-12 rounded-full bg-brand-green flex items-center justify-center text-white font-heading font-bold text-lg">AI</div>
+                                <div class="text-left">
+                                    <p class="font-heading font-bold text-gray-900 text-sm">Alhaji Ibrahim</p>
+                                    <p class="text-brand-green text-xs font-semibold">Poultry Farmer, Kano State</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-center space-x-1 mt-4">
+                                <i data-lucide="star" class="h-4 w-4 text-brand-orange fill-current"></i>
+                                <i data-lucide="star" class="h-4 w-4 text-brand-orange fill-current"></i>
+                                <i data-lucide="star" class="h-4 w-4 text-brand-orange fill-current"></i>
+                                <i data-lucide="star" class="h-4 w-4 text-brand-orange fill-current"></i>
+                                <i data-lucide="star" class="h-4 w-4 text-brand-orange fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide px-2">
+                        <div class="bg-brand-gray p-8 md:p-10 text-center">
+                            <i data-lucide="quote" class="h-12 w-12 text-brand-orange opacity-30 mx-auto mb-4"></i>
+                            <p class="text-gray-600 text-base md:text-lg leading-relaxed mb-6 italic">
+                                "The Aqua Floating Pellets gave our catfish unbelievable growth rates. We hit market weight 2 weeks earlier than expected. Kayarda has earned our loyalty for good."
+                            </p>
+                            <div class="flex items-center justify-center space-x-3">
+                                <div class="w-12 h-12 rounded-full bg-brand-orange flex items-center justify-center text-white font-heading font-bold text-lg">BO</div>
+                                <div class="text-left">
+                                    <p class="font-heading font-bold text-gray-900 text-sm">Barr. Obieze</p>
+                                    <p class="text-brand-green text-xs font-semibold">Fish Farmer, Anambra State</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-center space-x-1 mt-4">
+                                <i data-lucide="star" class="h-4 w-4 text-brand-orange fill-current"></i>
+                                <i data-lucide="star" class="h-4 w-4 text-brand-orange fill-current"></i>
+                                <i data-lucide="star" class="h-4 w-4 text-brand-orange fill-current"></i>
+                                <i data-lucide="star" class="h-4 w-4 text-brand-orange fill-current"></i>
+                                <i data-lucide="star" class="h-4 w-4 text-brand-orange fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide px-2">
+                        <div class="bg-brand-gray p-8 md:p-10 text-center">
+                            <i data-lucide="quote" class="h-12 w-12 text-brand-orange opacity-30 mx-auto mb-4"></i>
+                            <p class="text-gray-600 text-base md:text-lg leading-relaxed mb-6 italic">
+                                "Reliable delivery, great pricing, and a team that actually picks up the phone. Kayarda is the most professional agri-supplier I've worked with in 15 years."
+                            </p>
+                            <div class="flex items-center justify-center space-x-3">
+                                <div class="w-12 h-12 rounded-full bg-brand-green flex items-center justify-center text-white font-heading font-bold text-lg">HM</div>
+                                <div class="text-left">
+                                    <p class="font-heading font-bold text-gray-900 text-sm">Hajiya Maryam</p>
+                                    <p class="text-brand-green text-xs font-semibold">Agro Dealer, Kaduna State</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-center space-x-1 mt-4">
+                                <i data-lucide="star" class="h-4 w-4 text-brand-orange fill-current"></i>
+                                <i data-lucide="star" class="h-4 w-4 text-brand-orange fill-current"></i>
+                                <i data-lucide="star" class="h-4 w-4 text-brand-orange fill-current"></i>
+                                <i data-lucide="star" class="h-4 w-4 text-brand-orange fill-current"></i>
+                                <i data-lucide="star" class="h-4 w-4 text-brand-orange fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-center space-x-3 mt-6" id="testimonialDots">
+                    <button class="w-8 h-1.5 bg-brand-orange cursor-pointer testimonial-dot" data-slide="0"></button>
+                    <button class="w-8 h-1.5 bg-gray-300 cursor-pointer testimonial-dot" data-slide="1"></button>
+                    <button class="w-8 h-1.5 bg-gray-300 cursor-pointer testimonial-dot" data-slide="2"></button>
+                </div>
             </div>
         </div>
     </section>
@@ -498,7 +827,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- News Item 1 -->
                 <div class="group cursor-pointer">
                     <div class="overflow-hidden mb-4 relative">
                         <div class="absolute top-4 left-4 bg-brand-green text-white px-3 py-2 text-center z-10 flex flex-col leading-none">
@@ -515,7 +843,6 @@
                     <p class="text-gray-600 text-sm line-clamp-2">As part of our strategic expansion plan to serve the Northern region better, we have officially opened...</p>
                 </div>
 
-                <!-- News Item 2 -->
                 <div class="group cursor-pointer">
                     <div class="overflow-hidden mb-4 relative">
                         <div class="absolute top-4 left-4 bg-brand-green text-white px-3 py-2 text-center z-10 flex flex-col leading-none">
@@ -532,7 +859,6 @@
                     <p class="text-gray-600 text-sm line-clamp-2">Over 500 poultry farmers attended our free quarterly seminar focusing on disease prevention and yield optimization...</p>
                 </div>
 
-                <!-- News Item 3 -->
                 <div class="group cursor-pointer">
                     <div class="overflow-hidden mb-4 relative">
                         <div class="absolute top-4 left-4 bg-brand-green text-white px-3 py-2 text-center z-10 flex flex-col leading-none">
@@ -547,6 +873,132 @@
                     </div>
                     <h3 class="font-heading font-bold text-lg text-gray-900 mb-3 group-hover:text-brand-orange transition-colors">Introducing the Reformulated Layer Combo Series</h3>
                     <p class="text-gray-600 text-sm line-clamp-2">Our R&D team has successfully launched an improved version of our fish feed starter pack, guaranteeing 15% faster growth...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── NEW: Career Section ── -->
+    <section id="career" class="py-20 bg-brand-gray border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-14">
+                <div class="lg:w-2/5">
+                    <div class="flex items-center mb-2">
+                        <div class="w-10 h-0.5 bg-brand-orange mr-3"></div>
+                        <h4 class="text-brand-green font-heading font-bold uppercase text-sm tracking-widest">Work With Us</h4>
+                    </div>
+                    <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-gray-900 uppercase mb-6">Join the <span class="text-brand-orange">Kayarda Team</span></h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed text-sm">
+                        We are always looking for passionate, driven individuals to join our growing team. At Kayarda, we invest in our people as much as we invest in our farms.
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="h-5 w-5 text-brand-green mr-2 flex-shrink-0"></i> Competitive compensation packages</li>
+                        <li class="flex items-center text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="h-5 w-5 text-brand-green mr-2 flex-shrink-0"></i> Professional development & training</li>
+                        <li class="flex items-center text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="h-5 w-5 text-brand-green mr-2 flex-shrink-0"></i> Health & welfare benefits</li>
+                        <li class="flex items-center text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="h-5 w-5 text-brand-green mr-2 flex-shrink-0"></i> Purpose-driven work environment</li>
+                    </ul>
+                    <a href="mailto:careers@kayardafarms.com" class="px-8 py-3.5 bg-brand-green hover:bg-brand-dark text-white btn-theme inline-flex items-center">
+                        Apply Now <i data-lucide="send" class="ml-2 h-4 w-4"></i>
+                    </a>
+                </div>
+                <div class="lg:w-3/5 flex flex-col gap-4">
+                    <div class="job-card border-2 border-gray-200 bg-white p-6">
+                        <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
+                            <div>
+                                <h3 class="font-heading font-bold text-gray-900 uppercase text-base">Farm Manager</h3>
+                                <p class="text-gray-500 text-xs mt-0.5 flex items-center"><i data-lucide="map-pin" class="h-3 w-3 mr-1"></i> Kaduna State</p>
+                            </div>
+                            <div class="flex gap-2">
+                                <span class="bg-brand-green/10 text-brand-green text-[10px] font-bold uppercase px-3 py-1">Full Time</span>
+                                <span class="bg-brand-orange/10 text-brand-orange text-[10px] font-bold uppercase px-3 py-1">Urgent</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-xs leading-relaxed mb-4">Oversee day-to-day farm operations, staff management, and production targets across our poultry and aquaculture divisions.</p>
+                        <a href="mailto:careers@kayardafarms.com" class="text-brand-green font-bold text-xs uppercase hover:text-brand-orange flex items-center">Apply Now <i data-lucide="arrow-right" class="h-3 w-3 ml-1"></i></a>
+                    </div>
+                    <div class="job-card border-2 border-gray-200 bg-white p-6">
+                        <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
+                            <div>
+                                <h3 class="font-heading font-bold text-gray-900 uppercase text-base">Sales & Distribution Officer</h3>
+                                <p class="text-gray-500 text-xs mt-0.5 flex items-center"><i data-lucide="map-pin" class="h-3 w-3 mr-1"></i> Multiple States</p>
+                            </div>
+                            <span class="bg-brand-green/10 text-brand-green text-[10px] font-bold uppercase px-3 py-1">Full Time</span>
+                        </div>
+                        <p class="text-gray-600 text-xs leading-relaxed mb-4">Drive sales growth and manage distributor relationships across assigned territories. Experience in FMCG or agribusiness preferred.</p>
+                        <a href="mailto:careers@kayardafarms.com" class="text-brand-green font-bold text-xs uppercase hover:text-brand-orange flex items-center">Apply Now <i data-lucide="arrow-right" class="h-3 w-3 ml-1"></i></a>
+                    </div>
+                    <div class="job-card border-2 border-gray-200 bg-white p-6">
+                        <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
+                            <div>
+                                <h3 class="font-heading font-bold text-gray-900 uppercase text-base">Veterinary Field Officer</h3>
+                                <p class="text-gray-500 text-xs mt-0.5 flex items-center"><i data-lucide="map-pin" class="h-3 w-3 mr-1"></i> North-West Nigeria</p>
+                            </div>
+                            <span class="bg-brand-green/10 text-brand-green text-[10px] font-bold uppercase px-3 py-1">Contract</span>
+                        </div>
+                        <p class="text-gray-600 text-xs leading-relaxed mb-4">Provide technical support to farmers in the field, conduct biosecurity audits, and support new customer onboarding with advisory visits.</p>
+                        <a href="mailto:careers@kayardafarms.com" class="text-brand-green font-bold text-xs uppercase hover:text-brand-orange flex items-center">Apply Now <i data-lucide="arrow-right" class="h-3 w-3 ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── NEW: FAQ Section ── -->
+    <section id="faq" class="py-20 bg-white border-t border-gray-200">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <div class="flex items-center justify-center mb-2">
+                    <div class="w-10 h-0.5 bg-brand-orange mr-3"></div>
+                    <h4 class="text-brand-green font-heading font-bold uppercase text-sm tracking-widest">Support</h4>
+                    <div class="w-10 h-0.5 bg-brand-orange ml-3"></div>
+                </div>
+                <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-gray-900 uppercase">Frequently Asked Questions</h2>
+            </div>
+            <div class="space-y-3">
+                <div class="faq-item border border-gray-200 bg-brand-gray">
+                    <button class="faq-trigger w-full flex justify-between items-center px-6 py-5 text-left">
+                        <span class="font-heading font-bold text-sm uppercase text-gray-900">How do I place a bulk order?</span>
+                        <i data-lucide="plus" class="faq-icon h-5 w-5 text-brand-green flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-5">
+                        <p class="text-gray-600 text-sm leading-relaxed">You can place a bulk order by calling our sales line (+234 802 150 7747), emailing sales@kayardafarms.com, or filling out the contact form on this page. Our team will respond within 24 hours with a quote and delivery timeline.</p>
+                    </div>
+                </div>
+                <div class="faq-item border border-gray-200 bg-brand-gray">
+                    <button class="faq-trigger w-full flex justify-between items-center px-6 py-5 text-left">
+                        <span class="font-heading font-bold text-sm uppercase text-gray-900">Do you deliver nationwide?</span>
+                        <i data-lucide="plus" class="faq-icon h-5 w-5 text-brand-green flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-5">
+                        <p class="text-gray-600 text-sm leading-relaxed">Yes! We have a robust logistics network that covers all 36 states of Nigeria and the Federal Capital Territory. Delivery timelines vary by location—typically 1–5 business days depending on your state.</p>
+                    </div>
+                </div>
+                <div class="faq-item border border-gray-200 bg-brand-gray">
+                    <button class="faq-trigger w-full flex justify-between items-center px-6 py-5 text-left">
+                        <span class="font-heading font-bold text-sm uppercase text-gray-900">Are your feeds NAFDAC-compliant?</span>
+                        <i data-lucide="plus" class="faq-icon h-5 w-5 text-brand-green flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-5">
+                        <p class="text-gray-600 text-sm leading-relaxed">Absolutely. All Kayarda feed products are formulated and produced in compliance with NAFDAC and FMARD standards. We conduct regular quality assurance checks at every stage of production.</p>
+                    </div>
+                </div>
+                <div class="faq-item border border-gray-200 bg-brand-gray">
+                    <button class="faq-trigger w-full flex justify-between items-center px-6 py-5 text-left">
+                        <span class="font-heading font-bold text-sm uppercase text-gray-900">Do you offer free veterinary consultation?</span>
+                        <i data-lucide="plus" class="faq-icon h-5 w-5 text-brand-green flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-5">
+                        <p class="text-gray-600 text-sm leading-relaxed">Yes! All Kayarda customers have access to our free veterinary helpline. You can also schedule field visits from our vet officers in select states. Just call our customer care number to request this service.</p>
+                    </div>
+                </div>
+                <div class="faq-item border border-gray-200 bg-brand-gray">
+                    <button class="faq-trigger w-full flex justify-between items-center px-6 py-5 text-left">
+                        <span class="font-heading font-bold text-sm uppercase text-gray-900">How do I become a distributor?</span>
+                        <i data-lucide="plus" class="faq-icon h-5 w-5 text-brand-green flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-5">
+                        <p class="text-gray-600 text-sm leading-relaxed">We welcome serious partners interested in distributing our products. Select "Distributorship Registration" in the contact form below or call our sales team. We'll arrange a meeting to discuss territory, pricing tiers, and onboarding requirements.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -571,7 +1023,6 @@
                                 </p>
                             </div>
                         </div>
-
                         <div class="flex">
                             <i data-lucide="phone" class="h-6 w-6 text-brand-green mr-4 mt-1"></i>
                             <div>
@@ -582,14 +1033,23 @@
                                 </p>
                             </div>
                         </div>
-
                         <div class="flex">
                             <i data-lucide="mail" class="h-6 w-6 text-brand-green mr-4 mt-1"></i>
                             <div>
                                 <h4 class="font-heading font-bold text-gray-900 uppercase text-sm mb-1">Email Address</h4>
                                 <p class="text-gray-600 text-sm leading-relaxed">
                                     info@kayardafarms.com<br>
-                                    sales@kayardafarms@gmail.com
+                                    sales@kayardafarms.com
+                                </p>
+                            </div>
+                        </div>
+                        <!-- ── NEW: Business hours card ── -->
+                        <div class="flex">
+                            <i data-lucide="clock" class="h-6 w-6 text-brand-green mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-heading font-bold text-gray-900 uppercase text-sm mb-1">Business Hours</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">
+                                    Monday – Saturday<br>8:00 AM – 6:00 PM WAT
                                 </p>
                             </div>
                         </div>
@@ -608,7 +1068,6 @@
                                 <input type="email" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:border-brand-green focus:bg-white outline-none transition-colors text-sm rounded-lg" placeholder="Your Email *">
                             </div>
                         </div>
-                        
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                             <div>
                                 <input type="tel" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:border-brand-green focus:bg-white outline-none transition-colors text-sm rounded-lg" placeholder="Phone Number *">
@@ -619,23 +1078,32 @@
                                     <option>Distributorship Registration</option>
                                     <option>Bulk Product Order</option>
                                     <option>Veterinary Support</option>
+                                    <option>Career Inquiry</option>
                                     <option>General Information</option>
                                 </select>
                             </div>
                         </div>
-                        
                         <div class="mb-6">
                             <textarea rows="5" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:border-brand-green focus:bg-white outline-none transition-colors resize-none text-sm rounded-lg" placeholder="Write your message here..."></textarea>
                         </div>
-                        
                         <button type="submit" class="px-10 py-4 bg-brand-orange hover:bg-brand-orangeHover text-white btn-theme w-full md:w-auto">
                             Submit Message
                         </button>
-
                         <div id="successMessage" class="hidden mt-6 p-4 bg-green-50 text-brand-green border border-brand-green text-sm font-bold rounded-lg">
-                            Thank you! Your message has been sent successfully.
+                            Thank you! Your message has been sent successfully. We'll respond within 24 hours.
                         </div>
                     </form>
+                </div>
+            </div>
+
+            <!-- ── NEW: Map embed ── -->
+            <div class="mt-12 border border-gray-200 shadow-sm overflow-hidden">
+                <div class="map-wrapper">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3924.3766853050427!2d7.712499!3d10.5248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDMxJzI5LjMiTiA3wrA0Mic0NS4wIkU!5e0!3m2!1sen!2sng!4v1622000000000"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="Kayarda Farms Location">
+                    </iframe>
                 </div>
             </div>
         </div>
@@ -659,6 +1127,7 @@
                         <a href="#" class="w-8 h-8 rounded bg-[#2a2a2a] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i data-lucide="facebook" class="h-4 w-4"></i></a>
                         <a href="#" class="w-8 h-8 rounded bg-[#2a2a2a] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i data-lucide="twitter" class="h-4 w-4"></i></a>
                         <a href="#" class="w-8 h-8 rounded bg-[#2a2a2a] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i data-lucide="instagram" class="h-4 w-4"></i></a>
+                        <a href="#" class="w-8 h-8 rounded bg-[#2a2a2a] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i data-lucide="linkedin" class="h-4 w-4"></i></a>
                     </div>
                 </div>
                 
@@ -666,10 +1135,12 @@
                 <div>
                     <h4 class="text-white font-heading font-bold text-lg mb-6 uppercase border-b border-[#333] pb-2 inline-block">Company</h4>
                     <ul class="space-y-3 text-sm font-semibold">
-                        <li><a href="#about" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> About Us</a></li>
-                        <li><a href="#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Our Products</a></li>
-                        <li><a href="#media" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Media Center</a></li>
-                        <li><a href="#career" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Careers</a></li>
+                        <li><a href="#about"   class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> About Us</a></li>
+                        <li><a href="#team"    class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Our Team</a></li>
+                        <li><a href="#gallery" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Gallery</a></li>
+                        <li><a href="#media"   class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Media Center</a></li>
+                        <li><a href="#career"  class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Careers</a></li>
+                        <li><a href="#faq"     class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> FAQ</a></li>
                         <li><a href="#contact" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Contact Us</a></li>
                     </ul>
                 </div>
@@ -678,48 +1149,62 @@
                 <div>
                     <h4 class="text-white font-heading font-bold text-lg mb-6 uppercase border-b border-[#333] pb-2 inline-block">Our Products</h4>
                     <ul class="space-y-3 text-sm font-semibold">
-                        <li><a href="#" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Eggs</a></li>
-                        <li><a href="#" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Poultry Feeds</a></li>
-                        <li><a href="#" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Fish</a></li>
-                        <li><a href="#" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Wheat Offals</a></li>
-                        <li><a href="#" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Concentrates</a></li>
-                        <li><a href="#" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Fertilizers</a></li>
-                        <li><a href="#" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Logistics Services</a></li>                    </ul>
+                        <li><a href="#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Eggs</a></li>
+                        <li><a href="#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Poultry Feeds</a></li>
+                        <li><a href="#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Fish</a></li>
+                        <li><a href="#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Wheat Offals</a></li>
+                        <li><a href="#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Concentrates</a></li>
+                        <li><a href="#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Fertilizers</a></li>
+                        <li><a href="#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Logistics Services</a></li>
+                    </ul>
                 </div>
                 
                 <!-- Newsletter Widget -->
                 <div>
                     <h4 class="text-white font-heading font-bold text-lg mb-6 uppercase border-b border-[#333] pb-2 inline-block">Newsletter</h4>
-                    <p class="text-sm mb-4 font-medium">Subscribe to our newsletter to receive the latest updates and farming tips.</p>
-                    <form onsubmit="event.preventDefault();" class="flex flex-col space-y-2">
+                    <p class="text-sm mb-4 font-medium">Subscribe to receive the latest updates and farming tips.</p>
+                    <form id="newsletterForm" class="flex flex-col space-y-2">
                         <input type="email" placeholder="Email Address" required class="w-full px-4 py-2 bg-[#2a2a2a] border border-[#333] text-white focus:outline-none focus:border-brand-green text-sm rounded-lg">
                         <button type="submit" class="bg-brand-green hover:bg-brand-dark px-4 py-2 text-white transition-colors text-sm font-bold uppercase">
                             Subscribe
                         </button>
                     </form>
+                    <div id="newsletterSuccess" class="hidden mt-3 text-brand-light text-xs font-bold">
+                        ✓ Subscribed! Thank you.
+                    </div>
                 </div>
             </div>
             
             <!-- Copyright Base -->
-            <div class="pt-8 border-t border-[#333] text-sm font-semibold flex flex-col md:flex-row justify-between items-center text-gray-500 ">
+            <div class="pt-8 border-t border-[#333] text-sm font-semibold flex flex-col md:flex-row justify-between items-center text-gray-500">
                 <p>&copy; 2026 Kayarda Integrated Farms Ltd. All Rights Reserved.</p>
                 <div class="flex space-x-6 mt-4 md:mt-0">
                     <a href="#" class="hover:text-brand-orange transition-colors">Privacy Policy</a>
                     <a href="#" class="hover:text-brand-orange transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-brand-orange transition-colors">Sitemap</a>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" aria-label="Back to top">
+        <i data-lucide="chevron-up" class="h-5 w-5"></i>
+    </button>
 
     <!-- Scripts -->
     <script>
         // Initialize Icons
         lucide.createIcons();
 
-        // Navbar Sticky Shadow
+        // ── Scroll Progress + Navbar + Back-to-Top
+        const scrollProgress = document.getElementById('scrollProgress');
         const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
 
         window.addEventListener('scroll', () => {
+            const scrollPct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            scrollProgress.style.width = scrollPct + '%';
             if (window.scrollY > 10) {
                 navbar.classList.add('shadow-lg');
                 navbar.classList.remove('shadow-md');
@@ -727,9 +1212,12 @@
                 navbar.classList.remove('shadow-lg');
                 navbar.classList.add('shadow-md');
             }
+            backToTop.classList.toggle('visible', window.scrollY > 400);
         });
 
-        // Mobile Menu Toggle
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // ── Mobile Menu Toggle (original logic preserved)
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
 
@@ -744,52 +1232,125 @@
             });
         });
 
-        // Mock Form Submission
+        // ── Contact Form (original logic preserved)
         function showSuccessMessage() {
             const form = document.getElementById('contactForm');
             const btn = form.querySelector('button[type="submit"]');
             const successMsg = document.getElementById('successMessage');
-            
             const originalText = btn.innerHTML;
             btn.disabled = true;
             btn.innerHTML = 'SENDING...';
             btn.classList.add('opacity-75', 'cursor-not-allowed');
-
             setTimeout(() => {
                 form.reset();
                 btn.disabled = false;
                 btn.innerHTML = originalText;
                 btn.classList.remove('opacity-75', 'cursor-not-allowed');
                 successMsg.classList.remove('hidden');
-                
-                setTimeout(() => {
-                    successMsg.classList.add('hidden');
-                }, 5000);
+                setTimeout(() => { successMsg.classList.add('hidden'); }, 5000);
             }, 1000);
         }
 
-        // Hero Video Loading Handler
+        // ── Hero Video Loading Handler (original logic preserved)
         const heroVideo = document.querySelector('.hero-video-bg');
         const fallbackBg = document.querySelector('.hero-fallback-bg');
-
         if (heroVideo) {
             heroVideo.addEventListener('loadeddata', () => {
                 heroVideo.classList.add('loaded');
-                if (fallbackBg) {
-                    fallbackBg.style.display = 'none';
-                }
+                if (fallbackBg) fallbackBg.style.display = 'none';
             });
-
             heroVideo.addEventListener('error', () => {
-                console.log('Video failed to load, showing fallback background');
-                if (fallbackBg) {
-                    fallbackBg.style.display = 'block';
-                }
+                if (fallbackBg) fallbackBg.style.display = 'block';
             });
-
-            // Force video to load
             heroVideo.load();
         }
+
+        // ── Stats Counter Animation
+        const counters = document.querySelectorAll('[data-count]');
+        let countDone = false;
+        const runCounters = () => {
+            if (countDone) return;
+            const statsSection = document.querySelector('.stat-card');
+            if (!statsSection) return;
+            const rect = statsSection.getBoundingClientRect();
+            if (rect.top > window.innerHeight) return;
+            countDone = true;
+            counters.forEach(el => {
+                const target = +el.dataset.count;
+                const suffix = el.dataset.suffix || '+';
+                const dur = 1800;
+                const steps = 60;
+                const inc = target / steps;
+                let current = 0;
+                const timer = setInterval(() => {
+                    current += inc;
+                    if (current >= target) { current = target; clearInterval(timer); }
+                    el.textContent = Math.floor(current).toLocaleString() + suffix;
+                }, dur / steps);
+            });
+        };
+        window.addEventListener('scroll', runCounters);
+        runCounters();
+
+        // ── Product Filter Tabs
+        const tabs = document.querySelectorAll('.tab-btn');
+        const productCards = document.querySelectorAll('#productsGrid [data-cat]');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => {
+                    t.classList.remove('bg-brand-green', 'text-white');
+                    t.classList.add('border-2', 'border-brand-green', 'text-brand-green');
+                    t.style.background = '';
+                    t.style.color = '';
+                });
+                tab.classList.add('bg-brand-green', 'text-white');
+                tab.classList.remove('border-2', 'border-brand-green', 'text-brand-green');
+                const filter = tab.dataset.tab;
+                productCards.forEach(card => {
+                    card.style.display = (filter === 'all' || card.dataset.cat === filter) ? '' : 'none';
+                });
+            });
+        });
+
+        // ── FAQ Accordion
+        document.querySelectorAll('.faq-trigger').forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const item = trigger.closest('.faq-item');
+                const content = item.querySelector('.faq-content');
+                const isOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(i => {
+                    i.classList.remove('open');
+                    i.querySelector('.faq-content').classList.remove('open');
+                });
+                if (!isOpen) {
+                    item.classList.add('open');
+                    content.classList.add('open');
+                }
+            });
+        });
+
+        // ── Testimonial Slider
+        const track = document.getElementById('testimonialTrack');
+        const dots = document.querySelectorAll('.testimonial-dot');
+        let currentSlide = 0;
+        const goTo = n => {
+            currentSlide = n;
+            track.style.transform = `translateX(-${n * 100}%)`;
+            dots.forEach((d, i) => {
+                d.classList.toggle('bg-brand-orange', i === n);
+                d.classList.toggle('bg-gray-300', i !== n);
+            });
+        };
+        dots.forEach(dot => dot.addEventListener('click', () => goTo(+dot.dataset.slide)));
+        const autoSlide = setInterval(() => goTo((currentSlide + 1) % 3), 4500);
+        track.addEventListener('mouseenter', () => clearInterval(autoSlide));
+
+        // ── Newsletter form
+        document.getElementById('newsletterForm').addEventListener('submit', e => {
+            e.preventDefault();
+            e.target.reset();
+            document.getElementById('newsletterSuccess').classList.remove('hidden');
+        });
     </script>
 </body>
 </html>
