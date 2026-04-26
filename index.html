@@ -236,7 +236,10 @@
                 <a href="https://instagram.com/kayardafarms" target="_blank" class="text-white hover:text-brand-orange transition-colors" aria-label="Instagram"><i class="fab fa-instagram text-sm"></i></a>
                 <a href="https://linkedin.com/company/kayarda-farms" target="_blank" class="text-white hover:text-brand-orange transition-colors" aria-label="LinkedIn"><i class="fab fa-linkedin-in text-sm"></i></a>
                 <span class="inline-block h-6 border-l border-white/70 mx-2"></span>
-                <a href="#" class="text-white hover:text-brand-orange transition-colors" aria-label="Search"><i class="fas fa-search text-sm"></i></a>
+                <div class="relative">
+                    <input type="text" id="searchInput" placeholder="Search..." class="hidden absolute left-0 top-full mt-2 bg-white text-gray-800 px-3 py-2 rounded-lg shadow-lg border border-gray-300 focus:outline-none focus:border-brand-green w-64 transition-all duration-300 z-10">
+                    <button id="searchBtn" class="text-white hover:text-brand-orange transition-colors" aria-label="Search"><i class="fas fa-search text-sm"></i></button>
+                </div>
             </div>
         </div>
     </div>
@@ -1335,6 +1338,34 @@
             e.preventDefault();
             e.target.reset();
             document.getElementById('newsletterSuccess').classList.remove('hidden');
+        });
+
+        // ── Search functionality
+        const searchBtn = document.getElementById('searchBtn');
+        const searchInput = document.getElementById('searchInput');
+        searchBtn.addEventListener('click', () => {
+            searchInput.classList.toggle('hidden');
+            if (!searchInput.classList.contains('hidden')) {
+                searchInput.focus();
+            }
+        });
+        // Hide search input when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!searchBtn.contains(e.target) && !searchInput.contains(e.target)) {
+                searchInput.classList.add('hidden');
+            }
+        });
+        // Handle search input
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const query = searchInput.value.trim();
+                if (query) {
+                    // For now, just alert the search query - you can implement actual search functionality
+                    alert(`Searching for: ${query}`);
+                    searchInput.classList.add('hidden');
+                    searchInput.value = '';
+                }
+            }
         });
     </script>
 </body>
