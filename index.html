@@ -213,28 +213,33 @@
     <div id="scrollProgress"></div>
 
     <!-- Top Bar (Email, Phone, Socials) -->
-    <div class="bg-brand-green text-white text-xs py-3.5 hidden md:block border-b border-brand-light">
+    <div class="bg-brand-green text-white text-xs py-3 hidden md:block border-b border-brand-light">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <div class="flex space-x-6 font-medium">
                 <span class="flex items-center">
-                    <i data-lucide="map-pin" class="h-3.5 w-3.5 mr-2"></i>
+                    <i data-lucide="map-pin" class="h-3 w-3 mr-1.5"></i>
                     Zaria To Jos Road, Opp. Jumaat Mosque, Kayarda Tasha, Kaduna State
                 </span>
                 <a href="mailto:info@kayardafarms.com" class="flex items-center hover:text-brand-orange transition-colors">
-                    <i data-lucide="mail" class="h-3.5 w-3.5 mr-2"></i> info@kayardafarms.com
+                    <i data-lucide="mail" class="h-3 w-3 mr-1.5"></i> info@kayardafarms.com
                 </a>
-                <a href="tel:+2348128087579" class="flex items-center hover:text-brand-orange transition-colors">
-                    <i data-lucide="phone" class="h-3.5 w-3.5 mr-2"></i> +234 81 280 87579
+                <!-- <a href="tel:+2348128087579" class="flex items-center hover:text-brand-orange transition-colors">
+                    <i data-lucide="phone" class="h-3 w-3 mr-1.5"></i> +234 81 280 87579 -->
                 </a>
-                <span class="flex items-center">
-                    <i data-lucide="clock" class="h-3.5 w-3.5 mr-2"></i> Mon - Sat: 8:00 AM - 6:00 PM
-                </span>
+                <!-- <span class="flex items-center">
+                    <i data-lucide="clock" class="h-3 w-3 mr-1.5"></i> Mon - Sat: 8:00 AM - 6:00 PM
+                </span> -->
             </div>
-            <div class="flex items-center space-x-3">
-                <a href="https://facebook.com/kayardafarms" target="_blank" class="text-white bg-white/20 p-2 rounded-full hover:bg-brand-orange transition-colors" aria-label="Facebook"><i class="fab fa-facebook-f text-sm"></i></a>
-                <a href="https://twitter.com/kayardafarms" target="_blank" class="text-white bg-white/20 p-2 rounded-full hover:bg-brand-orange transition-colors" aria-label="Twitter"><i class="fab fa-twitter text-sm"></i></a>
-                <a href="https://instagram.com/kayardafarms" target="_blank" class="text-white bg-white/20 p-2 rounded-full hover:bg-brand-orange transition-colors" aria-label="Instagram"><i class="fab fa-instagram text-sm"></i></a>
-                <a href="https://linkedin.com/company/kayarda-farms" target="_blank" class="text-white bg-white/20 p-2 rounded-full hover:bg-brand-orange transition-colors" aria-label="LinkedIn"><i class="fab fa-linkedin-in text-sm"></i></a>
+            <div class="flex items-center space-x-3.5">
+                <a href="https://facebook.com/kayardafarms" target="_blank" class="text-white hover:text-brand-orange transition-colors" aria-label="Facebook"><i class="fab fa-facebook-f text-sm"></i></a>
+                <a href="https://twitter.com/kayardafarms" target="_blank" class="text-white hover:text-brand-orange transition-colors" aria-label="Twitter"><i class="fab fa-twitter text-sm"></i></a>
+                <a href="https://instagram.com/kayardafarms" target="_blank" class="text-white hover:text-brand-orange transition-colors" aria-label="Instagram"><i class="fab fa-instagram text-sm"></i></a>
+                <a href="https://linkedin.com/company/kayarda-farms" target="_blank" class="text-white hover:text-brand-orange transition-colors" aria-label="LinkedIn"><i class="fab fa-linkedin-in text-sm"></i></a>
+                <span class="inline-block h-6 border-l border-white/70 mx-2"></span>
+                <div class="relative">
+                    <input type="text" id="searchInput" placeholder="Search..." class="hidden absolute right-0 top-full mt-2 bg-white text-gray-800 px-3 py-2 rounded-lg shadow-lg border border-gray-300 focus:outline-none focus:border-brand-green w-64 transition-all duration-300">
+                    <button id="searchBtn" class="text-white hover:text-brand-orange transition-colors" aria-label="Search"><i class="fas fa-search text-sm"></i></button>
+                </div>
             </div>
         </div>
     </div>
