@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alhaji Sani Umar - CEO | Kayarda Farms</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .font-heading { font-family: 'Inter', sans-serif; }
+        .brand-green { background-color: #1f4e3d; }
+        .brand-orange { background-color: #ff6b35; }
+        .brand-light { background-color: #2d5a47; }
+        .brand-gray { background-color: #f8f9fa; }
+        .text-brand-green { color: #1f4e3d; }
+        .text-brand-orange { color: #ff6b35; }
+        .bg-brand-green { background-color: #1f4e3d; }
+        .bg-brand-orange { background-color: #ff6b35; }
+        .bg-brand-gray { background-color: #f8f9fa; }
+    </style>
+</head>
+<body class="bg-white text-gray-800 font-sans">
+    <!-- Top Bar -->
+    <div class="bg-brand-green text-white text-xs py-3 hidden md:block">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <div class="flex space-x-6 font-medium">
+                <span class="flex items-center">
+                    <i class="fas fa-map-marker-alt h-3 w-3 mr-1.5"></i>
+                    Zaria To Jos Road, Opp. Jumaat Mosque, Kayarda Tasha, Kaduna State
+                </span>
+                <a href="mailto:info@kayardafarms.com" class="flex items-center hover:text-brand-orange transition-colors">
+                    <i class="fas fa-envelope h-3 w-3 mr-1.5"></i> info@kayardafarms.com
+                </a>
+            </div>
+            <div class="flex items-center space-x-3.5">
+                <a href="https://facebook.com/kayardafarms" target="_blank" class="p-2 rounded-[50px] bg-transparent hover:bg-white/10 text-white transition-colors" aria-label="Facebook"><i class="fab fa-facebook-f text-sm"></i></a>
+                <a href="https://twitter.com/kayardafarms" target="_blank" class="p-2 rounded-[50px] bg-transparent hover:bg-white/10 text-white transition-colors" aria-label="Twitter"><i class="fab fa-twitter text-sm"></i></a>
+                <a href="https://instagram.com/kayardafarms" target="_blank" class="p-2 rounded-[50px] bg-transparent hover:bg-white/10 text-white transition-colors" aria-label="Instagram"><i class="fab fa-instagram text-sm"></i></a>
+                <a href="https://linkedin.com/company/kayarda-farms" target="_blank" class="p-2 rounded-[50px] bg-transparent hover:bg-white/10 text-white transition-colors" aria-label="LinkedIn"><i class="fab fa-linkedin-in text-sm"></i></a>
+                <span class="inline-block h-6 border-l border-white/70 mx-2"></span>
+                <div class="relative">
+                    <input type="text" id="searchInput" placeholder="Search..." class="hidden absolute right-0 top-full mt-2 bg-white text-gray-800 px-3 py-2 rounded-lg shadow-lg border border-gray-300 focus:outline-none focus:border-brand-green w-64 transition-all duration-300">
+                    <button id="searchBtn" class="text-white hover:text-brand-orange transition-colors" aria-label="Search"><i class="fas fa-search text-sm"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-[85px]">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <img src="Images/log mg.jpg" alt="Kayarda Farms Logo" class="h-12 w-auto mr-3">
+                        <div>
+                            <h1 class="font-heading font-bold text-xl text-brand-green">Kayarda</h1>
+                            <p class="text-xs text-brand-orange font-semibold uppercase tracking-wider">Farms</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-brand-green font-medium transition-colors">Home</a>
+                    <a href="index.html#about" class="text-gray-700 hover:text-brand-green font-medium transition-colors">About</a>
+                    <a href="index.html#products" class="text-gray-700 hover:text-brand-green font-medium transition-colors">Products</a>
+                    <a href="index.html#team" class="text-gray-700 hover:text-brand-green font-medium transition-colors">Team</a>
+                    <a href="index.html#gallery" class="text-gray-700 hover:text-brand-green font-medium transition-colors">Gallery</a>
+                    <a href="index.html#contact" class="bg-brand-green text-white px-6 py-2.5 rounded-lg hover:bg-brand-dark transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Team Member Detail Section -->
+    <section class="py-20 bg-gradient-to-br from-brand-gray to-gray-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Breadcrumb -->
+            <nav class="mb-8">
+                <ol class="flex items-center space-x-2 text-sm text-gray-600">
+                    <li><a href="index.html" class="hover:text-brand-green transition-colors">Home</a></li>
+                    <li><i data-lucide="chevron-right" class="h-4 w-4"></i></li>
+                    <li><a href="index.html#team" class="hover:text-brand-green transition-colors">Team</a></li>
+                    <li><i data-lucide="chevron-right" class="h-4 w-4"></i></li>
+                    <li class="text-brand-green font-semibold">Alhaji Sani Umar</li>
+                </ol>
+            </nav>
+
+            <div class="bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-200">
+                <div class="md:flex">
+                    <!-- Profile Image Section -->
+                    <div class="md:w-2/5 relative">
+                        <div class="h-80 md:h-full overflow-hidden">
+                            <img src="Images/ceo.jpg" alt="Alhaji Sani Umar" class="w-full h-full object-cover object-top">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        </div>
+                        <!-- Floating Social Icons -->
+                        <div class="absolute bottom-6 left-6 flex space-x-3">
+                            <a href="https://linkedin.com/in/alhaji-sani-umar" target="_blank" class="p-3 rounded-full bg-white/90 hover:bg-white text-brand-green hover:text-brand-dark transition-all duration-300 shadow-lg backdrop-blur-sm">
+                                <i class="fab fa-linkedin-in text-lg"></i>
+                            </a>
+                            <a href="https://twitter.com/alhajisani" target="_blank" class="p-3 rounded-full bg-white/90 hover:bg-white text-brand-green hover:text-brand-dark transition-all duration-300 shadow-lg backdrop-blur-sm">
+                                <i class="fab fa-twitter text-lg"></i>
+                            </a>
+                            <a href="mailto:ceo@kayardafarms.com" class="p-3 rounded-full bg-white/90 hover:bg-white text-brand-green hover:text-brand-dark transition-all duration-300 shadow-lg backdrop-blur-sm">
+                                <i class="fas fa-envelope text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Content Section -->
+                    <div class="md:w-3/5 p-8 md:p-12">
+                        <!-- Header -->
+                        <div class="mb-8">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-1 bg-brand-orange mr-4"></div>
+                                <h4 class="text-brand-green font-heading font-bold uppercase text-sm tracking-widest">Chief Executive Officer</h4>
+                            </div>
+                            <h1 class="font-heading font-extrabold text-4xl text-gray-900 mb-4">Alhaji Sani Umar</h1>
+                            <p class="text-lg text-gray-600 leading-relaxed">Visionary leader and founder with over 20 years of experience in integrated agribusiness</p>
+                        </div>
+
+                        <!-- Bio Content -->
+                        <div class="space-y-6 mb-8">
+                            <div class="prose prose-lg max-w-none">
+                                <p class="text-gray-700 leading-relaxed">
+                                    Alhaji Sani Umar brings over 20 years of experience in integrated agribusiness to Kayarda Farms. As the visionary leader and founder, he has been instrumental in transforming Kayarda from a small local operation into one of Nigeria's leading integrated poultry and aquaculture enterprises.
+                                </p>
+                                <p class="text-gray-700 leading-relaxed">
+                                    His strategic vision encompasses the entire value chain - from feed production and hatchery operations to live bird marketing and processing. Under his leadership, Kayarda has established state-of-the-art facilities across multiple locations, implementing best practices in biosecurity, quality assurance, and sustainable farming.
+                                </p>
+                                <p class="text-gray-700 leading-relaxed">
+                                    Alhaji Umar holds a degree in Agricultural Economics and has received numerous industry recognitions for his contributions to Nigerian agriculture. He is passionate about developing sustainable food systems that benefit both farmers and consumers across West Africa.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Contact Information -->
+                        <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                            <h3 class="font-heading font-bold text-gray-900 text-xl mb-6 flex items-center">
+                                <i class="fas fa-address-card text-brand-green mr-3"></i>
+                                Contact Information
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-envelope text-brand-green mt-1"></i>
+                                    <div>
+                                        <p class="text-sm text-gray-500 uppercase tracking-wide font-semibold">Email</p>
+                                        <a href="mailto:ceo@kayardafarms.com" class="text-gray-700 hover:text-brand-orange transition-colors">ceo@kayardafarms.com</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-phone text-brand-green mt-1"></i>
+                                    <div>
+                                        <p class="text-sm text-gray-500 uppercase tracking-wide font-semibold">Phone</p>
+                                        <a href="tel:+2348128087579" class="text-gray-700 hover:text-brand-orange transition-colors">+234 812 808 7579</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3 md:col-span-2">
+                                    <i class="fas fa-map-marker-alt text-brand-green mt-1"></i>
+                                    <div>
+                                        <p class="text-sm text-gray-500 uppercase tracking-wide font-semibold">Location</p>
+                                        <p class="text-gray-700">Kaduna State, Nigeria</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back to Team Button -->
+            <div class="text-center mt-12">
+                <a href="index.html#team" class="inline-flex items-center px-8 py-4 bg-brand-green hover:bg-brand-dark text-white font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    <i class="fas fa-arrow-left mr-3"></i>
+                    Back to Team
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#1a1a1a] text-gray-400 py-16 border-t-4 border-brand-green mt-auto font-sans">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                
+                <!-- About Widget -->
+                <div class="col-span-1">
+                    <div class="flex flex-col border-l-4 border-brand-orange pl-3 mb-6">
+                        <span class="font-heading font-extrabold text-2xl tracking-tighter text-white leading-none">
+                            KAYARDA
+                        </span>
+                        <span class="text-[10px] uppercase font-bold text-gray-400 tracking-widest mt-1">Integrated Farms</span>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-6 font-medium">A premier integrated agricultural enterprise delivering high-quality products and supply chain solutions with excellence, scale, and reliability.</p>
+                    <div class="flex space-x-3">
+                        <a href="https://facebook.com/kayardafarms" target="_blank" class="w-8 h-8 rounded bg-[#2a2a2a] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i class="fab fa-facebook-f text-xs"></i></a>
+                        <a href="https://twitter.com/kayardafarms" target="_blank" class="w-8 h-8 rounded bg-[#2a2a2a] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i class="fab fa-twitter text-xs"></i></a>
+                        <a href="https://instagram.com/kayardafarms" target="_blank" class="w-8 h-8 rounded bg-[#2a2a2a] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i class="fab fa-instagram text-xs"></i></a>
+                        <a href="https://linkedin.com/company/kayarda-farms" target="_blank" class="w-8 h-8 rounded bg-[#2a2a2a] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i class="fab fa-linkedin-in text-xs"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Links Widget -->
+                <div>
+                    <h4 class="text-white font-heading font-bold text-lg mb-6 uppercase border-b border-[#333] pb-2 inline-block">Company</h4>
+                    <ul class="space-y-3 text-sm font-semibold">
+                        <li><a href="index.html#about"   class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> About Us</a></li>
+                        <li><a href="index.html#team"    class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Our Team</a></li>
+                        <li><a href="index.html#gallery" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Gallery</a></li>
+                        <li><a href="index.html#media"   class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Media Center</a></li>
+                        <li><a href="index.html#career"  class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Careers</a></li>
+                        <li><a href="index.html#faq"     class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> FAQ</a></li>
+                        <li><a href="index.html#contact" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Products Widget -->
+                <div>
+                    <h4 class="text-white font-heading font-bold text-lg mb-6 uppercase border-b border-[#333] pb-2 inline-block">Our Products</h4>
+                    <ul class="space-y-3 text-sm font-semibold">
+                        <li><a href="index.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Eggs</a></li>
+                        <li><a href="index.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Poultry Feeds</a></li>
+                        <li><a href="index.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Fish</a></li>
+                        <li><a href="index.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Wheat Offals</a></li>
+                        <li><a href="index.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Concentrates</a></li>
+                        <li><a href="index.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Fertilizers</a></li>
+                        <li><a href="index.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Logistics Services</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Newsletter Widget -->
+                <div>
+                    <h4 class="text-white font-heading font-bold text-lg mb-6 uppercase border-b border-[#333] pb-2 inline-block">Newsletter</h4>
+                    <p class="text-sm mb-4 font-medium">Subscribe to receive the latest updates and farming tips.</p>
+                    <form id="newsletterForm" class="flex flex-col space-y-2">
+                        <input type="email" placeholder="Email Address" required class="w-full px-4 py-2 bg-[#2a2a2a] border border-[#333] text-white focus:outline-none focus:border-brand-green text-sm rounded-lg">
+                        <button type="submit" class="bg-brand-green hover:bg-brand-dark px-4 py-2 text-white transition-colors text-sm font-bold uppercase">
+                            Subscribe
+                        </button>
+                    </form>
+                    <div id="newsletterSuccess" class="hidden mt-3 text-brand-light text-xs font-bold">
+                        ✓ Subscribed! Thank you.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright Base -->
+            <div class="pt-8 border-t border-[#333] text-sm font-semibold flex flex-col md:flex-row justify-between items-center text-gray-500">
+                <p>&copy; 2026 Kayarda Integrated Farms Ltd. All Rights Reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-brand-orange transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-brand-orange transition-colors">Terms of Service</a>
+                    <!-- <a href="#" class="hover:text-brand-orange transition-colors">Sitemap</a> -->
+                </div>
+            </div>
+        </div>
+    </footer>
+        </div>
+    </footer>
+
+    <script>
+        // Search functionality
+        const searchBtn = document.getElementById('searchBtn');
+        const searchInput = document.getElementById('searchInput');
+
+        searchBtn.addEventListener('click', function() {
+            searchInput.classList.toggle('hidden');
+            if (!searchInput.classList.contains('hidden')) {
+                searchInput.focus();
+            }
+        });
+
+        // Hide search on outside click
+        document.addEventListener('click', function(e) {
+            if (!searchBtn.contains(e.target) && !searchInput.contains(e.target)) {
+                searchInput.classList.add('hidden');
+            }
+        });
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</body>
+</html>
