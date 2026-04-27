@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover More - Kayarda Integrated Farms | Products & Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    },
+                    fontSize: {
+                        'xs': '0.8125rem',
+                        'sm': '0.9rem',
+                        'base': '1.01rem',
+                        'lg': '1.125rem',
+                        'xl': '1.25rem',
+                        '2xl': '1.5rem',
+                        '3xl': '1.875rem',
+                        '4xl': '2.25rem',
+                    },
+                    colors: {
+                        brand: {
+                            green: '#0e7a3d',
+                            dark: '#0a5c2d',
+                            light: '#13a352',
+                            orange: '#f05a28',
+                            orangeHover: '#d94b1f',
+                            gray: '#f5f5f5',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(14, 122, 61, 0.9) 0%, rgba(240, 90, 40, 0.9) 100%),
+                        url('https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #0e7a3d, #f05a28);
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3rem;
+            height: 3rem;
+            background: #0e7a3d;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(1rem);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .back-to-top:hover {
+            background: #f05a28;
+            transform: translateY(-0.25rem);
+        }
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        .tab-btn {
+            transition: all 0.3s ease;
+        }
+        .tab-btn.active {
+            background: #0e7a3d !important;
+            color: white !important;
+        }
+        .btn-theme {
+            transition: all 0.3s ease;
+        }
+        .btn-theme:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #f05a28;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .feature-icon {
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover .feature-icon {
+            transform: scale(1.1);
+        }
+        .testimonial-slider {
+            position: relative;
+            overflow: hidden;
+        }
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .testimonial-dot.active {
+            background: #0e7a3d;
+        }
+        .stat-card {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 font-sans flex flex-col min-h-screen">
+
+    <!-- Scroll Progress -->
+    <div id="scrollProgress" class="scroll-progress"></div>
+
+    <!-- Top Bar (Email, Phone, Socials) -->
+    <div class="bg-brand-green text-white text-xs py-3 hidden md:block border-b border-brand-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <div class="flex items-center space-x-6">
+                <div class="flex items-center">
+                    <i data-lucide="mail" class="h-3 w-3 mr-1.5"></i>
+                    <span>info@kayardafarms.com</span>
+                </div>
+                <div class="flex items-center">
+                    <i data-lucide="phone" class="h-3 w-3 mr-1.5"></i>
+                    <span>+234 802 150 7747</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3.5">
+                <a href="https://facebook.com/kayardafarms" target="_blank" class="p-2 rounded-[50px] bg-transparent hover:bg-white/10 text-white transition-colors" aria-label="Facebook"><i class="fab fa-facebook-f text-sm"></i></a>
+                <a href="https://twitter.com/kayardafarms" target="_blank" class="p-2 rounded-[50px] bg-transparent hover:bg-white/10 text-white transition-colors" aria-label="Twitter"><i class="fab fa-twitter text-sm"></i></a>
+                <a href="https://instagram.com/kayardafarms" target="_blank" class="p-2 rounded-[50px] bg-transparent hover:bg-white/10 text-white transition-colors" aria-label="Instagram"><i class="fab fa-instagram text-sm"></i></a>
+                <a href="https://linkedin.com/company/kayarda-farms" target="_blank" class="p-2 rounded-[50px] bg-transparent hover:bg-white/10 text-white transition-colors" aria-label="LinkedIn"><i class="fab fa-linkedin-in text-sm"></i></a>
+                <span class="inline-block h-6 border-l border-white/70 mx-2"></span>
+                <div class="relative">
+                    <input type="text" id="searchInput" placeholder="Search..." class="hidden absolute right-0 top-full mt-2 bg-white text-gray-800 px-3 py-2 rounded-lg shadow-lg border border-gray-300 focus:outline-none focus:border-brand-green w-64 transition-all duration-300">
+                    <button id="searchBtn" class="text-white hover:text-brand-orange transition-colors" aria-label="Search"><i class="fas fa-search text-sm"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav id="navbar" class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-[85px]">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer border-l-4 border-brand-orange pl-3">
+                    <img src="Images/logo2.jpg" alt="Kayarda Integrated Farms Logo" class="h-12 w-12 mr-3 rounded-full object-cover border-2 border-brand-green shadow-sm">
+                    <div class="flex flex-col">
+                        <span class="font-heading font-extrabold text-3xl tracking-tighter text-brand-green leading-none">
+                            KAYARDA
+                        </span>
+                        <span class="text-[11px] uppercase font-bold text-gray-600 tracking-[0.2em] mt-1">Integrated Farms</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html"     class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">Home</a>
+                    <a href="about-us.html"    class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">About Us</a>
+                    <a href="discover-more.html" class="nav-link text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">Discover More</a>
+                    <a href="index.html#gallery"  class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">Gallery</a>
+                    <a href="index.html#media"    class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">Media</a>
+                    <a href="index.html#career"   class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">Career</a>
+                    <a href="index.html#faq"      class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">FAQ</a>
+                    <a href="index.html#contact"  class="px-6 py-3 bg-brand-orange hover:bg-brand-orangeHover text-white btn-theme inline-flex items-center">
+                        Contact Us <i data-lucide="arrow-right-circle" class="ml-2 h-4 w-4"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-brand-green focus:outline-none p-2 rounded-lg">
+                        <i data-lucide="menu" class="h-8 w-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full left-0 top-full shadow-xl">
+            <div class="px-4 py-6 space-y-4">
+                <a href="index.html" class="block text-gray-700 hover:text-brand-green font-heading font-bold text-sm uppercase tracking-wide py-2">Home</a>
+                <a href="about-us.html" class="block text-gray-700 hover:text-brand-green font-heading font-bold text-sm uppercase tracking-wide py-2">About Us</a>
+                <a href="discover-more.html" class="block text-brand-green font-heading font-bold text-sm uppercase tracking-wide py-2">Discover More</a>
+                <a href="index.html#gallery" class="block text-gray-700 hover:text-brand-green font-heading font-bold text-sm uppercase tracking-wide py-2">Gallery</a>
+                <a href="index.html#media" class="block text-gray-700 hover:text-brand-green font-heading font-bold text-sm uppercase tracking-wide py-2">Media</a>
+                <a href="index.html#career" class="block text-gray-700 hover:text-brand-green font-heading font-bold text-sm uppercase tracking-wide py-2">Career</a>
+                <a href="index.html#faq" class="block text-gray-700 hover:text-brand-green font-heading font-bold text-sm uppercase tracking-wide py-2">FAQ</a>
+                <a href="index.html#contact" class="block px-6 py-3 bg-brand-orange hover:bg-brand-orangeHover text-white btn-theme inline-flex items-center justify-center w-full">
+                    Contact Us <i data-lucide="arrow-right-circle" class="ml-2 h-4 w-4"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-32 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="flex items-center justify-center mb-6">
+                    <div class="w-16 h-1 bg-brand-orange mr-4"></div>
+                    <h4 class="text-xl font-heading font-bold uppercase tracking-widest text-white">Explore Our World</h4>
+                    <div class="w-16 h-1 bg-brand-orange ml-4"></div>
+                </div>
+                <h1 class="font-heading font-extrabold text-5xl md:text-6xl mb-8 leading-tight">
+                    Discover <span class="text-brand-orange">Quality & Innovation</span> in Every Product
+                </h1>
+                <p class="text-xl leading-relaxed mb-12 text-gray-100">
+                    From farm-fresh eggs to premium feeds and comprehensive logistics solutions, explore our complete range of agricultural products and services designed for excellence.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#products" class="px-8 py-4 bg-brand-orange hover:bg-brand-orangeHover text-white btn-theme inline-flex items-center justify-center">
+                        Explore Products <i data-lucide="package" class="ml-2 h-5 w-5"></i>
+                    </a>
+                    <a href="#services" class="px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-brand-green btn-theme inline-flex items-center justify-center">
+                        Our Services <i data-lucide="settings" class="ml-2 h-5 w-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Categories Tabs -->
+    <section id="products" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="flex items-center justify-center mb-4">
+                    <div class="w-12 h-1 bg-brand-orange mr-3"></div>
+                    <h4 class="text-brand-green font-heading font-bold uppercase text-sm tracking-widest">Our Products</h4>
+                    <div class="w-12 h-1 bg-brand-orange ml-3"></div>
+                </div>
+                <h2 class="font-heading font-extrabold text-4xl md:text-5xl text-gray-900 mb-6">Premium Agricultural Solutions</h2>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    Discover our comprehensive range of high-quality agricultural products, each crafted with precision and care.
+                </p>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="flex flex-wrap justify-center mb-12">
+                <button class="tab-btn active px-6 py-3 mx-2 mb-2 bg-gray-100 text-gray-700 rounded-lg font-semibold" data-tab="eggs">Eggs</button>
+                <button class="tab-btn px-6 py-3 mx-2 mb-2 bg-gray-100 text-gray-700 rounded-lg font-semibold" data-tab="feeds">Feeds</button>
+                <button class="tab-btn px-6 py-3 mx-2 mb-2 bg-gray-100 text-gray-700 rounded-lg font-semibold" data-tab="fish">Fish</button>
+                <button class="tab-btn px-6 py-3 mx-2 mb-2 bg-gray-100 text-gray-700 rounded-lg font-semibold" data-tab="byproducts">By-Products</button>
+                <button class="tab-btn px-6 py-3 mx-2 mb-2 bg-gray-100 text-gray-700 rounded-lg font-semibold" data-tab="fertilizers">Fertilizers</button>
+            </div>
+
+            <!-- Eggs Tab Content -->
+            <div id="eggs-content" class="tab-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gradient-to-br from-yellow-100 to-yellow-200 flex items-center justify-center">
+                            <i data-lucide="egg" class="h-24 w-24 text-yellow-600 feature-icon"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl text-gray-900 mb-3">Fresh Table Eggs</h3>
+                            <p class="text-gray-600 mb-4">Premium quality eggs from healthy, well-nourished poultry. Available in various sizes with guaranteed freshness and superior nutritional value.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-brand-green font-bold text-lg">₦1,200/dozen</span>
+                                <button class="px-4 py-2 bg-brand-green text-white rounded-lg hover:bg-brand-dark transition-colors">Order Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center">
+                            <i data-lucide="zap" class="h-24 w-24 text-orange-600 feature-icon"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl text-gray-900 mb-3">Omega-3 Enriched Eggs</h3>
+                            <p class="text-gray-600 mb-4">Specialty eggs enriched with omega-3 fatty acids for enhanced nutritional benefits. Perfect for health-conscious consumers.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-brand-green font-bold text-lg">₦1,800/dozen</span>
+                                <button class="px-4 py-2 bg-brand-green text-white rounded-lg hover:bg-brand-dark transition-colors">Order Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
+                            <i data-lucide="leaf" class="h-24 w-24 text-green-600 feature-icon"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl text-gray-900 mb-3">Organic Free-Range Eggs</h3>
+                            <p class="text-gray-600 mb-4">Eggs from poultry raised on organic feeds without antibiotics or hormones. Sustainable farming practices for premium quality.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-brand-green font-bold text-lg">₦2,200/dozen</span>
+                                <button class="px-4 py-2 bg-brand-green text-white rounded-lg hover:bg-brand-dark transition-colors">Order Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feeds Tab Content -->
+            <div id="feeds-content" class="tab-content hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
+                            <i data-lucide="wheat" class="h-24 w-24 text-blue-600 feature-icon"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl text-gray-900 mb-3">Starter Feed</h3>
+                            <p class="text-gray-600 mb-4">Specially formulated feed for young poultry (0-8 weeks). High protein content for optimal growth and development.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-brand-green font-bold text-lg">₦45,000/50kg</span>
+                                <button class="px-4 py-2 bg-brand-green text-white rounded-lg hover:bg-brand-dark transition-colors">Order Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center">
+                            <i data-lucide="target" class="h-24 w-24 text-purple-600 feature-icon"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl text-gray-900 mb-3">Grower Feed</h3>
+                            <p class="text-gray-600 mb-4">Balanced nutrition for growing poultry (8-18 weeks). Supports healthy weight gain and feather development.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-brand-green font-bold text-lg">₦42,000/50kg</span>
+                                <button class="px-4 py-2 bg-brand-green text-white rounded-lg hover:bg-brand-dark transition-colors">Order Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gradient-to-br from-red-100 to-red-200 flex items-center justify-center">
+                            <i data-lucide="trending-up" class="h-24 w-24 text-red-600 feature-icon"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl text-gray-900 mb-3">Layer Feed</h3>
+                            <p class="text-gray-600 mb-4">Optimized feed for egg-laying hens. Calcium-rich formula for strong eggshells and maximum egg production.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-brand-green font-bold text-lg">₦40,000/50kg</span>
+                                <button class="px-4 py-2 bg-brand-green text-white rounded-lg hover:bg-brand-dark transition-colors">Order Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fish Tab Content -->
+            <div id="fish-content" class="tab-content hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gradient-to-br from-cyan-100 to-cyan-200 flex items-center justify-center">
+                            <i data-lucide="fish" class="h-24 w-24 text-cyan-600 feature-icon"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl text-gray-900 mb-3">Tilapia (Fresh)</h3>
+                            <p class="text-gray-600 mb-4">Fresh tilapia fillets from our aquaculture farms. Sustainably raised with premium feed for superior taste and texture.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-brand-green font-bold text-lg">₦3,500/kg</span>
+                                <button class="px-4 py-2 bg-brand-green text-white rounded-lg hover:bg-brand-dark transition-colors">Order Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gradient-to-br from-teal-100 to-teal-200 flex items-center justify-center">
+                            <i data-lucide="package" class="h-24 w-24 text-teal-600 feature-icon"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl text-gray-900 mb-3">Catfish (Live)</h3>
+                            <p class="text-gray-600 mb-4">Live catfish from our integrated aquaculture system. Available in various sizes for restaurants and households.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-brand-green font-bold text-lg">₦2,800/kg</span>
+                                <button class="px-4 py-2 bg-brand-green text-white rounded-lg hover:bg-brand-dark transition-colors">Order Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gradient-to-br from-indigo-100 to-indigo-200 flex items-center justify-center">
+                            <i data-lucide="award" class="h-24 w-24 text-indigo-600 feature-icon"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl text-gray-900 mb-3">Premium Fish Feed</h3>
+                            <p class="text-gray-600 mb-4">Specially formulated feed for optimal fish growth and health. Available in floating and sinking varieties.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-brand-green font-bold text-lg">₦35,000/50kg</span>
+                                <button class="px-4 py-2 bg-brand-green text-white rounded-lg hover:bg-brand-dark transition-colors">Order Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- By-Products Tab Content -->
+            <div id="byproducts-content" class="tab-content hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center">
+                            <i data-lucide="sprout" class="h-24 w-24 text-amber-600 feature-icon"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl text-gray-900 mb-3">Wheat Offals</h3>
+                            <p class="text-gray-600 mb-4">High-quality wheat bran and offals for livestock feed. Rich in fiber and essential nutrients for animal health.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-brand-green font-bold text-lg">₦25,000/50kg</span>
+                                <button class="px-4 py-2 bg-brand-green text-white rounded-lg hover:bg-brand-dark transition-colors">Order Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gradient-to-br from-emerald-100 to-emerald-200 flex items-center justify-center">
+                            <i data-lucide="droplets" class="h-24 w-24 text-emerald-600 feature-icon"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl text-gray-900 mb-3">Blood Meal</h3>
+                            <p class="text-gray-600 mb-4">Premium blood meal protein supplement for livestock. High in protein content and essential amino acids.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-brand-green font-bold text-lg">₦30,000/50kg</span>
+                                <button class="px-4 py-2 bg-brand-green text-white rounded-lg hover:bg-brand-dark transition-colors">Order Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+                            <i data-lucide="bone" class="h-24 w-24 text-slate-600 feature-icon"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl text-gray-900 mb-3">Bone Meal</h3>
+                            <p class="text-gray-600 mb-4">Calcium and phosphorus-rich bone meal for animal nutrition. Essential for bone development and egg shell quality.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-brand-green font-bold text-lg">₦28,000/50kg</span>
+                                <button class="px-4 py-2 bg-brand-green text-white rounded-lg hover:bg-brand-dark transition-colors">Order Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fertilizers Tab Content -->
+            <div id="fertilizers-content" class="tab-content hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gradient-to-br from-lime-100 to-lime-200 flex items-center justify-center">
+                            <i data-lucide="shovel" class="h-24 w-24 text-lime-600 feature-icon"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl text-gray-900 mb-3">NPK Fertilizer (20-10-10)</h3>
+                            <p class="text-gray-600 mb-4">Balanced fertilizer for general crop nutrition. Provides essential nitrogen, phosphorus, and potassium for optimal plant growth.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-brand-green font-bold text-lg">₦15,000/50kg</span>
+                                <button class="px-4 py-2 bg-brand-green text-white rounded-lg hover:bg-brand-dark transition-colors">Order Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gradient-to-br from-rose-100 to-rose-200 flex items-center justify-center">
+                            <i data-lucide="flower" class="h-24 w-24 text-rose-600 feature-icon"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl text-gray-900 mb-3">Organic Compost</h3>
+                            <p class="text-gray-600 mb-4">Natural organic fertilizer made from decomposed plant and animal matter. Improves soil structure and microbial activity.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-brand-green font-bold text-lg">₦8,000/50kg</span>
+                                <button class="px-4 py-2 bg-brand-green text-white rounded-lg hover:bg-brand-dark transition-colors">Order Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gradient-to-br from-violet-100 to-violet-200 flex items-center justify-center">
+                            <i data-lucide="zap" class="h-24 w-24 text-violet-600 feature-icon"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl text-gray-900 mb-3">Liquid Fertilizer</h3>
+                            <p class="text-gray-600 mb-4">Fast-acting liquid fertilizer for foliar application. Quickly absorbed by plants for immediate nutrient uptake.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-brand-green font-bold text-lg">₦12,000/20L</span>
+                                <button class="px-4 py-2 bg-brand-green text-white rounded-lg hover:bg-brand-dark transition-colors">Order Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-brand-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="flex items-center justify-center mb-4">
+                    <div class="w-12 h-1 bg-brand-orange mr-3"></div>
+                    <h4 class="text-brand-green font-heading font-bold uppercase text-sm tracking-widest">Our Services</h4>
+                    <div class="w-12 h-1 bg-brand-orange ml-3"></div>
+                </div>
+                <h2 class="font-heading font-extrabold text-4xl md:text-5xl text-gray-900 mb-6">Comprehensive Agricultural Solutions</h2>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    Beyond products, we offer end-to-end agricultural services to support farmers and businesses nationwide.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="service-card bg-white p-8 rounded-lg shadow-lg text-center">
+                    <div class="w-16 h-16 bg-brand-green rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="truck" class="h-8 w-8 text-white"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-gray-900 mb-4">Nationwide Logistics</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Reliable distribution network covering all 36 states of Nigeria. Temperature-controlled transport ensures product freshness from farm to customer.
+                    </p>
+                    <ul class="text-left text-sm text-gray-600 space-y-2">
+                        <li class="flex items-center"><i data-lucide="check" class="h-4 w-4 text-brand-green mr-2"></i> Same-day delivery in major cities</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-4 w-4 text-brand-green mr-2"></i> Refrigerated transport for perishables</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-4 w-4 text-brand-green mr-2"></i> Real-time tracking system</li>
+                    </ul>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-lg shadow-lg text-center">
+                    <div class="w-16 h-16 bg-brand-orange rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="graduation-cap" class="h-8 w-8 text-white"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-gray-900 mb-4">Farmer Training Programs</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Comprehensive training and capacity building for farmers. Learn modern farming techniques, best practices, and business management.
+                    </p>
+                    <ul class="text-left text-sm text-gray-600 space-y-2">
+                        <li class="flex items-center"><i data-lucide="check" class="h-4 w-4 text-brand-green mr-2"></i> Modern farming techniques</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-4 w-4 text-brand-green mr-2"></i> Business management training</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-4 w-4 text-brand-green mr-2"></i> Certification programs</li>
+                    </ul>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-lg shadow-lg text-center">
+                    <div class="w-16 h-16 bg-brand-green rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="microscope" class="h-8 w-8 text-white"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-gray-900 mb-4">Quality Testing Lab</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        State-of-the-art laboratory for quality control and testing. Ensures all products meet international standards and safety requirements.
+                    </p>
+                    <ul class="text-left text-sm text-gray-600 space-y-2">
+                        <li class="flex items-center"><i data-lucide="check" class="h-4 w-4 text-brand-green mr-2"></i> Microbiological testing</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-4 w-4 text-brand-green mr-2"></i> Nutritional analysis</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-4 w-4 text-brand-green mr-2"></i> Contaminant screening</li>
+                    </ul>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-lg shadow-lg text-center">
+                    <div class="w-16 h-16 bg-brand-orange rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="users" class="h-8 w-8 text-white"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-gray-900 mb-4">Technical Support</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        24/7 technical support for farmers and customers. Expert advice on farming practices, product usage, and troubleshooting.
+                    </p>
+                    <ul class="text-left text-sm text-gray-600 space-y-2">
+                        <li class="flex items-center"><i data-lucide="check" class="h-4 w-4 text-brand-green mr-2"></i> 24/7 helpline support</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-4 w-4 text-brand-green mr-2"></i> On-site technical visits</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-4 w-4 text-brand-green mr-2"></i> Digital consultation platform</li>
+                    </ul>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-lg shadow-lg text-center">
+                    <div class="w-16 h-16 bg-brand-green rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="building" class="h-8 w-8 text-white"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-gray-900 mb-4">Farm Setup Consulting</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Complete farm planning and setup services. From site selection to equipment procurement and operational planning.
+                    </p>
+                    <ul class="text-left text-sm text-gray-600 space-y-2">
+                        <li class="flex items-center"><i data-lucide="check" class="h-4 w-4 text-brand-green mr-2"></i> Site assessment & planning</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-4 w-4 text-brand-green mr-2"></i> Equipment recommendations</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-4 w-4 text-brand-green mr-2"></i> Financial planning support</li>
+                    </ul>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-lg shadow-lg text-center">
+                    <div class="w-16 h-16 bg-brand-orange rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="bar-chart-3" class="h-8 w-8 text-white"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-gray-900 mb-4">Market Intelligence</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Data-driven market insights and analysis. Stay informed about market trends, pricing, and demand patterns.
+                    </p>
+                    <ul class="text-left text-sm text-gray-600 space-y-2">
+                        <li class="flex items-center"><i data-lucide="check" class="h-4 w-4 text-brand-green mr-2"></i> Market trend analysis</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-4 w-4 text-brand-green mr-2"></i> Price forecasting</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-4 w-4 text-brand-green mr-2"></i> Demand pattern insights</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="flex items-center justify-center mb-4">
+                    <div class="w-12 h-1 bg-brand-orange mr-3"></div>
+                    <h4 class="text-brand-green font-heading font-bold uppercase text-sm tracking-widest">Why Choose Us</h4>
+                    <div class="w-12 h-1 bg-brand-orange ml-3"></div>
+                </div>
+                <h2 class="font-heading font-extrabold text-4xl md:text-5xl text-gray-900 mb-6">What Sets Us Apart</h2>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    Discover the unique advantages that make Kayarda Integrated Farms your trusted agricultural partner.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <div class="space-y-8">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-brand-green rounded-full flex items-center justify-center flex-shrink-0 mr-6">
+                                <i data-lucide="shield-check" class="h-6 w-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-xl text-gray-900 mb-3">Integrated Quality Control</h3>
+                                <p class="text-gray-600 leading-relaxed">
+                                    Our vertical integration ensures complete control over every aspect of production, from feed formulation to final packaging. This guarantees consistent quality and safety standards across all products.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-brand-orange rounded-full flex items-center justify-center flex-shrink-0 mr-6">
+                                <i data-lucide="map-pin" class="h-6 w-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-xl text-gray-900 mb-3">Nationwide Coverage</h3>
+                                <p class="text-gray-600 leading-relaxed">
+                                    With distribution networks spanning all 36 states of Nigeria, we ensure fresh products reach customers nationwide. Our logistics network guarantees timely delivery and product freshness.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-brand-green rounded-full flex items-center justify-center flex-shrink-0 mr-6">
+                                <i data-lucide="lightbulb" class="h-6 w-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-xl text-gray-900 mb-3">Innovation & Research</h3>
+                                <p class="text-gray-600 leading-relaxed">
+                                    Our dedicated R&D team continuously develops new products and improves existing ones. We invest in cutting-edge technology and sustainable farming practices for better results.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-brand-orange rounded-full flex items-center justify-center flex-shrink-0 mr-6">
+                                <i data-lucide="users" class="h-6 w-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-xl text-gray-900 mb-3">Farmer Partnership</h3>
+                                <p class="text-gray-600 leading-relaxed">
+                                    We work closely with farmers across Nigeria, providing training, fair pricing, and market access. Our success is built on the success of the farming community we serve.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-brand-green to-brand-dark p-8 rounded-lg text-white">
+                        <h3 class="font-heading font-bold text-2xl mb-6">Quality Certifications</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i data-lucide="award" class="h-5 w-5 text-brand-orange mr-3"></i>
+                                <span class="text-sm">ISO 9001:2015 Quality Management</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-lucide="award" class="h-5 w-5 text-brand-orange mr-3"></i>
+                                <span class="text-sm">HACCP Food Safety Certification</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-lucide="award" class="h-5 w-5 text-brand-orange mr-3"></i>
+                                <span class="text-sm">Organic Farming Standards</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-lucide="award" class="h-5 w-5 text-brand-orange mr-3"></i>
+                                <span class="text-sm">Good Manufacturing Practices (GMP)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-lucide="award" class="h-5 w-5 text-brand-orange mr-3"></i>
+                                <span class="text-sm">Export Quality Standards</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-24 bg-brand-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="flex items-center justify-center mb-4">
+                    <div class="w-12 h-1 bg-brand-orange mr-3"></div>
+                    <h4 class="text-brand-green font-heading font-bold uppercase text-sm tracking-widest">Testimonials</h4>
+                    <div class="w-12 h-1 bg-brand-orange ml-3"></div>
+                </div>
+                <h2 class="font-heading font-extrabold text-4xl md:text-5xl text-gray-900 mb-6">What Our Customers Say</h2>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    Hear from farmers, distributors, and customers who trust Kayarda for their agricultural needs.
+                </p>
+            </div>
+
+            <div class="testimonial-slider relative">
+                <div class="testimonial-track">
+                    <div class="testimonial-slide bg-white p-8 rounded-lg shadow-lg mx-4">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-brand-green rounded-full flex items-center justify-center mr-4">
+                                <span class="text-white font-bold text-lg">AB</span>
+                            </div>
+                            <div>
+                                <h4 class="font-heading font-bold text-gray-900">Ahmed Bello</h4>
+                                <p class="text-gray-600 text-sm">Poultry Farmer, Kano</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            "Kayarda's feeds have transformed my poultry business. My birds are healthier, and egg production has increased by 40%. The quality and consistency are unmatched."
+                        </p>
+                        <div class="flex text-brand-orange">
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-slide bg-white p-8 rounded-lg shadow-lg mx-4">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-brand-orange rounded-full flex items-center justify-center mr-4">
+                                <span class="text-white font-bold text-lg">MC</span>
+                            </div>
+                            <div>
+                                <h4 class="font-heading font-bold text-gray-900">Mary Chukwu</h4>
+                                <p class="text-gray-600 text-sm">Restaurant Owner, Lagos</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            "The fresh eggs from Kayarda are consistently excellent. My customers love the quality, and I appreciate the reliable delivery service across Lagos."
+                        </p>
+                        <div class="flex text-brand-orange">
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-slide bg-white p-8 rounded-lg shadow-lg mx-4">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-brand-green rounded-full flex items-center justify-center mr-4">
+                                <span class="text-white font-bold text-lg">IO</span>
+                            </div>
+                            <div>
+                                <h4 class="font-heading font-bold text-gray-900">Ibrahim Okafor</h4>
+                                <p class="text-gray-600 text-sm">Fish Farmer, Ogun</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            "Kayarda's fish feed has improved my catfish growth rate significantly. Their technical support team is always ready to help with expert advice."
+                        </p>
+                        <div class="flex text-brand-orange">
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center mt-8 space-x-2">
+                    <button class="testimonial-dot active" data-slide="0"></button>
+                    <button class="testimonial-dot" data-slide="1"></button>
+                    <button class="testimonial-dot" data-slide="2"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 bg-brand-green text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-heading font-extrabold text-4xl md:text-5xl mb-6">Ready to Experience Quality?</h2>
+            <p class="text-xl leading-relaxed mb-12 text-green-100">
+                Join thousands of satisfied customers who trust Kayarda for their agricultural needs. Place your order today or contact us for bulk inquiries.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="index.html#contact" class="px-8 py-4 bg-brand-orange hover:bg-brand-orangeHover text-white btn-theme inline-flex items-center justify-center">
+                    Get Started Today <i data-lucide="arrow-right" class="ml-2 h-5 w-5"></i>
+                </a>
+                <a href="tel:+2348021507747" class="px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-brand-green btn-theme inline-flex items-center justify-center">
+                    Call Now <i data-lucide="phone" class="ml-2 h-5 w-5"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#1a1a1a] text-gray-400 py-16 border-t-4 border-brand-green mt-auto font-sans">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                
+                <!-- About Widget -->
+                <div class="col-span-1">
+                    <div class="flex items-center mb-6">
+                        <img src="Images/logo2.jpg" alt="Kayarda Integrated Farms Logo" class="h-12 w-12 mr-3 rounded-full object-cover border-2 border-brand-green shadow-sm">
+                        <div class="flex flex-col border-l-4 border-brand-orange pl-3">
+                            <span class="font-heading font-extrabold text-2xl tracking-tighter text-white leading-none">
+                                KAYARDA
+                            </span>
+                            <span class="text-[10px] uppercase font-bold text-gray-400 tracking-widest mt-1">Integrated Farms</span>
+                        </div>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-6 font-medium">A premier integrated agricultural enterprise delivering high-quality products and supply chain solutions with excellence, scale, and reliability.</p>
+                    <div class="flex space-x-3">
+                        <a href="https://facebook.com/kayardafarms" target="_blank" class="w-8 h-8 rounded bg-[#2a2a2a] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i class="fab fa-facebook-f text-xs"></i></a>
+                        <a href="https://twitter.com/kayardafarms" target="_blank" class="w-8 h-8 rounded bg-[#2a2a2a] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i class="fab fa-twitter text-xs"></i></a>
+                        <a href="https://instagram.com/kayardafarms" target="_blank" class="w-8 h-8 rounded bg-[#2a2a2a] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i class="fab fa-instagram text-xs"></i></a>
+                        <a href="https://linkedin.com/company/kayarda-farms" target="_blank" class="w-8 h-8 rounded bg-[#2a2a2a] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i class="fab fa-linkedin-in text-xs"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Links Widget -->
+                <div>
+                    <h4 class="text-white font-heading font-bold text-lg mb-6 uppercase border-b border-[#333] pb-2 inline-block">Company</h4>
+                    <ul class="space-y-3 text-sm font-semibold">
+                        <li><a href="index.html"   class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Home</a></li>
+                        <li><a href="about-us.html"   class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> About Us</a></li>
+                        <li><a href="index.html#team"    class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Our Team</a></li>
+                        <li><a href="index.html#gallery" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Gallery</a></li>
+                        <li><a href="index.html#media"   class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Media Center</a></li>
+                        <li><a href="index.html#career"  class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Careers</a></li>
+                        <li><a href="index.html#faq"     class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> FAQ</a></li>
+                        <li><a href="index.html#contact" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Products Widget -->
+                <div>
+                    <h4 class="text-white font-heading font-bold text-lg mb-6 uppercase border-b border-[#333] pb-2 inline-block">Our Products</h4>
+                    <ul class="space-y-3 text-sm font-semibold">
+                        <li><a href="discover-more.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Eggs</a></li>
+                        <li><a href="discover-more.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Poultry Feeds</a></li>
+                        <li><a href="discover-more.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Fish</a></li>
+                        <li><a href="discover-more.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Wheat Offals</a></li>
+                        <li><a href="discover-more.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Concentrates</a></li>
+                        <li><a href="discover-more.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Fertilizers</a></li>
+                        <li><a href="discover-more.html#services" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Logistics Services</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Newsletter Widget -->
+                <div>
+                    <h4 class="text-white font-heading font-bold text-lg mb-6 uppercase border-b border-[#333] pb-2 inline-block">Newsletter</h4>
+                    <p class="text-sm mb-4 font-medium">Subscribe to receive the latest updates and farming tips.</p>
+                    <form id="newsletterForm" class="flex flex-col space-y-2">
+                        <input type="email" placeholder="Email Address" required class="w-full px-4 py-2 bg-[#2a2a2a] border border-[#333] text-white focus:outline-none focus:border-brand-green text-sm rounded-lg">
+                        <button type="submit" class="bg-brand-green hover:bg-brand-dark px-4 py-2 text-white transition-colors text-sm font-bold uppercase">
+                            Subscribe
+                        </button>
+                    </form>
+                    <div id="newsletterSuccess" class="hidden mt-3 text-brand-light text-xs font-bold">
+                        ✓ Subscribed! Thank you.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright Base -->
+            <div class="pt-8 border-t border-[#333] text-sm font-semibold flex flex-col md:flex-row justify-between items-center text-gray-500">
+                <p>&copy; 2026 Kayarda Integrated Farms Ltd. All Rights Reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-brand-orange transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-brand-orange transition-colors">Terms of Service</a>
+                    <!-- <a href="#" class="hover:text-brand-orange transition-colors">Sitemap</a> -->
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i data-lucide="chevron-up" class="h-5 w-5"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // ── Scroll Progress + Navbar + Back-to-Top
+        const scrollProgress = document.getElementById('scrollProgress');
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            const scrollPct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            scrollProgress.style.width = scrollPct + '%';
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-lg');
+                navbar.classList.remove('shadow-md');
+            } else {
+                navbar.classList.remove('shadow-lg');
+                navbar.classList.add('shadow-md');
+            }
+            backToTop.classList.toggle('visible', window.scrollY > 400);
+        });
+
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // ── Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // ── Newsletter form
+        document.getElementById('newsletterForm').addEventListener('submit', e => {
+            e.preventDefault();
+            document.getElementById('newsletterSuccess').classList.remove('hidden');
+        });
+
+        // ── Search functionality
+        const searchBtn = document.getElementById('searchBtn');
+        const searchInput = document.getElementById('searchInput');
+        searchBtn.addEventListener('click', () => {
+            searchInput.classList.toggle('hidden');
+            if (!searchInput.classList.contains('hidden')) {
+                searchInput.focus();
+            }
+        });
+        // Hide search input when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!searchBtn.contains(e.target) && !searchInput.contains(e.target)) {
+                searchInput.classList.add('hidden');
+            }
+        });
+        // Handle search input
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                // Handle search logic here
+                console.log('Searching for:', searchInput.value);
+                searchInput.classList.add('hidden');
+            }
+        });
+
+        // ── Product Tabs
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabName = btn.getAttribute('data-tab');
+
+                // Remove active class from all buttons
+                tabBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                // Hide all tab contents
+                tabContents.forEach(content => content.classList.add('hidden'));
+                // Show selected tab content
+                document.getElementById(tabName + '-content').classList.remove('hidden');
+            });
+        });
+
+        // ── Testimonial Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.testimonial-dot');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            const track = document.querySelector('.testimonial-track');
+            track.style.transform = `translateX(-${index * 100}%)`;
+
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => showSlide(index));
+        });
+
+        // Auto slide
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }, 5000);
+    </script>
+</body>
+</html>

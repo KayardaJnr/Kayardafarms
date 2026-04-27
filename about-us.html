@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Kayarda Integrated Farms | Our Story & Mission</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    },
+                    fontSize: {
+                        'xs': '0.8125rem',
+                        'sm': '0.9rem',
+                        'base': '1.01rem',
+                        'lg': '1.125rem',
+                        'xl': '1.25rem',
+                        '2xl': '1.5rem',
+                        '3xl': '1.875rem',
+                        '4xl': '2.25rem',
+                    },
+                    colors: {
+                        brand: {
+                            green: '#0e7a3d',
+                            dark: '#0a5c2d',
+                            light: '#13a352',
+                            orange: '#f05a28',
+                            orangeHover: '#d94b1f',
+                            gray: '#f5f5f5',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(14, 122, 61, 0.9) 0%, rgba(240, 90, 40, 0.9) 100%),
+                        url('https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #0e7a3d, #f05a28);
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3rem;
+            height: 3rem;
+            background: #0e7a3d;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(1rem);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .back-to-top:hover {
+            background: #f05a28;
+            transform: translateY(-0.25rem);
+        }
+        .map-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        .map-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .hero-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+        .hero-video-bg.loaded {
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+        .hero-fallback-bg {
+            background-size: cover;
+            background-position: center;
+        }
+        .gallery-img {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .gallery-img:hover {
+            transform: scale(1.05);
+        }
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(14, 122, 61, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .gallery-img:hover .gallery-overlay {
+            opacity: 1;
+        }
+        .testimonial-slider {
+            position: relative;
+            overflow: hidden;
+        }
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .testimonial-dot.active {
+            background: #0e7a3d;
+        }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .btn-theme {
+            transition: all 0.3s ease;
+        }
+        .btn-theme:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #f05a28;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .faq-item {
+            border: 1px solid #e5e7eb;
+            margin-bottom: 1rem;
+        }
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .faq-content.open {
+            max-height: 500px;
+        }
+        .job-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        .stat-card {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .tab-btn {
+            transition: all 0.3s ease;
+        }
+        .tab-btn.active {
+            background: #0e7a3d !important;
+            color: white !important;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 font-sans flex flex-col min-h-screen">
+
+    <!-- Scroll Progress -->
+    <div id="scrollProgress" class="scroll-progress"></div>
+
+    <!-- Top Bar (Email, Phone, Socials) -->
+    <div class="bg-brand-green text-white text-xs py-3 hidden md:block border-b border-brand-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <div class="flex items-center space-x-6">
+                <div class="flex items-center">
+                    <i data-lucide="mail" class="h-3 w-3 mr-1.5"></i>
+                    <span>info@kayardafarms.com</span>
+                </div>
+                <div class="flex items-center">
+                    <i data-lucide="phone" class="h-3 w-3 mr-1.5"></i>
+                    <span>+234 802 150 7747</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3.5">
+                <a href="https://facebook.com/kayardafarms" target="_blank" class="p-2 rounded-[50px] bg-transparent hover:bg-white/10 text-white transition-colors" aria-label="Facebook"><i class="fab fa-facebook-f text-sm"></i></a>
+                <a href="https://twitter.com/kayardafarms" target="_blank" class="p-2 rounded-[50px] bg-transparent hover:bg-white/10 text-white transition-colors" aria-label="Twitter"><i class="fab fa-twitter text-sm"></i></a>
+                <a href="https://instagram.com/kayardafarms" target="_blank" class="p-2 rounded-[50px] bg-transparent hover:bg-white/10 text-white transition-colors" aria-label="Instagram"><i class="fab fa-instagram text-sm"></i></a>
+                <a href="https://linkedin.com/company/kayarda-farms" target="_blank" class="p-2 rounded-[50px] bg-transparent hover:bg-white/10 text-white transition-colors" aria-label="LinkedIn"><i class="fab fa-linkedin-in text-sm"></i></a>
+                <span class="inline-block h-6 border-l border-white/70 mx-2"></span>
+                <div class="relative">
+                    <input type="text" id="searchInput" placeholder="Search..." class="hidden absolute right-0 top-full mt-2 bg-white text-gray-800 px-3 py-2 rounded-lg shadow-lg border border-gray-300 focus:outline-none focus:border-brand-green w-64 transition-all duration-300">
+                    <button id="searchBtn" class="text-white hover:text-brand-orange transition-colors" aria-label="Search"><i class="fas fa-search text-sm"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav id="navbar" class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-[85px]">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer border-l-4 border-brand-orange pl-3">
+                    <img src="Images/logo2.jpg" alt="Kayarda Integrated Farms Logo" class="h-12 w-12 mr-3 rounded-full object-cover border-2 border-brand-green shadow-sm">
+                    <div class="flex flex-col">
+                        <span class="font-heading font-extrabold text-3xl tracking-tighter text-brand-green leading-none">
+                            KAYARDA
+                        </span>
+                        <span class="text-[11px] uppercase font-bold text-gray-600 tracking-[0.2em] mt-1">Integrated Farms</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html"     class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">Home</a>
+                    <a href="about-us.html"    class="nav-link text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">About Us</a>
+                    <a href="index.html#products" class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide flex items-center">
+                        Our Products <i data-lucide="chevron-down" class="ml-1 h-3 w-3"></i>
+                    </a>
+                    <a href="index.html#gallery"  class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">Gallery</a>
+                    <a href="index.html#media"    class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">Media</a>
+                    <a href="index.html#career"   class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">Career</a>
+                    <a href="index.html#faq"      class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">FAQ</a>
+                    <a href="index.html#contact"  class="px-6 py-3 bg-brand-orange hover:bg-brand-orangeHover text-white btn-theme inline-flex items-center">
+                        Contact Us <i data-lucide="arrow-right-circle" class="ml-2 h-4 w-4"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-brand-green focus:outline-none p-2 rounded-lg">
+                        <i data-lucide="menu" class="h-8 w-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full left-0 top-full shadow-xl">
+            <div class="px-4 py-6 space-y-4">
+                <a href="index.html" class="block text-gray-700 hover:text-brand-green font-heading font-bold text-sm uppercase tracking-wide py-2">Home</a>
+                <a href="about-us.html" class="block text-brand-green font-heading font-bold text-sm uppercase tracking-wide py-2">About Us</a>
+                <a href="index.html#products" class="block text-gray-700 hover:text-brand-green font-heading font-bold text-sm uppercase tracking-wide py-2">Our Products</a>
+                <a href="index.html#gallery" class="block text-gray-700 hover:text-brand-green font-heading font-bold text-sm uppercase tracking-wide py-2">Gallery</a>
+                <a href="index.html#media" class="block text-gray-700 hover:text-brand-green font-heading font-bold text-sm uppercase tracking-wide py-2">Media</a>
+                <a href="index.html#career" class="block text-gray-700 hover:text-brand-green font-heading font-bold text-sm uppercase tracking-wide py-2">Career</a>
+                <a href="index.html#faq" class="block text-gray-700 hover:text-brand-green font-heading font-bold text-sm uppercase tracking-wide py-2">FAQ</a>
+                <a href="index.html#contact" class="block px-6 py-3 bg-brand-orange hover:bg-brand-orangeHover text-white btn-theme inline-flex items-center justify-center w-full">
+                    Contact Us <i data-lucide="arrow-right-circle" class="ml-2 h-4 w-4"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-32 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="flex items-center justify-center mb-6">
+                    <div class="w-16 h-1 bg-brand-orange mr-4"></div>
+                    <h4 class="text-xl font-heading font-bold uppercase tracking-widest text-white">Our Story</h4>
+                    <div class="w-16 h-1 bg-brand-orange ml-4"></div>
+                </div>
+                <h1 class="font-heading font-extrabold text-5xl md:text-6xl mb-8 leading-tight">
+                    Pioneering <span class="text-brand-orange">Agricultural Excellence</span> Since 2018
+                </h1>
+                <p class="text-xl leading-relaxed mb-12 text-gray-100">
+                    From humble beginnings to becoming Nigeria's leading integrated agricultural enterprise, discover the journey that shaped Kayarda Integrated Farms.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#our-journey" class="px-8 py-4 bg-brand-orange hover:bg-brand-orangeHover text-white btn-theme inline-flex items-center justify-center">
+                        Discover Our Journey <i data-lucide="arrow-down" class="ml-2 h-5 w-5"></i>
+                    </a>
+                    <a href="#our-values" class="px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-brand-green btn-theme inline-flex items-center justify-center">
+                        Our Values <i data-lucide="heart" class="ml-2 h-5 w-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Journey Section -->
+    <section id="our-journey" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="flex items-center justify-center mb-4">
+                    <div class="w-12 h-1 bg-brand-orange mr-3"></div>
+                    <h4 class="text-brand-green font-heading font-bold uppercase text-sm tracking-widest">The Beginning</h4>
+                    <div class="w-12 h-1 bg-brand-orange ml-3"></div>
+                </div>
+                <h2 class="font-heading font-extrabold text-4xl md:text-5xl text-gray-900 mb-6">Our Journey</h2>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    From a small family farm to a national leader in integrated agriculture - this is the story of Kayarda Integrated Farms.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
+                <div>
+                    <h3 class="font-heading font-bold text-3xl text-gray-900 mb-6">The Vision Takes Root</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Founded in 2018 by Alhaji Sani Umar, Kayarda Integrated Farms began as a modest poultry operation in Kano State. What started as a small-scale venture quickly grew into a comprehensive agricultural enterprise driven by a simple yet powerful vision: to revolutionize Nigeria's agricultural sector through integrated farming practices.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Alhaji Sani Umar, a seasoned agricultural entrepreneur with over two decades of experience, recognized the critical gaps in Nigeria's agricultural supply chain. He saw an opportunity to create a vertically integrated operation that would control quality from farm to table, ensuring that Nigerian farmers and consumers alike could access premium agricultural products.
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-brand-green rounded-full flex items-center justify-center">
+                            <i data-lucide="sprout" class="h-6 w-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-heading font-bold text-lg text-gray-900">2018</h4>
+                            <p class="text-gray-600">Foundation Year</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="Images/ceo.jpg" alt="Alhaji Sani Umar - Founder" class="w-full h-96 object-cover rounded-lg shadow-xl">
+                    <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-lg shadow-lg">
+                        <p class="text-brand-green font-bold text-lg">"Quality is not an act, it is a habit."</p>
+                        <p class="text-gray-600 mt-2">- Alhaji Sani Umar</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="relative">
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-brand-green"></div>
+
+                <div class="space-y-16">
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="bg-white p-8 rounded-lg shadow-lg border-l-4 border-brand-orange">
+                                <h4 class="font-heading font-bold text-2xl text-gray-900 mb-4">2019 - Expansion Phase</h4>
+                                <p class="text-gray-600 leading-relaxed">
+                                    Within the first year, we expanded our operations to include aquaculture and feed production. Our integrated approach began to take shape as we established our own feed mill to ensure complete control over feed quality and nutrition.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="w-8 h-8 bg-brand-orange rounded-full border-4 border-white shadow-lg relative z-10"></div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-8"></div>
+                        <div class="w-8 h-8 bg-brand-orange rounded-full border-4 border-white shadow-lg relative z-10"></div>
+                        <div class="w-1/2 pl-8">
+                            <div class="bg-white p-8 rounded-lg shadow-lg border-l-4 border-brand-green">
+                                <h4 class="font-heading font-bold text-2xl text-gray-900 mb-4">2020 - Innovation & Technology</h4>
+                                <p class="text-gray-600 leading-relaxed">
+                                    Despite global challenges, we invested heavily in modern farming technologies and sustainable practices. Our R&D team developed proprietary feed formulations that improved animal health and productivity by 35%.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="bg-white p-8 rounded-lg shadow-lg border-l-4 border-brand-orange">
+                                <h4 class="font-heading font-bold text-2xl text-gray-900 mb-4">2021 - Nationwide Reach</h4>
+                                <p class="text-gray-600 leading-relaxed">
+                                    We established distribution networks across all 36 states of Nigeria, becoming the first integrated agricultural company to achieve true nationwide coverage with consistent quality standards.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="w-8 h-8 bg-brand-orange rounded-full border-4 border-white shadow-lg relative z-10"></div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-8"></div>
+                        <div class="w-8 h-8 bg-brand-orange rounded-full border-4 border-white shadow-lg relative z-10"></div>
+                        <div class="w-1/2 pl-8">
+                            <div class="bg-white p-8 rounded-lg shadow-lg border-l-4 border-brand-green">
+                                <h4 class="font-heading font-bold text-2xl text-gray-900 mb-4">2022 - Leadership Recognition</h4>
+                                <p class="text-gray-600 leading-relaxed">
+                                    Kayarda was recognized as Nigeria's leading integrated agricultural enterprise, receiving multiple industry awards for innovation, sustainability, and contribution to food security.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="bg-white p-8 rounded-lg shadow-lg border-l-4 border-brand-orange">
+                                <h4 class="font-heading font-bold text-2xl text-gray-900 mb-4">2023 - Global Standards</h4>
+                                <p class="text-gray-600 leading-relaxed">
+                                    We achieved international certifications and expanded our export operations, bringing Nigerian agricultural products to global markets while maintaining the highest quality standards.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="w-8 h-8 bg-brand-orange rounded-full border-4 border-white shadow-lg relative z-10"></div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-8"></div>
+                        <div class="w-8 h-8 bg-brand-orange rounded-full border-4 border-white shadow-lg relative z-10"></div>
+                        <div class="w-1/2 pl-8">
+                            <div class="bg-white p-8 rounded-lg shadow-lg border-l-4 border-brand-green">
+                                <h4 class="font-heading font-bold text-2xl text-gray-900 mb-4">2024 - Future Forward</h4>
+                                <p class="text-gray-600 leading-relaxed">
+                                    Today, Kayarda Integrated Farms continues to innovate and expand, committed to sustainable agriculture, food security, and empowering Nigerian farmers for generations to come.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values Section -->
+    <section id="our-values" class="py-24 bg-brand-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="flex items-center justify-center mb-4">
+                    <div class="w-12 h-1 bg-brand-orange mr-3"></div>
+                    <h4 class="text-brand-green font-heading font-bold uppercase text-sm tracking-widest">What Drives Us</h4>
+                    <div class="w-12 h-1 bg-brand-orange ml-3"></div>
+                </div>
+                <h2 class="font-heading font-extrabold text-4xl md:text-5xl text-gray-900 mb-6">Our Core Values</h2>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    These principles guide everything we do and shape our commitment to excellence in agriculture.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-brand-green rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="shield" class="h-8 w-8 text-white"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-gray-900 mb-4">Quality First</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        We never compromise on quality. Every product that bears our name meets the highest standards of safety, nutrition, and excellence.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-brand-orange rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="users" class="h-8 w-8 text-white"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-gray-900 mb-4">Community Focus</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        We believe in empowering local communities and supporting Nigerian farmers through education, fair pricing, and sustainable practices.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-brand-green rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="leaf" class="h-8 w-8 text-white"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-gray-900 mb-4">Sustainability</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Our commitment to the environment drives us to implement eco-friendly practices that preserve resources for future generations.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-brand-orange rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="lightbulb" class="h-8 w-8 text-white"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-gray-900 mb-4">Innovation</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        We continuously invest in research and technology to improve farming practices, nutrition, and overall agricultural efficiency.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-brand-green rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="handshake" class="h-8 w-8 text-white"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-gray-900 mb-4">Integrity</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        We conduct our business with honesty, transparency, and ethical practices in all our dealings with partners, customers, and stakeholders.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-brand-orange rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="target" class="h-8 w-8 text-white"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-gray-900 mb-4">Excellence</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        We strive for excellence in everything we do, from our products to our services, setting the standard for the agricultural industry.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="flex items-center justify-center mb-4">
+                    <div class="w-12 h-1 bg-brand-orange mr-3"></div>
+                    <h4 class="text-brand-green font-heading font-bold uppercase text-sm tracking-widest">Leadership</h4>
+                    <div class="w-12 h-1 bg-brand-orange ml-3"></div>
+                </div>
+                <h2 class="font-heading font-extrabold text-4xl md:text-5xl text-gray-900 mb-6">Meet Our Leadership</h2>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    The visionaries and experts driving Kayarda's mission forward.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-48 h-48 mx-auto mb-6 overflow-hidden rounded-full shadow-xl">
+                        <img src="Images/ceo.jpg" alt="Alhaji Sani Umar" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl text-gray-900 mb-2">Alhaji Sani Umar</h3>
+                    <p class="text-brand-green font-semibold text-lg mb-4">Chief Executive Officer & Founder</p>
+                    <p class="text-gray-600 leading-relaxed">
+                        With over 25 years in agriculture, Alhaji Sani Umar founded Kayarda with a vision to transform Nigeria's agricultural landscape through integrated, quality-driven farming practices.
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-48 h-48 mx-auto mb-6 overflow-hidden rounded-full shadow-xl">
+                        <img src="Images/mg.jpg" alt="Yahaya Sani" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl text-gray-900 mb-2">Yahaya Sani</h3>
+                    <p class="text-brand-green font-semibold text-lg mb-4">Director of Operations</p>
+                    <p class="text-gray-600 leading-relaxed">
+                        Oversees all operational aspects of our integrated farming system, ensuring seamless coordination from production to distribution across Nigeria.
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-48 h-48 mx-auto mb-6 overflow-hidden rounded-full shadow-xl">
+                        <img src="Images/vet.jpg" alt="Dr. Jafar Sani" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl text-gray-900 mb-2">Dr. Jafar Sani</h3>
+                    <p class="text-brand-green font-semibold text-lg mb-4">Chief Veterinary Officer</p>
+                    <p class="text-gray-600 leading-relaxed">
+                        Leads our veterinary and animal health programs, ensuring the highest standards of animal welfare and disease prevention across all our operations.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="py-24 bg-brand-green text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="font-heading font-extrabold text-4xl md:text-5xl mb-6">Our Impact</h2>
+                <p class="text-xl leading-relaxed text-green-100">
+                    Numbers that tell the story of our commitment to Nigeria's agricultural transformation.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-8">
+                    <div class="text-4xl font-bold mb-2">50,000+</div>
+                    <p class="text-green-100">Farmers Supported</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-8">
+                    <div class="text-4xl font-bold mb-2">36</div>
+                    <p class="text-green-100">States Covered</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-8">
+                    <div class="text-4xl font-bold mb-2">500+</div>
+                    <p class="text-green-100">Jobs Created</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-8">
+                    <div class="text-4xl font-bold mb-2">35%</div>
+                    <p class="text-green-100">Productivity Increase</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 bg-brand-gray">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-heading font-extrabold text-4xl md:text-5xl text-gray-900 mb-6">Join Our Mission</h2>
+            <p class="text-xl text-gray-600 leading-relaxed mb-12">
+                Be part of Nigeria's agricultural revolution. Whether you're a farmer, distributor, or partner, we welcome you to join our community.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="index.html#contact" class="px-8 py-4 bg-brand-green hover:bg-brand-dark text-white btn-theme inline-flex items-center justify-center">
+                    Partner With Us <i data-lucide="arrow-right" class="ml-2 h-5 w-5"></i>
+                </a>
+                <a href="index.html#career" class="px-8 py-4 border-2 border-brand-green text-brand-green hover:bg-brand-green hover:text-white btn-theme inline-flex items-center justify-center">
+                    Join Our Team <i data-lucide="users" class="ml-2 h-5 w-5"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#1a1a1a] text-gray-400 py-16 border-t-4 border-brand-green mt-auto font-sans">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                
+                <!-- About Widget -->
+                <div class="col-span-1">
+                    <div class="flex items-center mb-6">
+                        <img src="Images/logo2.jpg" alt="Kayarda Integrated Farms Logo" class="h-12 w-12 mr-3 rounded-full object-cover border-2 border-brand-green shadow-sm">
+                        <div class="flex flex-col border-l-4 border-brand-orange pl-3">
+                            <span class="font-heading font-extrabold text-2xl tracking-tighter text-white leading-none">
+                                KAYARDA
+                            </span>
+                            <span class="text-[10px] uppercase font-bold text-gray-400 tracking-widest mt-1">Integrated Farms</span>
+                        </div>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-6 font-medium">A premier integrated agricultural enterprise delivering high-quality products and supply chain solutions with excellence, scale, and reliability.</p>
+                    <div class="flex space-x-3">
+                        <a href="https://facebook.com/kayardafarms" target="_blank" class="w-8 h-8 rounded bg-[#2a2a2a] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i class="fab fa-facebook-f text-xs"></i></a>
+                        <a href="https://twitter.com/kayardafarms" target="_blank" class="w-8 h-8 rounded bg-[#2a2a2a] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i class="fab fa-twitter text-xs"></i></a>
+                        <a href="https://instagram.com/kayardafarms" target="_blank" class="w-8 h-8 rounded bg-[#2a2a2a] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i class="fab fa-instagram text-xs"></i></a>
+                        <a href="https://linkedin.com/company/kayarda-farms" target="_blank" class="w-8 h-8 rounded bg-[#2a2a2a] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i class="fab fa-linkedin-in text-xs"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Links Widget -->
+                <div>
+                    <h4 class="text-white font-heading font-bold text-lg mb-6 uppercase border-b border-[#333] pb-2 inline-block">Company</h4>
+                    <ul class="space-y-3 text-sm font-semibold">
+                        <li><a href="index.html"   class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Home</a></li>
+                        <li><a href="about-us.html"   class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> About Us</a></li>
+                        <li><a href="index.html#team"    class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Our Team</a></li>
+                        <li><a href="index.html#gallery" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Gallery</a></li>
+                        <li><a href="index.html#media"   class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Media Center</a></li>
+                        <li><a href="index.html#career"  class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Careers</a></li>
+                        <li><a href="index.html#faq"     class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> FAQ</a></li>
+                        <li><a href="index.html#contact" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Products Widget -->
+                <div>
+                    <h4 class="text-white font-heading font-bold text-lg mb-6 uppercase border-b border-[#333] pb-2 inline-block">Our Products</h4>
+                    <ul class="space-y-3 text-sm font-semibold">
+                        <li><a href="index.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Eggs</a></li>
+                        <li><a href="index.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Poultry Feeds</a></li>
+                        <li><a href="index.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Fish</a></li>
+                        <li><a href="index.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Wheat Offals</a></li>
+                        <li><a href="index.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Concentrates</a></li>
+                        <li><a href="index.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Fertilizers</a></li>
+                        <li><a href="index.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Logistics Services</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Newsletter Widget -->
+                <div>
+                    <h4 class="text-white font-heading font-bold text-lg mb-6 uppercase border-b border-[#333] pb-2 inline-block">Newsletter</h4>
+                    <p class="text-sm mb-4 font-medium">Subscribe to receive the latest updates and farming tips.</p>
+                    <form id="newsletterForm" class="flex flex-col space-y-2">
+                        <input type="email" placeholder="Email Address" required class="w-full px-4 py-2 bg-[#2a2a2a] border border-[#333] text-white focus:outline-none focus:border-brand-green text-sm rounded-lg">
+                        <button type="submit" class="bg-brand-green hover:bg-brand-dark px-4 py-2 text-white transition-colors text-sm font-bold uppercase">
+                            Subscribe
+                        </button>
+                    </form>
+                    <div id="newsletterSuccess" class="hidden mt-3 text-brand-light text-xs font-bold">
+                        ✓ Subscribed! Thank you.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright Base -->
+            <div class="pt-8 border-t border-[#333] text-sm font-semibold flex flex-col md:flex-row justify-between items-center text-gray-500">
+                <p>&copy; 2026 Kayarda Integrated Farms Ltd. All Rights Reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-brand-orange transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-brand-orange transition-colors">Terms of Service</a>
+                    <!-- <a href="#" class="hover:text-brand-orange transition-colors">Sitemap</a> -->
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i data-lucide="chevron-up" class="h-5 w-5"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // ── Scroll Progress + Navbar + Back-to-Top
+        const scrollProgress = document.getElementById('scrollProgress');
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            const scrollPct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            scrollProgress.style.width = scrollPct + '%';
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-lg');
+                navbar.classList.remove('shadow-md');
+            } else {
+                navbar.classList.remove('shadow-lg');
+                navbar.classList.add('shadow-md');
+            }
+            backToTop.classList.toggle('visible', window.scrollY > 400);
+        });
+
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // ── Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // ── Newsletter form
+        document.getElementById('newsletterForm').addEventListener('submit', e => {
+            e.preventDefault();
+            document.getElementById('newsletterSuccess').classList.remove('hidden');
+        });
+
+        // ── Search functionality
+        const searchBtn = document.getElementById('searchBtn');
+        const searchInput = document.getElementById('searchInput');
+        searchBtn.addEventListener('click', () => {
+            searchInput.classList.toggle('hidden');
+            if (!searchInput.classList.contains('hidden')) {
+                searchInput.focus();
+            }
+        });
+        // Hide search input when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!searchBtn.contains(e.target) && !searchInput.contains(e.target)) {
+                searchInput.classList.add('hidden');
+            }
+        });
+        // Handle search input
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                // Handle search logic here
+                console.log('Searching for:', searchInput.value);
+                searchInput.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
