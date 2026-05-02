@@ -129,6 +129,12 @@
             position: relative;
             z-index: 20;
         }
+        .faq-content{
+            display: none;
+        }
+        .faq-item.open .faq-content, .faq-content.open {
+            display: block;
+        }
 
         /* ── NEW: Scroll progress bar ── */
         #scrollProgress {
