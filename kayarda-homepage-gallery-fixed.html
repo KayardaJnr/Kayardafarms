@@ -173,8 +173,13 @@
 
         /* ── NEW: Gallery ── */
         .gallery-img { overflow: hidden; position: relative; cursor: pointer; }
-        .gallery-img img { transition: transform 0.5s ease; display: block; width: 100%; height: 100%; object-fit: cover; }
-        .gallery-img:hover img { transform: scale(1.08); }
+        .gallery-img img { transition: transform 0.5s ease; display: block; width: 100%; height: 100%; }
+        .gallery-img:hover img { transform: scale(1.05); }
+        /* Responsive gallery - images display fully without cropping */
+        @media (max-width: 768px) {
+            .gallery-img.col-span-2 { grid-column: span 1; }
+            .gallery-img.row-span-2 { grid-row: span 1; }
+        }
         .gallery-overlay {
             position: absolute; inset: 0;
             background: rgba(14,122,61,0); transition: background 0.3s ease;
@@ -608,23 +613,22 @@
                 </div>
                 <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-gray-900 uppercase">Farm in Action</h2>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <div class="gallery-img col-span-2 row-span-2 rounded-lg" style="min-height: 300px;">
-                    <img src="Images/action1.png" alt="Farm operations" style="min-height:300px;">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 auto-rows-fr">
+                <div class="gallery-img col-span-2 row-span-2 md:col-span-2 md:row-span-2 rounded-lg overflow-hidden bg-gray-100 min-h-[200px] md:min-h-0">
+                    <img src="Images/action1.png" alt="Farm operations" class="w-full h-full object-contain" loading="lazy" decoding="async">
                 </div>
-                <div class="gallery-img rounded-lg" style="height:180px;">
-                    <img src="Images/action2.png" alt="Poultry" style="height:180px;">
-                    <div class="gallery-overlay">
-                    </div>
+                <div class="gallery-img rounded-lg overflow-hidden bg-gray-100 aspect-square">
+                    <img src="Images/action2.png" alt="Poultry" class="w-full h-full object-contain" loading="lazy" decoding="async">
+                    <div class="gallery-overlay"></div>
                 </div>
-                <div class="gallery-img rounded-lg" style="height:180px;">
-                    <img src="Images/action3.png" alt="Layers" style="height:180px;">
+                <div class="gallery-img rounded-lg overflow-hidden bg-gray-100 aspect-square">
+                    <img src="Images/action3.png" alt="Layers" class="w-full h-full object-contain" loading="lazy" decoding="async">
                 </div>
-                <div class="gallery-img rounded-lg" style="height:180px;">
-                    <img src="Images/action4.png" alt="Feed" style="height:180px;">
+                <div class="gallery-img rounded-lg overflow-hidden bg-gray-100 aspect-square">
+                    <img src="Images/action4.png" alt="Feed" class="w-full h-full object-contain" loading="lazy" decoding="async">
                 </div>
-                <div class="gallery-img rounded-lg" style="height:180px;">
-                    <img src="Images/action5.png" alt="Farm" style="height:180px;">
+                <div class="gallery-img rounded-lg overflow-hidden bg-gray-100 aspect-square">
+                    <img src="Images/action5.png" alt="Farm" class="w-full h-full object-contain" loading="lazy" decoding="async">
                 </div>
             </div>
         </div>
@@ -946,7 +950,7 @@
                     </a>
                 </div>
                 <div class="lg:w-3/5 flex flex-col gap-4">
-                    <div class="job-card border-2 rounded-lg border-gray-200 bg-white p-6">
+                    <div class="job-card border-2 border-gray-200 bg-white p-6">
                         <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
                             <div>
                                 <h3 class="font-heading font-bold text-gray-900 uppercase text-base">Farm Manager</h3>
@@ -960,7 +964,7 @@
                         <p class="text-gray-600 text-xs leading-relaxed mb-4">Oversee day-to-day farm operations, staff management, and production targets across our poultry and aquaculture divisions.</p>
                         <a href="mailto:careers@kayardafarms.com" class="text-brand-green font-bold text-xs uppercase hover:text-brand-orange flex items-center">Apply Now <i data-lucide="arrow-right" class="h-3 w-3 ml-1"></i></a>
                     </div>
-                    <div class="job-card border-2 rounded-lg border-gray-200 bg-white p-6">
+                    <div class="job-card border-2 border-gray-200 bg-white p-6">
                         <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
                             <div>
                                 <h3 class="font-heading font-bold text-gray-900 uppercase text-base">Sales & Distribution Officer</h3>
@@ -971,7 +975,7 @@
                         <p class="text-gray-600 text-xs leading-relaxed mb-4">Drive sales growth and manage distributor relationships across assigned territories. Experience in FMCG or agribusiness preferred.</p>
                         <a href="mailto:careers@kayardafarms.com" class="text-brand-green font-bold text-xs uppercase hover:text-brand-orange flex items-center">Apply Now <i data-lucide="arrow-right" class="h-3 w-3 ml-1"></i></a>
                     </div>
-                    <div class="job-card border-2 rounded-lg border-gray-200 bg-white p-6">
+                    <div class="job-card border-2 border-gray-200 bg-white p-6">
                         <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
                             <div>
                                 <h3 class="font-heading font-bold text-gray-900 uppercase text-base">Veterinary Field Officer</h3>
@@ -999,7 +1003,7 @@
                 <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-gray-900 uppercase">Frequently Asked Questions</h2>
             </div>
             <div class="space-y-3">
-                <div class="faq-item border rounded-lg border-gray-200 bg-brand-gray">
+                <div class="faq-item border border-gray-200 bg-brand-gray">
                     <button class="faq-trigger w-full flex justify-between items-center px-6 py-5 text-left">
                         <span class="font-heading font-bold text-sm uppercase text-gray-900">How do I place a bulk order?</span>
                         <i data-lucide="plus" class="faq-icon h-5 w-5 text-brand-green flex-shrink-0"></i>
@@ -1008,7 +1012,7 @@
                         <p class="text-gray-600 text-sm leading-relaxed">You can place a bulk order by calling our sales line (+234 802 150 7747), emailing sales@kayardafarms.com, or filling out the contact form on this page. Our team will respond within 24 hours with a quote and delivery timeline.</p>
                     </div>
                 </div>
-                <div class="faq-item border rounded-lg border-gray-200 bg-brand-gray">
+                <div class="faq-item border border-gray-200 bg-brand-gray">
                     <button class="faq-trigger w-full flex justify-between items-center px-6 py-5 text-left">
                         <span class="font-heading font-bold text-sm uppercase text-gray-900">Do you deliver nationwide?</span>
                         <i data-lucide="plus" class="faq-icon h-5 w-5 text-brand-green flex-shrink-0"></i>
@@ -1017,7 +1021,7 @@
                         <p class="text-gray-600 text-sm leading-relaxed">Yes! We have a robust logistics network that covers all 36 states of Nigeria and the Federal Capital Territory. Delivery timelines vary by location—typically 1–5 business days depending on your state.</p>
                     </div>
                 </div>
-                <div class="faq-item border rounded-lg border-gray-200 bg-brand-gray">
+                <div class="faq-item border border-gray-200 bg-brand-gray">
                     <button class="faq-trigger w-full flex justify-between items-center px-6 py-5 text-left">
                         <span class="font-heading font-bold text-sm uppercase text-gray-900">Are your feeds NAFDAC-compliant?</span>
                         <i data-lucide="plus" class="faq-icon h-5 w-5 text-brand-green flex-shrink-0"></i>
@@ -1026,7 +1030,7 @@
                         <p class="text-gray-600 text-sm leading-relaxed">Absolutely. All Kayarda feed products are formulated and produced in compliance with NAFDAC and FMARD standards. We conduct regular quality assurance checks at every stage of production.</p>
                     </div>
                 </div>
-                <div class="faq-item border rounded-lg border-gray-200 bg-brand-gray">
+                <div class="faq-item border border-gray-200 bg-brand-gray">
                     <button class="faq-trigger w-full flex justify-between items-center px-6 py-5 text-left">
                         <span class="font-heading font-bold text-sm uppercase text-gray-900">Do you offer free veterinary consultation?</span>
                         <i data-lucide="plus" class="faq-icon h-5 w-5 text-brand-green flex-shrink-0"></i>
@@ -1035,7 +1039,7 @@
                         <p class="text-gray-600 text-sm leading-relaxed">Yes! All Kayarda customers have access to our free veterinary helpline. You can also schedule field visits from our vet officers in select states. Just call our customer care number to request this service.</p>
                     </div>
                 </div>
-                <div class="faq-item border rounded-lg border-gray-200 bg-brand-gray">
+                <div class="faq-item border border-gray-200 bg-brand-gray">
                     <button class="faq-trigger w-full flex justify-between items-center px-6 py-5 text-left">
                         <span class="font-heading font-bold text-sm uppercase text-gray-900">How do I become a distributor?</span>
                         <i data-lucide="plus" class="faq-icon h-5 w-5 text-brand-green flex-shrink-0"></i>
@@ -1131,7 +1135,7 @@
                             <textarea rows="5" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:border-brand-green focus:bg-white outline-none transition-colors resize-none text-sm rounded-lg" placeholder="Write your message here..."></textarea>
                         </div>
                         <button type="submit" class="px-10 py-4 bg-brand-orange hover:bg-brand-orangeHover text-white btn-theme w-full md:w-auto">
-                            Submit Message <i data-lucide="send" class="ml-2 h-4 w-4"></i>
+                            Submit Message
                         </button>
                         <div id="successMessage" class="hidden mt-6 p-4 bg-green-50 text-brand-green border border-brand-green text-sm font-bold rounded-lg">
                             Thank you! Your message has been sent successfully. We'll respond within 24 hours.
@@ -1141,10 +1145,10 @@
             </div>
 
             <!-- ── NEW: Map embed ── -->
-            <div class="mt-12 border rounded-lg border-gray-200 shadow-sm overflow-hidden">
+            <div class="mt-12 border border-gray-200 shadow-sm overflow-hidden">
                 <div class="map-wrapper">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3815.9654177495754!2d8.595242010420034!3d10.481614564519639!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10532d4bd7ad1ae9%3A0x914bdcd2312e89dc!2sKayarda%20Integrated%20Farms!5e1!3m2!1sen!2sng!4v1777753265092!5m2!1sen!2sng"
+                        src="https://maps.app.goo.gl/xH7yaGeTZFnFsqseA"
                         allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
                         title="Kayarda Farms Location">
                     </iframe>
