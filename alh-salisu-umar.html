@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alh. Salisu Umar - Head of Transport & Logistics | Kayarda Farms</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    },
+                    fontSize: {
+                        'xs': '0.8125rem',
+                        'sm': '0.9rem',
+                        'base': '1.01rem',
+                        'lg': '1.125rem',
+                        'xl': '1.25rem',
+                        '2xl': '1.5rem',
+                        '3xl': '1.875rem',
+                        '4xl': '2.25rem',
+                    },
+                    colors: {
+                        brand: {
+                            green: '#0e7a3d',
+                            dark: '#0a5c2d',
+                            light: '#13a352',
+                            orange: '#f05a28',
+                            orangeHover: '#d94b1f',
+                            gray: '#f5f5f5',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .brand-green { background-color: #1f4e3d; }
+        .brand-orange { background-color: #ff6b35; }
+        .brand-light { background-color: #2d5a47; }
+        .brand-gray { background-color: #f8f9fa; }
+        .text-brand-green { color: #1f4e3d; }
+        .text-brand-orange { color: #ff6b35; }
+        .bg-brand-green { background-color: #1f4e3d; }
+        .bg-brand-orange { background-color: #ff6b35; }
+        .bg-brand-gray { background-color: #f8f9fa; }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #f05a28;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .btn-theme {
+            transition: all 0.3s ease;
+        }
+        .btn-theme:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #0e7a3d, #f05a28);
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3rem;
+            height: 3rem;
+            background: #0e7a3d;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(1rem);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .back-to-top:hover {
+            background: #f05a28;
+            transform: translateY(-0.25rem);
+        }
+
+        /* Responsive Images */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        .img-responsive {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+        @media (max-width: 640px) {
+            .img-responsive {
+                object-position: center 20%;
+            }
+        }
+        @media (min-width: 641px) and (max-width: 768px) {
+            .img-responsive {
+                object-position: center 15%;
+            }
+        }
+        /* Picture element support */
+        picture {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 font-sans flex flex-col min-h-screen">
+
+    <!-- Scroll Progress -->
+    <div id="scrollProgress" class="scroll-progress"></div>
+
+    <!-- Main Navigation -->
+    <nav id="navbar" class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-[85px]">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer  border-brand-orange pl-0">
+                    <img src="Images/logo1.jpg" alt="Kayarda Integrated Farms Logo" class="h-12 w-12 mr-3 rounded-lg object-cover border-2 border-brand-orange shadow-sm">
+                    <div class="flex flex-col">
+                        <span class="font-heading font-extrabold text-3xl tracking-tighter text-brand-green leading-none">
+                            KAYARDA
+                        </span>
+                        <span class="text-[11px] uppercase font-bold text-gray-600 tracking-[0.2em] mt-1">Integrated Farms</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html"     class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">Home</a>
+                    <a href="about-us.html"    class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">About Us</a>
+                    <a href="discover-more.html" class="nav-link text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">Discover More</a>
+                    <a href="index.html#gallery"  class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">Gallery</a>
+                    <a href="index.html#media"    class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">Media</a>
+                    <a href="index.html#career"   class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">Career</a>
+                    <a href="index.html#faq"      class="nav-link text-gray-700 hover:text-brand-green font-heading font-bold text-[13px] uppercase tracking-wide">FAQ</a>
+                    <a href="index.html#contact"  class="px-6 py-3 bg-brand-orange hover:bg-brand-orangeHover text-white btn-theme inline-flex items-center border-2 border-transparent rounded-lg transition-colors duration-300">
+                        Contact Us <i data-lucide="arrow-right-circle" class="ml-2 h-4 w-4"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-brand-green focus:outline-none p-2 rounded-lg">
+                        <i data-lucide="menu" class="h-8 w-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full left-0 top-full shadow-xl">
+            <div class="px-4 py-6 space-y-4">
+                <a href="index.html" class="block text-gray-700 hover:text-brand-green font-heading font-bold text-sm uppercase tracking-wide py-2">Home</a>
+                <a href="about-us.html" class="block text-gray-700 hover:text-brand-green font-heading font-bold text-sm uppercase tracking-wide py-2">About Us</a>
+                <a href="discover-more.html" class="block text-brand-green font-heading font-bold text-sm uppercase tracking-wide py-2">Discover More</a>
+                <a href="index.html#gallery" class="block text-gray-700 hover:text-brand-green font-heading font-bold text-sm uppercase tracking-wide py-2">Gallery</a>
+                <a href="index.html#media" class="block text-gray-700 hover:text-brand-green font-heading font-bold text-sm uppercase tracking-wide py-2">Media</a>
+                <a href="index.html#career" class="block text-gray-700 hover:text-brand-green font-heading font-bold text-sm uppercase tracking-wide py-2">Career</a>
+                <a href="index.html#faq" class="block text-gray-700 hover:text-brand-green font-heading font-bold text-sm uppercase tracking-wide py-2">FAQ</a>
+                <a href="index.html#contact" class="block px-6 py-3 bg-brand-orange hover:bg-brand-orangeHover text-white btn-theme inline-flex items-center justify-center w-full">
+                    Contact Us <i data-lucide="arrow-right-circle" class="ml-2 h-4 w-4"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Team Member Detail Section -->
+    <section class="py-20 bg-gradient-to-br from-brand-gray to-gray-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Breadcrumb -->
+            <nav class="mb-8">
+                <ol class="flex items-center space-x-2 text-sm text-gray-600">
+                    <li><a href="index.html" class="hover:text-brand-green transition-colors">Home</a></li>
+                    <li><i data-lucide="chevron-right" class="h-4 w-4"></i></li>
+                    <li><a href="index.html#team" class="hover:text-brand-green transition-colors">Team</a></li>
+                    <li><i data-lucide="chevron-right" class="h-4 w-4"></i></li>
+                    <li class="text-brand-green font-semibold">Alh. Salisu Umar</li>
+                </ol>
+            </nav>
+
+            <div class="bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-200">
+                <div class="md:flex">
+                    <!-- Profile Image Section -->
+                    <div class="md:w-2/5 relative min-h-[300px] md:min-h-full">
+                        <div class="h-64 sm:h-80 md:h-full overflow-hidden">
+                            <picture>
+                                <source media="(max-width: 640px)" srcset="Images/log-mg-mobile.png" onerror="this.srcset='Images/log mg.png'">
+                                <source media="(max-width: 768px)" srcset="Images/log-mg-tablet.png" onerror="this.srcset='Images/log mg.png'">
+                                <img src="Images/log mg.png" alt="Alh. Salisu Umar" class="w-full h-full object-cover object-center" loading="eager" decoding="async">
+                            </picture>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        </div>
+                        <!-- Floating Social Icons -->
+                        <div class="absolute bottom-6 left-6 flex space-x-3">
+                            <a href="https://linkedin.com/in/salisu-umar" target="_blank" class="p-3 rounded-full bg-white/90 hover:bg-white text-brand-green hover:text-brand-dark transition-all duration-300 shadow-lg backdrop-blur-sm">
+                                <i class="fab fa-linkedin-in text-lg"></i>
+                            </a>
+                            <a href="https://twitter.com/salisuumar" target="_blank" class="p-3 rounded-full bg-white/90 hover:bg-white text-brand-green hover:text-brand-dark transition-all duration-300 shadow-lg backdrop-blur-sm">
+                                <i class="fab fa-twitter text-lg"></i>
+                            </a>
+                            <a href="mailto:logistics@kayardafarms.com" class="p-3 rounded-full bg-white/90 hover:bg-white text-brand-green hover:text-brand-dark transition-all duration-300 shadow-lg backdrop-blur-sm">
+                                <i class="fas fa-envelope text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Content Section -->
+                    <div class="md:w-3/5 p-8 md:p-12">
+                        <!-- Header -->
+                        <div class="mb-8">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-1 bg-brand-orange mr-4"></div>
+                                <h4 class="text-brand-green font-heading font-bold uppercase text-sm tracking-widest">Head of Transport & Logistics</h4>
+                            </div>
+                            <h1 class="font-heading font-extrabold text-4xl text-gray-900 mb-4">Alh. Salisu Umar</h1>
+                            <p class="text-lg text-gray-600 leading-relaxed">Strategic logistics leader ensuring seamless product distribution across all 36 states</p>
+                        </div>
+
+                        <!-- Bio Content -->
+                        <div class="space-y-6 mb-8">
+                            <div class="prose prose-lg max-w-none">
+                                <p class="text-gray-700 leading-relaxed">
+                                    Alh. Salisu Umar heads the Transport and Logistics department at Kayarda Farms, managing one of the most critical operations in the company's supply chain. With over 15 years of experience in fleet management and agricultural distribution, he ensures that poultry feeds, eggs, fish, fertilizers, and other farm products reach customers across all 36 states of Nigeria efficiently and on time.
+                                </p>
+                                <p class="text-gray-700 leading-relaxed">
+                                    His leadership has transformed Kayarda's logistics network into a reliable, nationwide distribution system. He oversees a fleet of temperature-controlled trucks, coordinates route optimization, manages warehouse operations, and ensures strict adherence to delivery timelines. Under his supervision, Kayarda Farms has achieved industry-leading delivery performance, with same-day delivery in major cities and reliable 1-5 day delivery across all states.
+                                </p>
+                                <p class="text-gray-700 leading-relaxed">
+                                    Alh. Salisu holds extensive experience in transport management and logistics planning. He is known for his meticulous attention to detail, cost-efficiency strategies, and ability to scale operations during peak agricultural seasons. His commitment to excellence has made Kayarda Farms a trusted partner for farmers, distributors, and retailers who depend on timely product availability.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Contact Information -->
+                        <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                            <h3 class="font-heading font-bold text-gray-900 text-xl mb-6 flex items-center">
+                                <i class="fas fa-address-card text-brand-green mr-3"></i>
+                                Contact Information
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-envelope text-brand-green mt-1"></i>
+                                    <div>
+                                        <p class="text-sm text-gray-500 uppercase tracking-wide font-semibold">Email</p>
+                                        <a href="mailto:logistics@kayardafarms.com" class="text-gray-700 hover:text-brand-orange transition-colors">logistics@kayardafarms.com</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-phone text-brand-green mt-1"></i>
+                                    <div>
+                                        <p class="text-sm text-gray-500 uppercase tracking-wide font-semibold">Phone</p>
+                                        <a href="tel:+2348034567890" class="text-gray-700 hover:text-brand-orange transition-colors">+234 803 456 7890</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3 md:col-span-2">
+                                    <i class="fas fa-map-marker-alt text-brand-green mt-1"></i>
+                                    <div>
+                                        <p class="text-sm text-gray-500 uppercase tracking-wide font-semibold">Location</p>
+                                        <p class="text-gray-700">Kaduna State, Nigeria</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back to Team Button -->
+            <div class="text-center mt-12">
+                <a href="index.html#team" class="inline-flex items-center px-8 py-4 bg-brand-green hover:bg-brand-dark text-white font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    <i class="fas fa-arrow-left mr-3"></i>
+                    Back to Team
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#1a1a1a] text-gray-400 py-16 border-t-4 border-brand-green mt-auto font-sans">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                
+                <!-- About Widget -->
+                <div class="col-span-1">
+                    <div class="flex items-center mb-6">
+                    <img src="Images/logo3.jpg" alt="Kayarda Integrated Farms Logo" class="h-12 w-12 mr-3 rounded-lg object-cover border-2 border-brand-orange shadow-sm">
+                        <div class="flex flex-col  border-brand-orange pl-0">
+                            <span class="font-heading font-extrabold text-2xl tracking-tighter text-white leading-none">
+                                KAYARDA
+                            </span>
+                            <span class="text-[10px] uppercase font-bold text-gray-400 tracking-widest mt-1">Integrated Farms</span>
+                        </div>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-6 font-medium">A premier integrated agricultural enterprise delivering high-quality products and supply chain solutions with excellence, scale, and reliability.</p>
+                    <div class="flex space-x-3">
+                        <a href="https://facebook.com/kayardafarms" target="_blank" class="w-8 h-8 rounded bg-[#2a2a2a] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i class="fab fa-facebook-f text-xs"></i></a>
+                        <a href="https://twitter.com/kayardafarms" target="_blank" class="w-8 h-8 rounded bg-[#2a2a2a] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i class="fab fa-twitter text-xs"></i></a>
+                        <a href="https://instagram.com/kayardafarms" target="_blank" class="w-8 h-8 rounded bg-[#2a2a2a] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i class="fab fa-instagram text-xs"></i></a>
+                        <a href="https://linkedin.com/company/kayarda-farms" target="_blank" class="w-8 h-8 rounded bg-[#2a2a2a] flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i class="fab fa-linkedin-in text-xs"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Links Widget -->
+                <div>
+                    <h4 class="text-white font-heading font-bold text-lg mb-6 uppercase border-b border-[#333] pb-2 inline-block">Company</h4>
+                    <ul class="space-y-3 text-sm font-semibold">
+                        <li><a href="index.html"   class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Home</a></li>
+                        <li><a href="about-us.html"   class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> About Us</a></li>
+                        <li><a href="index.html#team"    class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Our Team</a></li>
+                        <li><a href="index.html#gallery" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Gallery</a></li>
+                        <li><a href="index.html#media"   class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Media Center</a></li>
+                        <li><a href="index.html#career"  class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Careers</a></li>
+                        <li><a href="index.html#faq"     class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> FAQ</a></li>
+                        <li><a href="index.html#contact" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Products Widget -->
+                <div>
+                    <h4 class="text-white font-heading font-bold text-lg mb-6 uppercase border-b border-[#333] pb-2 inline-block">Our Products</h4>
+                    <ul class="space-y-3 text-sm font-semibold">
+                        <li><a href="discover-more.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Eggs</a></li>
+                        <li><a href="discover-more.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Poultry Feeds</a></li>
+                        <li><a href="discover-more.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Fish</a></li>
+                        <li><a href="discover-more.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Wheat Offals</a></li>
+                        <li><a href="discover-more.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Concentrates</a></li>
+                        <li><a href="discover-more.html#products" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Fertilizers</a></li>
+                        <li><a href="discover-more.html#services" class="hover:text-brand-orange transition-colors flex items-center"><i data-lucide="chevron-right" class="h-3 w-3 mr-2 text-brand-green"></i> Logistics Services</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Newsletter Widget -->
+                <div>
+                    <h4 class="text-white font-heading font-bold text-lg mb-6 uppercase border-b border-[#333] pb-2 inline-block">Newsletter</h4>
+                    <p class="text-sm mb-4 font-medium">Subscribe to receive the latest updates and farming tips.</p>
+                    <form id="newsletterForm" class="flex flex-col space-y-2">
+                        <input type="email" placeholder="Email Address" required class="w-full px-4 py-2 bg-[#2a2a2a] border border-[#333] text-white focus:outline-none focus:border-brand-green text-sm rounded-lg">
+                        <button type="submit" class="bg-brand-green hover:bg-brand-dark px-4 py-2 text-white transition-colors text-sm font-bold uppercase rounded-lg">
+                            Subscribe
+                        </button>
+                    </form>
+                    <div id="newsletterSuccess" class="hidden mt-3 text-brand-light text-xs font-bold">
+                        ✓ Subscribed! Thank you.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright Base -->
+            <div class="pt-8 border-t border-[#333] text-sm font-semibold flex flex-col md:flex-row justify-between items-center text-gray-500">
+                <p>&copy; 2026 Kayarda Integrated Farms Ltd. All Rights Reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-brand-orange transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-brand-orange transition-colors">Terms of Service</a>
+                    <!-- <a href="#" class="hover:text-brand-orange transition-colors">Sitemap</a> -->
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i data-lucide="chevron-up" class="h-5 w-5"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // ── Scroll Progress + Navbar + Back-to-Top
+        const scrollProgress = document.getElementById('scrollProgress');
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            const scrollPct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            scrollProgress.style.width = scrollPct + '%';
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-lg');
+                navbar.classList.remove('shadow-md');
+            } else {
+                navbar.classList.remove('shadow-lg');
+                navbar.classList.add('shadow-md');
+            }
+            backToTop.classList.toggle('visible', window.scrollY > 400);
+        });
+
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // ── Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // ── Mobile Products Accordion
+        const mobileProductsToggle = document.getElementById('mobile-products-toggle');
+        const mobileProductsPanel = document.getElementById('mobile-products-panel');
+        const mobileChevron = document.getElementById('mobile-chevron');
+
+        if (mobileProductsToggle) {
+            mobileProductsToggle.addEventListener('click', () => {
+                mobileProductsPanel.classList.toggle('hidden');
+                mobileChevron.classList.toggle('rotate-180');
+            });
+        }
+
+        // ── Newsletter form
+        document.getElementById('newsletterForm').addEventListener('submit', e => {
+            e.preventDefault();
+            document.getElementById('newsletterSuccess').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
