@@ -111,6 +111,11 @@
             font-size: 13px;
         }
         .nav-link {
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
+            font-size: 1rem;
+            white-space: nowrap;
             position: relative;
         }
         .nav-link::after {
@@ -125,6 +130,63 @@
         }
         .nav-link:hover::after {
             width: 100%;
+        }
+        .nav-menu {
+            align-items: center;
+            gap: clamp(0.75rem, 1.6vw, 2rem);
+        }
+        .nav-cta {
+            min-height: 44px;
+            white-space: nowrap;
+        }
+        .mobile-nav-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .mobile-nav-link,
+        .mobile-nav-cta {
+            display: flex;
+            align-items: center;
+            min-height: 48px;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .mobile-nav-link {
+            border-bottom: 1px solid #f3f4f6;
+            color: #374151;
+        }
+        .mobile-nav-link:hover {
+            color: #0e7a3d;
+        }
+        .mobile-nav-link.active {
+            color: #0e7a3d;
+        }
+        .mobile-nav-cta {
+            justify-content: center;
+            margin-top: 0.25rem;
+            border-radius: 8px;
+            background: #f05a28;
+            color: #fff;
+        }
+        .mobile-nav-cta:hover {
+            background: #d94b1f;
+        }
+        @media (min-width: 768px) and (max-width: 1180px) {
+            .nav-menu {
+                gap: 0.75rem;
+            }
+            .nav-link {
+                font-size: 0.875rem;
+            }
+            .nav-cta {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
         }
         .product-card:hover .product-img {
             transform: none;
@@ -278,20 +340,20 @@
                 </div>
                 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home"     class="nav-link text-brand-green font-heading font-semibold text-[16px] ">Home</a>
-                    <a href="#products" class="nav-link text-gray-700 hover:text-brand-green font-heading font-semibold text-[16px] tracking-wide flex items-center">
+                <div class="hidden md:flex nav-menu">
+                    <a href="#home"     class="nav-link text-brand-green font-heading font-semibold">Home</a>
+                    <a href="#products" class="nav-link text-gray-700 hover:text-brand-green font-heading font-semibold tracking-wide">
                         Product 
                         <!-- <i data-lucide="chevron-down" class="ml-1 h-3 w-3"></i> -->
                     </a>
-                    <a href="#media"    class="nav-link text-gray-700 hover:text-brand-green font-heading font-semibold text-[16px] tracking-wide">News</a>
-                    <a href="about-us.html"    class="nav-link text-gray-700 hover:text-brand-green font-heading font-semibold text-[16px] flex items-center">
+                    <a href="#media"    class="nav-link text-gray-700 hover:text-brand-green font-heading font-semibold tracking-wide">News</a>
+                    <a href="about-us.html"    class="nav-link text-gray-700 hover:text-brand-green font-heading font-semibold">
                         Company <i data-lucide="chevron-down" class="ml-1 h-3 w-3"></i>
                     </a>
-                    <a href="#gallery"  class="nav-link text-gray-700 hover:text-brand-green font-heading font-semibold text-[16px] tracking-wide">Gallery</a>
-                    <a href="#career"   class="nav-link text-gray-700 hover:text-brand-green font-heading font-semibold text-[16px] tracking-wide">Career</a>
-                    <a href="#faq"      class="nav-link text-gray-700 hover:text-brand-green font-heading font-semibold text-[16px] tracking-wide">FAQ</a>
-                    <a href="#contact"  class="px-6 py-3 bg-brand-orange hover:bg-brand-orangeHover text-white btn-theme inline-flex items-center">
+                    <a href="#gallery"  class="nav-link text-gray-700 hover:text-brand-green font-heading font-semibold tracking-wide">Gallery</a>
+                    <a href="#career"   class="nav-link text-gray-700 hover:text-brand-green font-heading font-semibold tracking-wide">Career</a>
+                    <a href="#faq"      class="nav-link text-gray-700 hover:text-brand-green font-heading font-semibold tracking-wide">FAQ</a>
+                    <a href="#contact"  class="nav-cta px-6 py-3 bg-brand-orange hover:bg-brand-orangeHover text-white btn-theme inline-flex items-center justify-center">
                         Contact Us <i data-lucide="arrow-right-circle" class="ml-2 h-4 w-4"></i>
                     </a>
                 </div>
@@ -307,15 +369,15 @@
 
         <!-- Mobile Menu Panel -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full left-0 top-full shadow-xl">
-            <div class="px-4 py-4 space-y-2">
-                <a href="#home"     class="block px-3 py-3 text-sm font-heading font-bold text-brand-green uppercase border-b border-gray-100">Home</a>
-                <a href="about-us.html" class="block px-3 py-3 text-sm font-heading font-bold text-gray-700 uppercase border-b border-gray-100">About Us</a>
-                <a href="#products" class="block px-3 py-3 text-sm font-heading font-bold text-gray-700 uppercase border-b border-gray-100">Our Products</a>
-                <a href="#gallery"  class="block px-3 py-3 text-sm font-heading font-bold text-gray-700 uppercase border-b border-gray-100">Gallery</a>
-                <a href="#media"    class="block px-3 py-3 text-sm font-heading font-bold text-gray-700 uppercase border-b border-gray-100">Media</a>
-                <a href="#career"   class="block px-3 py-3 text-sm font-heading font-bold text-gray-700 uppercase border-b border-gray-100">Career</a>
-                <a href="#faq"      class="block px-3 py-3 text-sm font-heading font-bold text-gray-700 uppercase border-b border-gray-100">FAQ</a>
-                <a href="#contact"  class="block px-3 py-3 text-sm font-heading font-bold text-gray-700 uppercase">Contact Us</a>
+            <div class="mobile-nav-stack px-4 py-4">
+                <a href="#home"     class="mobile-nav-link active">Home</a>
+                <a href="about-us.html" class="mobile-nav-link">About Us</a>
+                <a href="#products" class="mobile-nav-link">Our Products</a>
+                <a href="#gallery"  class="mobile-nav-link">Gallery</a>
+                <a href="#media"    class="mobile-nav-link">Media</a>
+                <a href="#career"   class="mobile-nav-link">Career</a>
+                <a href="#faq"      class="mobile-nav-link">FAQ</a>
+                <a href="#contact"  class="mobile-nav-cta">Contact Us</a>
             </div>
         </div>
     </nav>
